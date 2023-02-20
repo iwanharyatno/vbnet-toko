@@ -26,13 +26,13 @@ Partial Class FormLogin
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.CheckBoxShowPassword = New System.Windows.Forms.CheckBox()
         Me.ButtonLogin = New System.Windows.Forms.Button()
         Me.ButtonExit = New System.Windows.Forms.Button()
         Me.FieldPassword = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.FieldUsername = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.CheckBoxShowPassword = New System.Windows.Forms.CheckBox()
         Me.Panel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -82,6 +82,16 @@ Partial Class FormLogin
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Login Form"
+        '
+        'CheckBoxShowPassword
+        '
+        Me.CheckBoxShowPassword.AutoSize = True
+        Me.CheckBoxShowPassword.Location = New System.Drawing.Point(6, 206)
+        Me.CheckBoxShowPassword.Name = "CheckBoxShowPassword"
+        Me.CheckBoxShowPassword.Size = New System.Drawing.Size(108, 19)
+        Me.CheckBoxShowPassword.TabIndex = 4
+        Me.CheckBoxShowPassword.Text = "Show Password"
+        Me.CheckBoxShowPassword.UseVisualStyleBackColor = True
         '
         'ButtonLogin
         '
@@ -147,16 +157,6 @@ Partial Class FormLogin
         Me.Label3.Size = New System.Drawing.Size(75, 20)
         Me.Label3.TabIndex = 0
         Me.Label3.Text = "Username"
-        '
-        'CheckBoxShowPassword
-        '
-        Me.CheckBoxShowPassword.AutoSize = True
-        Me.CheckBoxShowPassword.Location = New System.Drawing.Point(6, 206)
-        Me.CheckBoxShowPassword.Name = "CheckBoxShowPassword"
-        Me.CheckBoxShowPassword.Size = New System.Drawing.Size(108, 19)
-        Me.CheckBoxShowPassword.TabIndex = 4
-        Me.CheckBoxShowPassword.Text = "Show Password"
-        Me.CheckBoxShowPassword.UseVisualStyleBackColor = True
         '
         'FormLogin
         '

@@ -1,7 +1,7 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class DBConnection
-    Private ReadOnly Connection As New SqlConnection(My.Settings.ConnectionDB)
+    Public ReadOnly Connection As New SqlConnection(My.Settings.ConnectionDB)
 
     Public Function Open()
         If ConnectionState.Closed Then
