@@ -26,12 +26,13 @@ Partial Class FormLogin
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.ButtonLogin = New System.Windows.Forms.Button()
+        Me.ButtonExit = New System.Windows.Forms.Button()
+        Me.FieldPassword = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.FieldUsername = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.CheckBoxShowPassword = New System.Windows.Forms.CheckBox()
         Me.Panel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -67,11 +68,12 @@ Partial Class FormLogin
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.Button2)
-        Me.GroupBox1.Controls.Add(Me.Button1)
-        Me.GroupBox1.Controls.Add(Me.TextBox2)
+        Me.GroupBox1.Controls.Add(Me.CheckBoxShowPassword)
+        Me.GroupBox1.Controls.Add(Me.ButtonLogin)
+        Me.GroupBox1.Controls.Add(Me.ButtonExit)
+        Me.GroupBox1.Controls.Add(Me.FieldPassword)
         Me.GroupBox1.Controls.Add(Me.Label4)
-        Me.GroupBox1.Controls.Add(Me.TextBox1)
+        Me.GroupBox1.Controls.Add(Me.FieldUsername)
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.ForeColor = System.Drawing.Color.MidnightBlue
         Me.GroupBox1.Location = New System.Drawing.Point(350, 12)
@@ -81,41 +83,42 @@ Partial Class FormLogin
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Login Form"
         '
-        'Button2
+        'ButtonLogin
         '
-        Me.Button2.BackColor = System.Drawing.Color.MidnightBlue
-        Me.Button2.FlatAppearance.BorderSize = 0
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.Button2.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.Button2.Location = New System.Drawing.Point(190, 270)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(114, 40)
-        Me.Button2.TabIndex = 2
-        Me.Button2.Text = "LOGIN"
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.ButtonLogin.BackColor = System.Drawing.Color.MidnightBlue
+        Me.ButtonLogin.FlatAppearance.BorderSize = 0
+        Me.ButtonLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonLogin.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.ButtonLogin.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.ButtonLogin.Location = New System.Drawing.Point(190, 268)
+        Me.ButtonLogin.Name = "ButtonLogin"
+        Me.ButtonLogin.Size = New System.Drawing.Size(114, 40)
+        Me.ButtonLogin.TabIndex = 2
+        Me.ButtonLogin.Text = "LOGIN"
+        Me.ButtonLogin.UseVisualStyleBackColor = False
         '
-        'Button1
+        'ButtonExit
         '
-        Me.Button1.BackColor = System.Drawing.Color.Silver
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.Button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Button1.Location = New System.Drawing.Point(6, 270)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(114, 40)
-        Me.Button1.TabIndex = 2
-        Me.Button1.Text = "EXIT"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.ButtonExit.BackColor = System.Drawing.Color.Silver
+        Me.ButtonExit.FlatAppearance.BorderSize = 0
+        Me.ButtonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonExit.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.ButtonExit.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.ButtonExit.Location = New System.Drawing.Point(6, 268)
+        Me.ButtonExit.Name = "ButtonExit"
+        Me.ButtonExit.Size = New System.Drawing.Size(114, 40)
+        Me.ButtonExit.TabIndex = 3
+        Me.ButtonExit.Text = "EXIT"
+        Me.ButtonExit.UseVisualStyleBackColor = False
         '
-        'TextBox2
+        'FieldPassword
         '
-        Me.TextBox2.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.TextBox2.Location = New System.Drawing.Point(6, 162)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(298, 27)
-        Me.TextBox2.TabIndex = 1
+        Me.FieldPassword.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.FieldPassword.Location = New System.Drawing.Point(6, 162)
+        Me.FieldPassword.Name = "FieldPassword"
+        Me.FieldPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.FieldPassword.Size = New System.Drawing.Size(298, 27)
+        Me.FieldPassword.TabIndex = 1
         '
         'Label4
         '
@@ -127,13 +130,13 @@ Partial Class FormLogin
         Me.Label4.TabIndex = 0
         Me.Label4.Text = "Password"
         '
-        'TextBox1
+        'FieldUsername
         '
-        Me.TextBox1.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.TextBox1.Location = New System.Drawing.Point(6, 89)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(298, 27)
-        Me.TextBox1.TabIndex = 1
+        Me.FieldUsername.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.FieldUsername.Location = New System.Drawing.Point(6, 89)
+        Me.FieldUsername.Name = "FieldUsername"
+        Me.FieldUsername.Size = New System.Drawing.Size(298, 27)
+        Me.FieldUsername.TabIndex = 0
         '
         'Label3
         '
@@ -145,10 +148,21 @@ Partial Class FormLogin
         Me.Label3.TabIndex = 0
         Me.Label3.Text = "Username"
         '
+        'CheckBoxShowPassword
+        '
+        Me.CheckBoxShowPassword.AutoSize = True
+        Me.CheckBoxShowPassword.Location = New System.Drawing.Point(6, 206)
+        Me.CheckBoxShowPassword.Name = "CheckBoxShowPassword"
+        Me.CheckBoxShowPassword.Size = New System.Drawing.Size(108, 19)
+        Me.CheckBoxShowPassword.TabIndex = 4
+        Me.CheckBoxShowPassword.Text = "Show Password"
+        Me.CheckBoxShowPassword.UseVisualStyleBackColor = True
+        '
         'FormLogin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.ClientSize = New System.Drawing.Size(672, 376)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Panel1)
@@ -167,11 +181,12 @@ Partial Class FormLogin
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button1 As Button
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents ButtonLogin As Button
+    Friend WithEvents ButtonExit As Button
+    Friend WithEvents FieldPassword As TextBox
     Friend WithEvents Label4 As Label
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents FieldUsername As TextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents Button3 As Button
+    Friend WithEvents CheckBoxShowPassword As CheckBox
 End Class
