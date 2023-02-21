@@ -126,7 +126,7 @@ Partial Class FormLogin
         Me.FieldPassword.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.FieldPassword.Location = New System.Drawing.Point(6, 162)
         Me.FieldPassword.Name = "FieldPassword"
-        Me.FieldPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.FieldPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(8226)
         Me.FieldPassword.Size = New System.Drawing.Size(298, 27)
         Me.FieldPassword.TabIndex = 1
         '
