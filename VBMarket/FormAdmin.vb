@@ -140,7 +140,7 @@ Public Class FormAdmin
     End Sub
 
     Private Sub btnNewEmployee_Click(sender As Object, e As EventArgs) Handles btnNewEmployee.Click
-        InputEmployee.Add()
+        FormEmployee.Add()
     End Sub
 
     Private Sub btnRemoveEmployee_Click(sender As Object, e As EventArgs) Handles btnRemoveEmployee.Click
@@ -178,7 +178,7 @@ Public Class FormAdmin
 
         Dim selectedRow As DataGridViewRow = dgvEmployees.SelectedRows.Item(0)
 
-        InputEmployee.Edit(selectedRow.Cells.Item("ID").Value)
+        FormEmployee.Edit(selectedRow.Cells.Item("ID").Value)
     End Sub
 
     Private Sub btnNewFruit_Click(sender As Object, e As EventArgs) Handles btnNewFruit.Click
@@ -217,5 +217,9 @@ Public Class FormAdmin
         Dim selectedRow As DataGridViewRow = dgvFruits.SelectedRows.Item(0)
 
         FormFruit.Edit(selectedRow.Cells.Item("FruitID").Value)
+    End Sub
+
+    Private Sub btnProfile_Click(sender As Object, e As EventArgs) Handles btnProfile.Click
+        FormProfile.ShowByID(EmployeeID)
     End Sub
 End Class

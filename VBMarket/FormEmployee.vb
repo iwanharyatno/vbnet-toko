@@ -1,6 +1,6 @@
 ﻿Imports System.Data.SqlClient
 
-Public Class InputEmployee
+Public Class FormEmployee
     Private editMode As Boolean = False
     Private editId As String
 

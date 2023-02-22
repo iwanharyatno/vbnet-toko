@@ -44,17 +44,17 @@ Public Class FormFruit
             Return False
         End If
 
-        If Not Regex.IsMatch(FieldStock.Text, "^\d+$") Then
+        If Not Regex.IsMatch(FieldStock.Text, "\d+") Then
             MsgBox("The 'stock' must be a number")
             Return False
         End If
 
-        If Not Regex.IsMatch(FieldPurchasePrice.Text, "^\d+$") Then
+        If Not Regex.IsMatch(FieldPurchasePrice.Text, "\d+") Then
             MsgBox("The 'purchase price' must be a number")
             Return False
         End If
 
-        If Not Regex.IsMatch(FieldSellPrice.Text, "^\d+$") Then
+        If Not Regex.IsMatch(FieldSellPrice.Text, "\d+") Then
             MsgBox("The 'sale price' must be a number")
             Return False
         End If

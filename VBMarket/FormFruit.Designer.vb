@@ -111,7 +111,7 @@ Partial Class FormFruit
         Me.btnCancel.Location = New System.Drawing.Point(16, 476)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(132, 34)
-        Me.btnCancel.TabIndex = 3
+        Me.btnCancel.TabIndex = 7
         Me.btnCancel.Text = "CANCEL"
         Me.btnCancel.UseVisualStyleBackColor = False
         '
@@ -124,7 +124,7 @@ Partial Class FormFruit
         Me.btnCreate.Location = New System.Drawing.Point(336, 476)
         Me.btnCreate.Name = "btnCreate"
         Me.btnCreate.Size = New System.Drawing.Size(132, 34)
-        Me.btnCreate.TabIndex = 3
+        Me.btnCreate.TabIndex = 6
         Me.btnCreate.Text = "CREATE"
         Me.btnCreate.UseVisualStyleBackColor = False
         '
