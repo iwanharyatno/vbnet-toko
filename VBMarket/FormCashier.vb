@@ -66,7 +66,7 @@ Public Class FormCashier
         Try
             AppConnection.Open()
 
-            SqlQuery = "SELECT ID, FruitName, FruitType, SellPrice FROM Fruit ORDER BY CreatedAt"
+            SqlQuery = "SELECT ID, FruitName, FruitType, Stock, SellPrice FROM Fruit WHERE Stock > 0 ORDER BY CreatedAt"
             Command = New SqlCommand(SqlQuery, AppConnection.Connection)
 
             DataReader = Command.ExecuteReader()
@@ -76,6 +76,7 @@ Public Class FormCashier
                         DataReader.Item("ID").ToString(),
                         DataReader.Item("FruitName").ToString(),
                         DataReader.Item("FruitType").ToString(),
+                        DataReader.Item("Stock").ToString(),
                         DataReader.Item("SellPrice").ToString()
                     })
                 End While
@@ -92,6 +93,11 @@ Public Class FormCashier
             MsgBox("Please enter payment value")
             Return False
         End If
+
+        If shoppingCustomerID.Equals("") Then
+            MsgBox("Please select customer first")
+        End If
+
         Return True
     End Function
 
@@ -297,13 +303,16 @@ Public Class FormCashier
                     Dim subtotal As String = selectedItem.Cells.Item("CartSubtotal").Value
                     Dim saleDate As String = dtpSaleDate.Value.ToString("yyyy-MM-dd")
 
-                    SqlQuery = "INSERT INTO Sale (ID, CustomerID, FruitID, Qty, Subtotal, CreatedAt, UpdatedAt) VALUES (NEWID(), '" + shoppingCustomerID + "', '" + fruitId + "', " + qty + ", '" + subtotal + "', '" + saleDate + "', GETDATE())"
+                    SqlQuery =
+                        "INSERT INTO Sale (ID, CustomerID, FruitID, Qty, Subtotal, CreatedAt, UpdatedAt) VALUES (NEWID(), '" + shoppingCustomerID + "', '" + fruitId + "', " + qty + ", '" + subtotal + "', '" + saleDate + "', GETDATE());" +
+                        "UPDATE Fruit SET Stock -= " + qty + " WHERE ID='" + fruitId + "'"
                     Command = New SqlCommand(SqlQuery, AppConnection.Connection)
                     Command.ExecuteNonQuery()
                 Next
 
                 MsgBox("Sale recorded successfully")
                 ResetSalesInputs()
+                ReloadFruitTable()
             Catch ex As Exception
                 MsgBox("Couldn't perform the INSERT operation: " + ex.Message)
             Finally
@@ -330,18 +339,22 @@ Public Class FormCashier
     End Sub
 
     Private Sub btnToDebt_Click(sender As Object, e As EventArgs) Handles btnToDebt.Click
-        Try
-            AppConnection.Open()
+        If Not shoppingCustomerID.Equals("") Then
+            Try
+                AppConnection.Open()
 
-            SqlQuery = "UPDATE Customer SET Debt += " + FieldChanges.Text + " WHERE ID='" + shoppingCustomerID + "'"
-            Command = New SqlCommand(SqlQuery, AppConnection.Connection)
+                SqlQuery = "UPDATE Customer SET Debt += " + FieldChanges.Text + " WHERE ID='" + shoppingCustomerID + "'"
+                Command = New SqlCommand(SqlQuery, AppConnection.Connection)
 
-            Command.ExecuteNonQuery()
-            MsgBox("Changes evaluated to customer's debt")
-        Catch ex As Exception
-            MsgBox("Couldn't execute UPDATE operation: " + ex.Message)
-        Finally
-            AppConnection.Close()
-        End Try
+                Command.ExecuteNonQuery()
+                MsgBox("Changes evaluated to customer's debt")
+            Catch ex As Exception
+                MsgBox("Couldn't execute UPDATE operation: " + ex.Message)
+            Finally
+                AppConnection.Close()
+            End Try
+        Else
+            MsgBox("Please select a customer first")
+        End If
     End Sub
 End Class

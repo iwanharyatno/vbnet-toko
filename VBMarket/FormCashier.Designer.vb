@@ -57,6 +57,7 @@ Partial Class FormCashier
         Me.FruitID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FruitName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FruitType = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FruitStock = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SellPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dgvCart = New System.Windows.Forms.DataGridView()
         Me.CartFruitID = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -278,6 +279,7 @@ Partial Class FormCashier
         Me.dgvCustomers.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CustomerID, Me.CustomerName, Me.CustomerEmail, Me.CustomerPhone, Me.CustomerAddress, Me.CustomerDebt})
         Me.dgvCustomers.Location = New System.Drawing.Point(0, 0)
         Me.dgvCustomers.Name = "dgvCustomers"
+        Me.dgvCustomers.ReadOnly = True
         Me.dgvCustomers.RowTemplate.Height = 25
         Me.dgvCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvCustomers.Size = New System.Drawing.Size(643, 453)
@@ -287,31 +289,37 @@ Partial Class FormCashier
         '
         Me.CustomerID.HeaderText = "ID"
         Me.CustomerID.Name = "CustomerID"
+        Me.CustomerID.ReadOnly = True
         '
         'CustomerName
         '
         Me.CustomerName.HeaderText = "Name"
         Me.CustomerName.Name = "CustomerName"
+        Me.CustomerName.ReadOnly = True
         '
         'CustomerEmail
         '
         Me.CustomerEmail.HeaderText = "Email"
         Me.CustomerEmail.Name = "CustomerEmail"
+        Me.CustomerEmail.ReadOnly = True
         '
         'CustomerPhone
         '
         Me.CustomerPhone.HeaderText = "Phone"
         Me.CustomerPhone.Name = "CustomerPhone"
+        Me.CustomerPhone.ReadOnly = True
         '
         'CustomerAddress
         '
         Me.CustomerAddress.HeaderText = "Address"
         Me.CustomerAddress.Name = "CustomerAddress"
+        Me.CustomerAddress.ReadOnly = True
         '
         'CustomerDebt
         '
         Me.CustomerDebt.HeaderText = "Debt"
         Me.CustomerDebt.Name = "CustomerDebt"
+        Me.CustomerDebt.ReadOnly = True
         '
         'TabSales
         '
@@ -440,7 +448,7 @@ Partial Class FormCashier
         Me.dgvFruits.BackgroundColor = System.Drawing.SystemColors.ControlLight
         Me.dgvFruits.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvFruits.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvFruits.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.FruitID, Me.FruitName, Me.FruitType, Me.SellPrice})
+        Me.dgvFruits.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.FruitID, Me.FruitName, Me.FruitType, Me.FruitStock, Me.SellPrice})
         Me.dgvFruits.Location = New System.Drawing.Point(6, 40)
         Me.dgvFruits.Name = "dgvFruits"
         Me.dgvFruits.RowTemplate.Height = 25
@@ -462,6 +470,11 @@ Partial Class FormCashier
         '
         Me.FruitType.HeaderText = "Type"
         Me.FruitType.Name = "FruitType"
+        '
+        'FruitStock
+        '
+        Me.FruitStock.HeaderText = "Stock"
+        Me.FruitStock.Name = "FruitStock"
         '
         'SellPrice
         '
@@ -707,10 +720,6 @@ Partial Class FormCashier
     Friend WithEvents Label11 As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents Label9 As Label
-    Friend WithEvents FruitID As DataGridViewTextBoxColumn
-    Friend WithEvents FruitName As DataGridViewTextBoxColumn
-    Friend WithEvents FruitType As DataGridViewTextBoxColumn
-    Friend WithEvents SellPrice As DataGridViewTextBoxColumn
     Friend WithEvents CartFruitID As DataGridViewTextBoxColumn
     Friend WithEvents CartFruitName As DataGridViewTextBoxColumn
     Friend WithEvents CartQty As DataGridViewTextBoxColumn
@@ -719,4 +728,9 @@ Partial Class FormCashier
     Friend WithEvents btnRemoveFromCart As Button
     Friend WithEvents dtpSaleDate As DateTimePicker
     Friend WithEvents Label12 As Label
+    Friend WithEvents FruitID As DataGridViewTextBoxColumn
+    Friend WithEvents FruitName As DataGridViewTextBoxColumn
+    Friend WithEvents FruitType As DataGridViewTextBoxColumn
+    Friend WithEvents FruitStock As DataGridViewTextBoxColumn
+    Friend WithEvents SellPrice As DataGridViewTextBoxColumn
 End Class
