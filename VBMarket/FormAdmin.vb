@@ -29,8 +29,8 @@ Public Class FormAdmin
             Command = New SqlCommand(SqlQuery, AppConnection.Connection)
 
             DataReader = Command.ExecuteReader()
+            dgvEmployees.Rows.Clear()
             If DataReader.HasRows Then
-                dgvEmployees.Rows.Clear()
                 While DataReader.Read()
                     dgvEmployees.Rows.Add(New String() {
                         DataReader.Item("ID").ToString(),
@@ -58,8 +58,8 @@ Public Class FormAdmin
             Command = New SqlCommand(SqlQuery, AppConnection.Connection)
 
             DataReader = Command.ExecuteReader()
+            dgvFruits.Rows.Clear()
             If DataReader.HasRows Then
-                dgvFruits.Rows.Clear()
                 While DataReader.Read()
                     dgvFruits.Rows.Add(New String() {
                         DataReader.Item("ID").ToString(),
@@ -91,6 +91,8 @@ Public Class FormAdmin
             Next
         Catch ex As Exception
             MsgBox("Failed to execute DELETE operation: " + ex.Message)
+        Finally
+            AppConnection.Close()
         End Try
     End Sub
 
@@ -106,6 +108,8 @@ Public Class FormAdmin
             Next
         Catch ex As Exception
             MsgBox("Failed to execute DELETE operation: " + ex.Message)
+        Finally
+            AppConnection.Close()
         End Try
     End Sub
 
