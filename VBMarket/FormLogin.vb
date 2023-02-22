@@ -81,7 +81,8 @@ Public Class FormLogin
             FormAdmin.Show()
             FormAdmin.GetAdminInfo()
         ElseIf userRole = "cashier" Then
-            MsgBox("Hello cashier")
+            FormCashier.Show()
+            FormCashier.GetCashierData()
         End If
     End Sub
 End Class
