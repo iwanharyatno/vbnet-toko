@@ -305,7 +305,8 @@ Public Class FormCashier
 
                     SqlQuery =
                         "INSERT INTO Sale (ID, CustomerID, FruitID, Qty, Subtotal, CreatedAt, UpdatedAt) VALUES (NEWID(), '" + shoppingCustomerID + "', '" + fruitId + "', " + qty + ", '" + subtotal + "', '" + saleDate + "', GETDATE());" +
-                        "UPDATE Fruit SET Stock -= " + qty + " WHERE ID='" + fruitId + "'"
+                        "UPDATE Fruit SET Stock -= " + qty + " WHERE ID='" + fruitId + "';" +
+                        "UPDATE Finance SET CurrentBalance += " + subtotal + ""
                     Command = New SqlCommand(SqlQuery, AppConnection.Connection)
                     Command.ExecuteNonQuery()
                 Next
