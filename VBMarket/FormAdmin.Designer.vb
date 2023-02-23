@@ -71,6 +71,7 @@ Partial Class FormAdmin
         Me.numQty = New System.Windows.Forms.NumericUpDown()
         Me.btnAddToCart = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.dtpPurchaseDate = New System.Windows.Forms.DateTimePicker()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.dgvCartRestock = New System.Windows.Forms.DataGridView()
         Me.RestockCartFruitID = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -81,6 +82,7 @@ Partial Class FormAdmin
         Me.RestockCartSubtotal = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btnRemoveFromCart = New System.Windows.Forms.Button()
         Me.FieldTotal = New System.Windows.Forms.TextBox()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.btnConfirm = New System.Windows.Forms.Button()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.FieldCurrentBalance = New System.Windows.Forms.TextBox()
@@ -99,8 +101,6 @@ Partial Class FormAdmin
         Me.btnEditSupplier = New System.Windows.Forms.Button()
         Me.btnBringSupplierToRestock = New System.Windows.Forms.Button()
         Me.btnNewSupplier = New System.Windows.Forms.Button()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.dtpPurchaseDate = New System.Windows.Forms.DateTimePicker()
         Me.Panel1.SuspendLayout()
         Me.AdminTabs.SuspendLayout()
         Me.TabHome.SuspendLayout()
@@ -622,6 +622,14 @@ Partial Class FormAdmin
         Me.Label3.TabIndex = 12
         Me.Label3.Text = "Qty"
         '
+        'dtpPurchaseDate
+        '
+        Me.dtpPurchaseDate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.dtpPurchaseDate.Location = New System.Drawing.Point(94, 301)
+        Me.dtpPurchaseDate.Name = "dtpPurchaseDate"
+        Me.dtpPurchaseDate.Size = New System.Drawing.Size(146, 23)
+        Me.dtpPurchaseDate.TabIndex = 16
+        '
         'Label5
         '
         Me.Label5.AutoSize = True
@@ -699,6 +707,16 @@ Partial Class FormAdmin
         Me.FieldTotal.ReadOnly = True
         Me.FieldTotal.Size = New System.Drawing.Size(350, 23)
         Me.FieldTotal.TabIndex = 15
+        '
+        'Label9
+        '
+        Me.Label9.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(6, 305)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(82, 15)
+        Me.Label9.TabIndex = 12
+        Me.Label9.Text = "Purchase Date"
         '
         'btnConfirm
         '
@@ -879,23 +897,6 @@ Partial Class FormAdmin
         Me.btnNewSupplier.TabIndex = 1
         Me.btnNewSupplier.Text = "NEW SUPPLIER"
         Me.btnNewSupplier.UseVisualStyleBackColor = False
-        '
-        'Label9
-        '
-        Me.Label9.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(6, 305)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(26, 15)
-        Me.Label9.TabIndex = 12
-        Me.Label9.Text = "Qty"
-        '
-        'dtpPurchaseDate
-        '
-        Me.dtpPurchaseDate.Location = New System.Drawing.Point(52, 301)
-        Me.dtpPurchaseDate.Name = "dtpPurchaseDate"
-        Me.dtpPurchaseDate.Size = New System.Drawing.Size(146, 23)
-        Me.dtpPurchaseDate.TabIndex = 16
         '
         'FormAdmin
         '

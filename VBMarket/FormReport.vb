@@ -77,7 +77,8 @@ Public Class FormReport
     Protected Overrides Sub OnShown(e As EventArgs)
         MyBase.OnShown(e)
         GetReport(Date.Now.Month, Date.Now.Year)
-        ComboMonth.SelectedIndex = 0
+        ComboMonth.SelectedIndex = Date.Now.Month - 1
+        FieldYear.Text = Date.Now.Year
     End Sub
 
     Private Sub btnViewReport_Click(sender As Object, e As EventArgs) Handles btnViewReport.Click

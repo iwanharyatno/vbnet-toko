@@ -100,9 +100,9 @@ Partial Class FormReport
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.labelIncome.Font = New System.Drawing.Font("Segoe UI", 36.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.labelIncome.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.labelIncome.Location = New System.Drawing.Point(331, 270)
+        Me.labelIncome.Location = New System.Drawing.Point(246, 270)
         Me.labelIncome.Name = "labelIncome"
-        Me.labelIncome.Size = New System.Drawing.Size(224, 65)
+        Me.labelIncome.Size = New System.Drawing.Size(361, 65)
         Me.labelIncome.TabIndex = 4
         Me.labelIncome.Text = "Rp0"
         Me.labelIncome.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
