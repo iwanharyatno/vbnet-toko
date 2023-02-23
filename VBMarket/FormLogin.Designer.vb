@@ -39,6 +39,9 @@ Partial Class FormLogin
         '
         'Panel1
         '
+        Me.Panel1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.Controls.Add(Me.Label2)
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Location = New System.Drawing.Point(12, 12)
@@ -48,6 +51,8 @@ Partial Class FormLogin
         '
         'Label2
         '
+        Me.Label2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label2.AutoSize = True
         Me.Label2.Location = New System.Drawing.Point(33, 165)
         Me.Label2.Name = "Label2"
@@ -57,6 +62,8 @@ Partial Class FormLogin
         '
         'Label1
         '
+        Me.Label1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.Label1.ForeColor = System.Drawing.Color.MidnightBlue
@@ -68,6 +75,8 @@ Partial Class FormLogin
         '
         'GroupBox1
         '
+        Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox1.Controls.Add(Me.CheckBoxShowPassword)
         Me.GroupBox1.Controls.Add(Me.ButtonLogin)
         Me.GroupBox1.Controls.Add(Me.ButtonExit)
@@ -85,6 +94,8 @@ Partial Class FormLogin
         '
         'CheckBoxShowPassword
         '
+        Me.CheckBoxShowPassword.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.CheckBoxShowPassword.AutoSize = True
         Me.CheckBoxShowPassword.Location = New System.Drawing.Point(6, 206)
         Me.CheckBoxShowPassword.Name = "CheckBoxShowPassword"
@@ -95,6 +106,7 @@ Partial Class FormLogin
         '
         'ButtonLogin
         '
+        Me.ButtonLogin.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ButtonLogin.BackColor = System.Drawing.Color.MidnightBlue
         Me.ButtonLogin.FlatAppearance.BorderSize = 0
         Me.ButtonLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -109,6 +121,7 @@ Partial Class FormLogin
         '
         'ButtonExit
         '
+        Me.ButtonExit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.ButtonExit.BackColor = System.Drawing.Color.Silver
         Me.ButtonExit.FlatAppearance.BorderSize = 0
         Me.ButtonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -123,6 +136,8 @@ Partial Class FormLogin
         '
         'FieldPassword
         '
+        Me.FieldPassword.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.FieldPassword.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.FieldPassword.Location = New System.Drawing.Point(6, 162)
         Me.FieldPassword.Name = "FieldPassword"
@@ -132,6 +147,8 @@ Partial Class FormLogin
         '
         'Label4
         '
+        Me.Label4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.Label4.Location = New System.Drawing.Point(6, 136)
@@ -142,6 +159,8 @@ Partial Class FormLogin
         '
         'FieldUsername
         '
+        Me.FieldUsername.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.FieldUsername.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.FieldUsername.Location = New System.Drawing.Point(6, 89)
         Me.FieldUsername.Name = "FieldUsername"
@@ -150,6 +169,8 @@ Partial Class FormLogin
         '
         'Label3
         '
+        Me.Label3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.Label3.Location = New System.Drawing.Point(6, 57)

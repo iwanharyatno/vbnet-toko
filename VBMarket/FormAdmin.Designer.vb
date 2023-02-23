@@ -30,6 +30,7 @@ Partial Class FormAdmin
         Me.AdminTabs = New System.Windows.Forms.TabControl()
         Me.TabHome = New System.Windows.Forms.TabPage()
         Me.btnRestock = New System.Windows.Forms.Button()
+        Me.btnViewReport = New System.Windows.Forms.Button()
         Me.btnFruits = New System.Windows.Forms.Button()
         Me.btnSuppliers = New System.Windows.Forms.Button()
         Me.btnEmployees = New System.Windows.Forms.Button()
@@ -97,7 +98,6 @@ Partial Class FormAdmin
         Me.btnEditSupplier = New System.Windows.Forms.Button()
         Me.btnBringSupplierToRestock = New System.Windows.Forms.Button()
         Me.btnNewSupplier = New System.Windows.Forms.Button()
-        Me.btnViewReport = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.AdminTabs.SuspendLayout()
         Me.TabHome.SuspendLayout()
@@ -126,6 +126,8 @@ Partial Class FormAdmin
         '
         'Panel1
         '
+        Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Controls.Add(Me.btnProfile)
         Me.Panel1.Controls.Add(Me.btnLogout)
@@ -147,6 +149,7 @@ Partial Class FormAdmin
         '
         'btnProfile
         '
+        Me.btnProfile.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnProfile.BackColor = System.Drawing.Color.Silver
         Me.btnProfile.FlatAppearance.BorderSize = 0
         Me.btnProfile.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -160,6 +163,7 @@ Partial Class FormAdmin
         '
         'btnLogout
         '
+        Me.btnLogout.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnLogout.BackColor = System.Drawing.Color.MidnightBlue
         Me.btnLogout.FlatAppearance.BorderSize = 0
         Me.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -173,6 +177,9 @@ Partial Class FormAdmin
         '
         'AdminTabs
         '
+        Me.AdminTabs.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.AdminTabs.Controls.Add(Me.TabHome)
         Me.AdminTabs.Controls.Add(Me.TabEmployees)
         Me.AdminTabs.Controls.Add(Me.TabFruit)
@@ -181,7 +188,7 @@ Partial Class FormAdmin
         Me.AdminTabs.Location = New System.Drawing.Point(12, 66)
         Me.AdminTabs.Name = "AdminTabs"
         Me.AdminTabs.SelectedIndex = 0
-        Me.AdminTabs.Size = New System.Drawing.Size(751, 377)
+        Me.AdminTabs.Size = New System.Drawing.Size(751, 396)
         Me.AdminTabs.TabIndex = 1
         '
         'TabHome
@@ -212,6 +219,18 @@ Partial Class FormAdmin
         Me.btnRestock.TabIndex = 2
         Me.btnRestock.Text = "Restock Fruits"
         Me.btnRestock.UseVisualStyleBackColor = False
+        '
+        'btnViewReport
+        '
+        Me.btnViewReport.BackColor = System.Drawing.Color.MidnightBlue
+        Me.btnViewReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnViewReport.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.btnViewReport.Location = New System.Drawing.Point(313, 118)
+        Me.btnViewReport.Name = "btnViewReport"
+        Me.btnViewReport.Size = New System.Drawing.Size(125, 36)
+        Me.btnViewReport.TabIndex = 2
+        Me.btnViewReport.Text = "View Report"
+        Me.btnViewReport.UseVisualStyleBackColor = False
         '
         'btnFruits
         '
@@ -275,6 +294,9 @@ Partial Class FormAdmin
         'dgvEmployees
         '
         Me.dgvEmployees.AllowUserToAddRows = False
+        Me.dgvEmployees.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvEmployees.BackgroundColor = System.Drawing.SystemColors.ControlLight
         Me.dgvEmployees.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -323,6 +345,7 @@ Partial Class FormAdmin
         '
         'btnRemoveEmployee
         '
+        Me.btnRemoveEmployee.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnRemoveEmployee.BackColor = System.Drawing.Color.Maroon
         Me.btnRemoveEmployee.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRemoveEmployee.ForeColor = System.Drawing.SystemColors.ControlLight
@@ -335,6 +358,7 @@ Partial Class FormAdmin
         '
         'btnEditEmployee
         '
+        Me.btnEditEmployee.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnEditEmployee.BackColor = System.Drawing.Color.DarkGreen
         Me.btnEditEmployee.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnEditEmployee.ForeColor = System.Drawing.SystemColors.ControlLight
@@ -347,6 +371,7 @@ Partial Class FormAdmin
         '
         'btnNewEmployee
         '
+        Me.btnNewEmployee.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnNewEmployee.BackColor = System.Drawing.Color.MidnightBlue
         Me.btnNewEmployee.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnNewEmployee.ForeColor = System.Drawing.SystemColors.ControlLight
@@ -374,6 +399,9 @@ Partial Class FormAdmin
         'dgvFruits
         '
         Me.dgvFruits.AllowUserToAddRows = False
+        Me.dgvFruits.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvFruits.BackgroundColor = System.Drawing.SystemColors.ControlLight
         Me.dgvFruits.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvFruits.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -422,6 +450,7 @@ Partial Class FormAdmin
         '
         'btnRemoveFruit
         '
+        Me.btnRemoveFruit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnRemoveFruit.BackColor = System.Drawing.Color.Maroon
         Me.btnRemoveFruit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRemoveFruit.ForeColor = System.Drawing.SystemColors.ControlLight
@@ -434,6 +463,7 @@ Partial Class FormAdmin
         '
         'btnEditFruit
         '
+        Me.btnEditFruit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnEditFruit.BackColor = System.Drawing.Color.DarkGreen
         Me.btnEditFruit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnEditFruit.ForeColor = System.Drawing.SystemColors.ControlLight
@@ -446,6 +476,7 @@ Partial Class FormAdmin
         '
         'btnNewFruit
         '
+        Me.btnNewFruit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnNewFruit.BackColor = System.Drawing.Color.MidnightBlue
         Me.btnNewFruit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnNewFruit.ForeColor = System.Drawing.SystemColors.ControlLight
@@ -477,13 +508,14 @@ Partial Class FormAdmin
         Me.TabRestock.Location = New System.Drawing.Point(4, 24)
         Me.TabRestock.Name = "TabRestock"
         Me.TabRestock.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabRestock.Size = New System.Drawing.Size(743, 349)
+        Me.TabRestock.Size = New System.Drawing.Size(743, 368)
         Me.TabRestock.TabIndex = 3
         Me.TabRestock.Text = "Restock"
         Me.TabRestock.UseVisualStyleBackColor = True
         '
         'FieldCurrentBalance
         '
+        Me.FieldCurrentBalance.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.FieldCurrentBalance.Location = New System.Drawing.Point(576, 10)
         Me.FieldCurrentBalance.Name = "FieldCurrentBalance"
         Me.FieldCurrentBalance.ReadOnly = True
@@ -508,7 +540,8 @@ Partial Class FormAdmin
         '
         'FieldTotal
         '
-        Me.FieldTotal.Location = New System.Drawing.Point(375, 269)
+        Me.FieldTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.FieldTotal.Location = New System.Drawing.Point(375, 288)
         Me.FieldTotal.Name = "FieldTotal"
         Me.FieldTotal.ReadOnly = True
         Me.FieldTotal.Size = New System.Drawing.Size(350, 23)
@@ -516,8 +549,9 @@ Partial Class FormAdmin
         '
         'Label6
         '
+        Me.Label6.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(375, 248)
+        Me.Label6.Location = New System.Drawing.Point(375, 267)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(32, 15)
         Me.Label6.TabIndex = 14
@@ -534,6 +568,7 @@ Partial Class FormAdmin
         '
         'Label8
         '
+        Me.Label8.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label8.AutoSize = True
         Me.Label8.Location = New System.Drawing.Point(468, 13)
         Me.Label8.Name = "Label8"
@@ -561,8 +596,9 @@ Partial Class FormAdmin
         '
         'Label3
         '
+        Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(93, 319)
+        Me.Label3.Location = New System.Drawing.Point(93, 338)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(26, 15)
         Me.Label3.TabIndex = 12
@@ -570,10 +606,11 @@ Partial Class FormAdmin
         '
         'btnConfirm
         '
+        Me.btnConfirm.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnConfirm.BackColor = System.Drawing.Color.MidnightBlue
         Me.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnConfirm.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.btnConfirm.Location = New System.Drawing.Point(620, 308)
+        Me.btnConfirm.Location = New System.Drawing.Point(620, 327)
         Me.btnConfirm.Name = "btnConfirm"
         Me.btnConfirm.Size = New System.Drawing.Size(105, 32)
         Me.btnConfirm.TabIndex = 11
@@ -582,10 +619,11 @@ Partial Class FormAdmin
         '
         'btnRemoveFromCart
         '
+        Me.btnRemoveFromCart.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnRemoveFromCart.BackColor = System.Drawing.Color.DarkRed
         Me.btnRemoveFromCart.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRemoveFromCart.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.btnRemoveFromCart.Location = New System.Drawing.Point(569, 215)
+        Me.btnRemoveFromCart.Location = New System.Drawing.Point(569, 234)
         Me.btnRemoveFromCart.Name = "btnRemoveFromCart"
         Me.btnRemoveFromCart.Size = New System.Drawing.Size(156, 32)
         Me.btnRemoveFromCart.TabIndex = 11
@@ -594,10 +632,11 @@ Partial Class FormAdmin
         '
         'btnAddToCart
         '
+        Me.btnAddToCart.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnAddToCart.BackColor = System.Drawing.Color.MidnightBlue
         Me.btnAddToCart.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAddToCart.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.btnAddToCart.Location = New System.Drawing.Point(251, 308)
+        Me.btnAddToCart.Location = New System.Drawing.Point(251, 327)
         Me.btnAddToCart.Name = "btnAddToCart"
         Me.btnAddToCart.Size = New System.Drawing.Size(105, 32)
         Me.btnAddToCart.TabIndex = 11
@@ -606,7 +645,8 @@ Partial Class FormAdmin
         '
         'numQty
         '
-        Me.numQty.Location = New System.Drawing.Point(125, 315)
+        Me.numQty.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.numQty.Location = New System.Drawing.Point(125, 334)
         Me.numQty.Name = "numQty"
         Me.numQty.Size = New System.Drawing.Size(120, 23)
         Me.numQty.TabIndex = 10
@@ -614,6 +654,9 @@ Partial Class FormAdmin
         'dgvCartRestock
         '
         Me.dgvCartRestock.AllowUserToAddRows = False
+        Me.dgvCartRestock.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvCartRestock.BackgroundColor = System.Drawing.SystemColors.ControlLight
         Me.dgvCartRestock.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvCartRestock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -622,7 +665,7 @@ Partial Class FormAdmin
         Me.dgvCartRestock.Name = "dgvCartRestock"
         Me.dgvCartRestock.RowTemplate.Height = 25
         Me.dgvCartRestock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvCartRestock.Size = New System.Drawing.Size(350, 144)
+        Me.dgvCartRestock.Size = New System.Drawing.Size(350, 163)
         Me.dgvCartRestock.TabIndex = 8
         '
         'RestockCartFruitID
@@ -658,6 +701,8 @@ Partial Class FormAdmin
         'dgvFruitsRestock
         '
         Me.dgvFruitsRestock.AllowUserToAddRows = False
+        Me.dgvFruitsRestock.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.dgvFruitsRestock.BackgroundColor = System.Drawing.SystemColors.ControlLight
         Me.dgvFruitsRestock.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvFruitsRestock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -666,7 +711,7 @@ Partial Class FormAdmin
         Me.dgvFruitsRestock.Name = "dgvFruitsRestock"
         Me.dgvFruitsRestock.RowTemplate.Height = 25
         Me.dgvFruitsRestock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvFruitsRestock.Size = New System.Drawing.Size(341, 237)
+        Me.dgvFruitsRestock.Size = New System.Drawing.Size(341, 256)
         Me.dgvFruitsRestock.TabIndex = 7
         '
         'RestockFruitID
@@ -712,6 +757,8 @@ Partial Class FormAdmin
         'dgvSuppliers
         '
         Me.dgvSuppliers.AllowUserToAddRows = False
+        Me.dgvSuppliers.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.dgvSuppliers.BackgroundColor = System.Drawing.SystemColors.ControlLight
         Me.dgvSuppliers.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvSuppliers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -750,6 +797,7 @@ Partial Class FormAdmin
         '
         'btnDeleteSupplier
         '
+        Me.btnDeleteSupplier.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnDeleteSupplier.BackColor = System.Drawing.Color.DarkRed
         Me.btnDeleteSupplier.FlatAppearance.BorderSize = 0
         Me.btnDeleteSupplier.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -763,6 +811,7 @@ Partial Class FormAdmin
         '
         'btnEditSupplier
         '
+        Me.btnEditSupplier.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnEditSupplier.BackColor = System.Drawing.Color.DarkGreen
         Me.btnEditSupplier.FlatAppearance.BorderSize = 0
         Me.btnEditSupplier.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -776,6 +825,7 @@ Partial Class FormAdmin
         '
         'btnBringSupplierToRestock
         '
+        Me.btnBringSupplierToRestock.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnBringSupplierToRestock.BackColor = System.Drawing.Color.MidnightBlue
         Me.btnBringSupplierToRestock.FlatAppearance.BorderSize = 0
         Me.btnBringSupplierToRestock.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -789,6 +839,7 @@ Partial Class FormAdmin
         '
         'btnNewSupplier
         '
+        Me.btnNewSupplier.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnNewSupplier.BackColor = System.Drawing.Color.MidnightBlue
         Me.btnNewSupplier.FlatAppearance.BorderSize = 0
         Me.btnNewSupplier.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -800,23 +851,11 @@ Partial Class FormAdmin
         Me.btnNewSupplier.Text = "NEW SUPPLIER"
         Me.btnNewSupplier.UseVisualStyleBackColor = False
         '
-        'btnViewReport
-        '
-        Me.btnViewReport.BackColor = System.Drawing.Color.MidnightBlue
-        Me.btnViewReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnViewReport.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.btnViewReport.Location = New System.Drawing.Point(313, 118)
-        Me.btnViewReport.Name = "btnViewReport"
-        Me.btnViewReport.Size = New System.Drawing.Size(125, 36)
-        Me.btnViewReport.TabIndex = 2
-        Me.btnViewReport.Text = "View Report"
-        Me.btnViewReport.UseVisualStyleBackColor = False
-        '
         'FormAdmin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(772, 455)
+        Me.ClientSize = New System.Drawing.Size(772, 474)
         Me.Controls.Add(Me.AdminTabs)
         Me.Controls.Add(Me.Panel1)
         Me.Name = "FormAdmin"
