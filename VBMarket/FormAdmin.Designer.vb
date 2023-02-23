@@ -97,6 +97,7 @@ Partial Class FormAdmin
         Me.btnEditSupplier = New System.Windows.Forms.Button()
         Me.btnBringSupplierToRestock = New System.Windows.Forms.Button()
         Me.btnNewSupplier = New System.Windows.Forms.Button()
+        Me.btnViewReport = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.AdminTabs.SuspendLayout()
         Me.TabHome.SuspendLayout()
@@ -186,6 +187,7 @@ Partial Class FormAdmin
         'TabHome
         '
         Me.TabHome.Controls.Add(Me.btnRestock)
+        Me.TabHome.Controls.Add(Me.btnViewReport)
         Me.TabHome.Controls.Add(Me.btnFruits)
         Me.TabHome.Controls.Add(Me.btnSuppliers)
         Me.TabHome.Controls.Add(Me.btnEmployees)
@@ -798,6 +800,18 @@ Partial Class FormAdmin
         Me.btnNewSupplier.Text = "NEW SUPPLIER"
         Me.btnNewSupplier.UseVisualStyleBackColor = False
         '
+        'btnViewReport
+        '
+        Me.btnViewReport.BackColor = System.Drawing.Color.MidnightBlue
+        Me.btnViewReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnViewReport.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.btnViewReport.Location = New System.Drawing.Point(313, 118)
+        Me.btnViewReport.Name = "btnViewReport"
+        Me.btnViewReport.Size = New System.Drawing.Size(125, 36)
+        Me.btnViewReport.TabIndex = 2
+        Me.btnViewReport.Text = "View Report"
+        Me.btnViewReport.UseVisualStyleBackColor = False
+        '
         'FormAdmin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -903,4 +917,5 @@ Partial Class FormAdmin
     Friend WithEvents Label8 As Label
     Friend WithEvents btnRestock As Button
     Friend WithEvents btnSuppliers As Button
+    Friend WithEvents btnViewReport As Button
 End Class

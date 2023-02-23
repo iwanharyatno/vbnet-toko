@@ -150,12 +150,19 @@ Public Class FormCashier
     End Function
 
     Private Sub AddToCartHandler(selectedRow As DataGridViewRow)
+        Dim name As String = selectedRow.Cells.Item("FruitName").Value
+        Dim stock As String = selectedRow.Cells.Item("FruitStock").Value
         Dim price As Integer = selectedRow.Cells.Item("SellPrice").Value
         Dim qty As Integer = numQty.Value
         Dim subtotal As Integer = qty * price
+
+        If stock < qty Then
+            MsgBox("There's not enough " + name + " to sell. Defaulting to " + stock)
+        End If
+
         dgvCart.Rows.Add(New String() {
             selectedRow.Cells.Item("FruitID").Value,
-            selectedRow.Cells.Item("FruitName").Value,
+            name,
             qty,
             price,
             subtotal

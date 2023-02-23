@@ -522,4 +522,8 @@ Public Class FormAdmin
                 Exit Select
         End Select
     End Sub
+
+    Private Sub btnViewReport_Click(sender As Object, e As EventArgs) Handles btnViewReport.Click
+        FormReport.Show()
+    End Sub
 End Class
