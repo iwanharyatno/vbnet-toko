@@ -238,16 +238,16 @@ Public Class FormCashier
     End Sub
 
     Private Sub btnAddToCart_Click(sender As Object, e As EventArgs) Handles btnAddToCart.Click
-        If dgvFruits.SelectedRows.Count = 1 Then
-            Dim selectedRow As DataGridViewRow = dgvFruits.SelectedRows.Item(0)
-
-            If Not GetCartFruitIDs().Contains(selectedRow.Cells.Item("FruitID").Value) Then
-                AddToCartHandler(selectedRow)
-            Else
-                MsgBox("The fruit is already on the cart")
-            End If
+        If dgvFruits.SelectedRows.Count > 0 Then
+            For Each selectedRow As DataGridViewRow In dgvFruits.SelectedRows
+                If Not GetCartFruitIDs().Contains(selectedRow.Cells.Item("FruitID").Value) Then
+                    AddToCartHandler(selectedRow)
+                Else
+                    MsgBox("The fruit '" + selectedRow.Cells.Item("FruitName").Value + "' is already on the cart")
+                End If
+            Next
         Else
-            MsgBox("Please select exactly one fruit")
+            MsgBox("Please select at least one row")
         End If
     End Sub
 
@@ -311,7 +311,7 @@ Public Class FormCashier
                     Dim saleDate As String = dtpSaleDate.Value.ToString("yyyy-MM-dd")
 
                     SqlQuery =
-                        "INSERT INTO Sale (ID, CustomerID, FruitID, Qty, Subtotal, CreatedAt, UpdatedAt) VALUES (NEWID(), '" + shoppingCustomerID + "', '" + fruitId + "', " + qty + ", '" + subtotal + "', '" + saleDate + "', GETDATE());" +
+                        "INSERT INTO Sale (ID, EmployeeID, CustomerID, FruitID, Qty, Subtotal, CreatedAt, UpdatedAt) VALUES (NEWID(), '" + EmployeeID + "', '" + shoppingCustomerID + "', '" + fruitId + "', " + qty + ", '" + subtotal + "', '" + saleDate + "', GETDATE());" +
                         "UPDATE Fruit SET Stock -= " + qty + " WHERE ID='" + fruitId + "';" +
                         "UPDATE Finance SET CurrentBalance += " + subtotal + ""
                     Command = New SqlCommand(SqlQuery, AppConnection.Connection)

@@ -167,6 +167,7 @@ Public Class FormAdmin
         dgvCartRestock.Rows.Clear()
         numQty.Value = 0
         FieldTotal.Text = "0"
+        dtpPurchaseDate.Value = Date.Now
     End Sub
 
     Private Sub DeleteEmployees(employeeIds() As String)
@@ -360,16 +361,18 @@ Public Class FormAdmin
     End Sub
 
     Private Sub btnAddToCart_Click(sender As Object, e As EventArgs) Handles btnAddToCart.Click
-        If dgvFruitsRestock.SelectedRows.Count = 1 Then
-            Dim selectedRow As DataGridViewRow = dgvFruitsRestock.SelectedRows.Item(0)
-            If Not GetCartFruitIDs().Contains(selectedRow.Cells.Item("RestockFruitID").Value) Then
-                AddToCartHandler(selectedRow)
-                CalculateTotal()
-            Else
-                MsgBox("The fruit is already on the cart")
-            End If
+        If dgvFruitsRestock.SelectedRows.Count > 0 Then
+            For Each selectedRow As DataGridViewRow In dgvFruitsRestock.SelectedRows
+                If Not GetCartFruitIDs().Contains(selectedRow.Cells.Item("RestockFruitID").Value) Then
+                    AddToCartHandler(selectedRow)
+                Else
+                    MsgBox("The fruit '" + selectedRow.Cells.Item("RestockFruitName").Value + "' is already on the cart")
+                End If
+            Next
+
+            CalculateTotal()
         Else
-            MsgBox("Please select exactly one row")
+            MsgBox("Please select at least one row")
         End If
     End Sub
 
@@ -468,8 +471,9 @@ Public Class FormAdmin
                 Dim fruitId As String = selectedRow.Cells.Item("RestockCartFruitID").Value
                 Dim qty As String = selectedRow.Cells.Item("RestockCartQty").Value
                 Dim subtotal As String = selectedRow.Cells.Item("RestockCartSubtotal").Value
+                Dim purchaseDate As String = dtpPurchaseDate.Value.ToString("yyyy-MM-dd")
 
-                SqlQuery = "INSERT INTO Purchase (ID, AdminID, SupplierID, FruitID, Qty, Subtotal, CreatedAt, UpdatedAt) VALUES (NEWID(), '" + EmployeeID + "', '" + activeSupplierID + "', '" + fruitId + "', '" + qty + "', '" + subtotal + "', GETDATE(), GETDATE());
+                SqlQuery = "INSERT INTO Purchase (ID, EmployeeID, SupplierID, FruitID, Qty, Subtotal, CreatedAt, UpdatedAt) VALUES (NEWID(), '" + EmployeeID + "', '" + activeSupplierID + "', '" + fruitId + "', '" + qty + "', '" + subtotal + "', '" + purchaseDate + "', GETDATE());
                                 UPDATE Fruit SET Stock += '" + qty + "' WHERE ID='" + fruitId + ";'
                                 UPDATE Finance SET CurrentBalance -= '" + subtotal + "'"
                 Command = New SqlCommand(SqlQuery, AppConnection.Connection)

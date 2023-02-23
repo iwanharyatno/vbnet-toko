@@ -1,12 +1,13 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Globalization
 Imports System.Text.RegularExpressions
 
 Public Class FormReport
     Private Sub GetReport(month As String, year As String)
         Dim totalSold As Integer = 0
         Dim income As Integer = 0
-        Dim outcome As Integer = 1
-        Dim profit As Integer
+        Dim outcome As Integer = 0
+        Dim profit As Double = 0
         Dim currentBalance As Integer = 0
 
         Dim reportDate As Date = Date.Parse("10-" + month + "-" + year + " 00:00:00")
@@ -44,12 +45,28 @@ Public Class FormReport
                 End If
             End If
 
-            profit = income * 100 / outcome
+            If outcome > 0 Then
+                profit = (income - outcome) / outcome
+            Else
+                profit = 1
+            End If
 
-            labelIncome.Text = income
+            If (income - outcome) = 0 Then
+                profit = 0
+            End If
+
+            If profit < 0 Then
+                labelProfit.ForeColor = Color.DarkRed
+                labelProfitInfo.Text = "Loss"
+            Else
+                labelProfit.ForeColor = Color.DarkGreen
+                labelProfitInfo.Text = "Profit"
+            End If
+
+            labelIncome.Text = income.ToString("C", CultureInfo.CreateSpecificCulture("id-ID"))
             labelItemsSold.Text = totalSold
-            labelProfit.Text = profit & "%"
-            labelCurrentBalance.Text = currentBalance
+            labelProfit.Text = profit.ToString("P")
+            labelCurrentBalance.Text = currentBalance.ToString("C", CultureInfo.CreateSpecificCulture("id-ID"))
         Catch ex As Exception
             MsgBox("Failed to get finance summary: " + ex.Message)
         Finally

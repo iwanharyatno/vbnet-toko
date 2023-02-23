@@ -31,7 +31,7 @@ Partial Class FormReport
         Me.labelIncome = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.labelProfit = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
+        Me.labelProfitInfo = New System.Windows.Forms.Label()
         Me.labelItemsSold = New System.Windows.Forms.Label()
         Me.labelReportDate = New System.Windows.Forms.Label()
         Me.btnViewReport = New System.Windows.Forms.Button()
@@ -104,7 +104,7 @@ Partial Class FormReport
         Me.labelIncome.Name = "labelIncome"
         Me.labelIncome.Size = New System.Drawing.Size(224, 65)
         Me.labelIncome.TabIndex = 4
-        Me.labelIncome.Text = "1000000"
+        Me.labelIncome.Text = "Rp0"
         Me.labelIncome.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label7
@@ -127,19 +127,19 @@ Partial Class FormReport
         Me.labelProfit.Name = "labelProfit"
         Me.labelProfit.Size = New System.Drawing.Size(224, 65)
         Me.labelProfit.TabIndex = 4
-        Me.labelProfit.Text = "20%"
+        Me.labelProfit.Text = "0%"
         Me.labelProfit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'Label9
+        'labelProfitInfo
         '
-        Me.Label9.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(703, 352)
-        Me.Label9.Name = "Label9"
-        Me.Label9.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.Label9.Size = New System.Drawing.Size(36, 15)
-        Me.Label9.TabIndex = 5
-        Me.Label9.Text = "Profit"
+        Me.labelProfitInfo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.labelProfitInfo.Location = New System.Drawing.Point(613, 352)
+        Me.labelProfitInfo.Name = "labelProfitInfo"
+        Me.labelProfitInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.labelProfitInfo.Size = New System.Drawing.Size(224, 15)
+        Me.labelProfitInfo.TabIndex = 5
+        Me.labelProfitInfo.Text = "Profit"
+        Me.labelProfitInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'labelItemsSold
         '
@@ -149,7 +149,7 @@ Partial Class FormReport
         Me.labelItemsSold.Name = "labelItemsSold"
         Me.labelItemsSold.Size = New System.Drawing.Size(224, 65)
         Me.labelItemsSold.TabIndex = 4
-        Me.labelItemsSold.Text = "1000000"
+        Me.labelItemsSold.Text = "0"
         Me.labelItemsSold.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'labelReportDate
@@ -196,9 +196,9 @@ Partial Class FormReport
         Me.labelCurrentBalance.ForeColor = System.Drawing.Color.DarkGreen
         Me.labelCurrentBalance.Location = New System.Drawing.Point(29, 498)
         Me.labelCurrentBalance.Name = "labelCurrentBalance"
-        Me.labelCurrentBalance.Size = New System.Drawing.Size(224, 65)
+        Me.labelCurrentBalance.Size = New System.Drawing.Size(117, 65)
         Me.labelCurrentBalance.TabIndex = 4
-        Me.labelCurrentBalance.Text = "1000000"
+        Me.labelCurrentBalance.Text = "Rp0"
         Me.labelCurrentBalance.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'FormReport
@@ -207,7 +207,7 @@ Partial Class FormReport
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(849, 616)
         Me.Controls.Add(Me.btnViewReport)
-        Me.Controls.Add(Me.Label9)
+        Me.Controls.Add(Me.labelProfitInfo)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.labelProfit)
@@ -239,7 +239,7 @@ Partial Class FormReport
     Friend WithEvents labelIncome As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents labelProfit As Label
-    Friend WithEvents Label9 As Label
+    Friend WithEvents labelProfitInfo As Label
     Friend WithEvents labelItemsSold As Label
     Friend WithEvents labelReportDate As Label
     Friend WithEvents btnViewReport As Button

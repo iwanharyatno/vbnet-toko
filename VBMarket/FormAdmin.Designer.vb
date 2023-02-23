@@ -99,6 +99,8 @@ Partial Class FormAdmin
         Me.btnEditSupplier = New System.Windows.Forms.Button()
         Me.btnBringSupplierToRestock = New System.Windows.Forms.Button()
         Me.btnNewSupplier = New System.Windows.Forms.Button()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.dtpPurchaseDate = New System.Windows.Forms.DateTimePicker()
         Me.Panel1.SuspendLayout()
         Me.AdminTabs.SuspendLayout()
         Me.TabHome.SuspendLayout()
@@ -526,10 +528,12 @@ Partial Class FormAdmin
         '
         'SplitContainer1.Panel2
         '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.dtpPurchaseDate)
         Me.SplitContainer1.Panel2.Controls.Add(Me.Label5)
         Me.SplitContainer1.Panel2.Controls.Add(Me.dgvCartRestock)
         Me.SplitContainer1.Panel2.Controls.Add(Me.btnRemoveFromCart)
         Me.SplitContainer1.Panel2.Controls.Add(Me.FieldTotal)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.Label9)
         Me.SplitContainer1.Panel2.Controls.Add(Me.btnConfirm)
         Me.SplitContainer1.Panel2.Controls.Add(Me.Label6)
         Me.SplitContainer1.Size = New System.Drawing.Size(764, 346)
@@ -876,6 +880,23 @@ Partial Class FormAdmin
         Me.btnNewSupplier.Text = "NEW SUPPLIER"
         Me.btnNewSupplier.UseVisualStyleBackColor = False
         '
+        'Label9
+        '
+        Me.Label9.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(6, 305)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(26, 15)
+        Me.Label9.TabIndex = 12
+        Me.Label9.Text = "Qty"
+        '
+        'dtpPurchaseDate
+        '
+        Me.dtpPurchaseDate.Location = New System.Drawing.Point(52, 301)
+        Me.dtpPurchaseDate.Name = "dtpPurchaseDate"
+        Me.dtpPurchaseDate.Size = New System.Drawing.Size(146, 23)
+        Me.dtpPurchaseDate.TabIndex = 16
+        '
         'FormAdmin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -989,4 +1010,6 @@ Partial Class FormAdmin
     Friend WithEvents btnSuppliers As Button
     Friend WithEvents btnViewReport As Button
     Friend WithEvents SplitContainer1 As SplitContainer
+    Friend WithEvents dtpPurchaseDate As DateTimePicker
+    Friend WithEvents Label9 As Label
 End Class
