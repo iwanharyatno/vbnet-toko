@@ -60,20 +60,18 @@ Partial Class FormAdmin
         Me.btnEditFruit = New System.Windows.Forms.Button()
         Me.btnNewFruit = New System.Windows.Forms.Button()
         Me.TabRestock = New System.Windows.Forms.TabPage()
-        Me.FieldCurrentBalance = New System.Windows.Forms.TextBox()
-        Me.FieldSupplierEmail = New System.Windows.Forms.TextBox()
-        Me.FieldSupplierName = New System.Windows.Forms.TextBox()
-        Me.FieldTotal = New System.Windows.Forms.TextBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
+        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.btnConfirm = New System.Windows.Forms.Button()
-        Me.btnRemoveFromCart = New System.Windows.Forms.Button()
-        Me.btnAddToCart = New System.Windows.Forms.Button()
+        Me.dgvFruitsRestock = New System.Windows.Forms.DataGridView()
+        Me.RestockFruitID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RestockFruitName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RestockFruitType = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RestockFruitStock = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RestockFruitPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.numQty = New System.Windows.Forms.NumericUpDown()
+        Me.btnAddToCart = New System.Windows.Forms.Button()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.dgvCartRestock = New System.Windows.Forms.DataGridView()
         Me.RestockCartFruitID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.RestockCartFruitName = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -81,12 +79,15 @@ Partial Class FormAdmin
         Me.RestockCartQty = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.RestockCartPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.RestockCartSubtotal = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dgvFruitsRestock = New System.Windows.Forms.DataGridView()
-        Me.RestockFruitID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RestockFruitName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RestockFruitType = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RestockFruitStock = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RestockFruitPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btnRemoveFromCart = New System.Windows.Forms.Button()
+        Me.FieldTotal = New System.Windows.Forms.TextBox()
+        Me.btnConfirm = New System.Windows.Forms.Button()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.FieldCurrentBalance = New System.Windows.Forms.TextBox()
+        Me.FieldSupplierEmail = New System.Windows.Forms.TextBox()
+        Me.FieldSupplierName = New System.Windows.Forms.TextBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.TabSupplier = New System.Windows.Forms.TabPage()
         Me.dgvSuppliers = New System.Windows.Forms.DataGridView()
         Me.SupplierID = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -106,9 +107,13 @@ Partial Class FormAdmin
         Me.TabFruit.SuspendLayout()
         CType(Me.dgvFruits, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabRestock.SuspendLayout()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer1.Panel1.SuspendLayout()
+        Me.SplitContainer1.Panel2.SuspendLayout()
+        Me.SplitContainer1.SuspendLayout()
+        CType(Me.dgvFruitsRestock, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.numQty, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvCartRestock, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.dgvFruitsRestock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabSupplier.SuspendLayout()
         CType(Me.dgvSuppliers, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -133,7 +138,7 @@ Partial Class FormAdmin
         Me.Panel1.Controls.Add(Me.btnLogout)
         Me.Panel1.Location = New System.Drawing.Point(12, 12)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(747, 37)
+        Me.Panel1.Size = New System.Drawing.Size(775, 37)
         Me.Panel1.TabIndex = 0
         '
         'Label1
@@ -154,7 +159,7 @@ Partial Class FormAdmin
         Me.btnProfile.FlatAppearance.BorderSize = 0
         Me.btnProfile.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnProfile.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.btnProfile.Location = New System.Drawing.Point(555, 0)
+        Me.btnProfile.Location = New System.Drawing.Point(583, 0)
         Me.btnProfile.Name = "btnProfile"
         Me.btnProfile.Size = New System.Drawing.Size(93, 37)
         Me.btnProfile.TabIndex = 1
@@ -168,7 +173,7 @@ Partial Class FormAdmin
         Me.btnLogout.FlatAppearance.BorderSize = 0
         Me.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnLogout.ForeColor = System.Drawing.Color.GhostWhite
-        Me.btnLogout.Location = New System.Drawing.Point(654, 0)
+        Me.btnLogout.Location = New System.Drawing.Point(682, 0)
         Me.btnLogout.Name = "btnLogout"
         Me.btnLogout.Size = New System.Drawing.Size(93, 37)
         Me.btnLogout.TabIndex = 1
@@ -188,7 +193,7 @@ Partial Class FormAdmin
         Me.AdminTabs.Location = New System.Drawing.Point(12, 66)
         Me.AdminTabs.Name = "AdminTabs"
         Me.AdminTabs.SelectedIndex = 0
-        Me.AdminTabs.Size = New System.Drawing.Size(751, 396)
+        Me.AdminTabs.Size = New System.Drawing.Size(779, 413)
         Me.AdminTabs.TabIndex = 1
         '
         'TabHome
@@ -203,7 +208,7 @@ Partial Class FormAdmin
         Me.TabHome.Location = New System.Drawing.Point(4, 24)
         Me.TabHome.Name = "TabHome"
         Me.TabHome.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabHome.Size = New System.Drawing.Size(743, 349)
+        Me.TabHome.Size = New System.Drawing.Size(771, 385)
         Me.TabHome.TabIndex = 0
         Me.TabHome.Text = "Home"
         Me.TabHome.UseVisualStyleBackColor = True
@@ -286,7 +291,7 @@ Partial Class FormAdmin
         Me.TabEmployees.Location = New System.Drawing.Point(4, 24)
         Me.TabEmployees.Name = "TabEmployees"
         Me.TabEmployees.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabEmployees.Size = New System.Drawing.Size(743, 349)
+        Me.TabEmployees.Size = New System.Drawing.Size(771, 385)
         Me.TabEmployees.TabIndex = 1
         Me.TabEmployees.Text = "Employees"
         Me.TabEmployees.UseVisualStyleBackColor = True
@@ -391,7 +396,7 @@ Partial Class FormAdmin
         Me.TabFruit.Location = New System.Drawing.Point(4, 24)
         Me.TabFruit.Name = "TabFruit"
         Me.TabFruit.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabFruit.Size = New System.Drawing.Size(743, 349)
+        Me.TabFruit.Size = New System.Drawing.Size(771, 385)
         Me.TabFruit.TabIndex = 2
         Me.TabFruit.Text = "Fruits"
         Me.TabFruit.UseVisualStyleBackColor = True
@@ -489,167 +494,138 @@ Partial Class FormAdmin
         '
         'TabRestock
         '
+        Me.TabRestock.Controls.Add(Me.SplitContainer1)
         Me.TabRestock.Controls.Add(Me.FieldCurrentBalance)
         Me.TabRestock.Controls.Add(Me.FieldSupplierEmail)
         Me.TabRestock.Controls.Add(Me.FieldSupplierName)
-        Me.TabRestock.Controls.Add(Me.FieldTotal)
-        Me.TabRestock.Controls.Add(Me.Label6)
-        Me.TabRestock.Controls.Add(Me.Label5)
         Me.TabRestock.Controls.Add(Me.Label8)
         Me.TabRestock.Controls.Add(Me.Label7)
-        Me.TabRestock.Controls.Add(Me.Label4)
-        Me.TabRestock.Controls.Add(Me.Label3)
-        Me.TabRestock.Controls.Add(Me.btnConfirm)
-        Me.TabRestock.Controls.Add(Me.btnRemoveFromCart)
-        Me.TabRestock.Controls.Add(Me.btnAddToCart)
-        Me.TabRestock.Controls.Add(Me.numQty)
-        Me.TabRestock.Controls.Add(Me.dgvCartRestock)
-        Me.TabRestock.Controls.Add(Me.dgvFruitsRestock)
         Me.TabRestock.Location = New System.Drawing.Point(4, 24)
         Me.TabRestock.Name = "TabRestock"
         Me.TabRestock.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabRestock.Size = New System.Drawing.Size(743, 368)
+        Me.TabRestock.Size = New System.Drawing.Size(771, 385)
         Me.TabRestock.TabIndex = 3
         Me.TabRestock.Text = "Restock"
         Me.TabRestock.UseVisualStyleBackColor = True
         '
-        'FieldCurrentBalance
+        'SplitContainer1
         '
-        Me.FieldCurrentBalance.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.FieldCurrentBalance.Location = New System.Drawing.Point(576, 10)
-        Me.FieldCurrentBalance.Name = "FieldCurrentBalance"
-        Me.FieldCurrentBalance.ReadOnly = True
-        Me.FieldCurrentBalance.Size = New System.Drawing.Size(149, 23)
-        Me.FieldCurrentBalance.TabIndex = 16
+        Me.SplitContainer1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SplitContainer1.Location = New System.Drawing.Point(3, 39)
+        Me.SplitContainer1.Name = "SplitContainer1"
         '
-        'FieldSupplierEmail
+        'SplitContainer1.Panel1
         '
-        Me.FieldSupplierEmail.Location = New System.Drawing.Point(280, 10)
-        Me.FieldSupplierEmail.Name = "FieldSupplierEmail"
-        Me.FieldSupplierEmail.ReadOnly = True
-        Me.FieldSupplierEmail.Size = New System.Drawing.Size(149, 23)
-        Me.FieldSupplierEmail.TabIndex = 16
+        Me.SplitContainer1.Panel1.Controls.Add(Me.Label4)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.dgvFruitsRestock)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.numQty)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.btnAddToCart)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.Label3)
         '
-        'FieldSupplierName
+        'SplitContainer1.Panel2
         '
-        Me.FieldSupplierName.Location = New System.Drawing.Point(125, 10)
-        Me.FieldSupplierName.Name = "FieldSupplierName"
-        Me.FieldSupplierName.ReadOnly = True
-        Me.FieldSupplierName.Size = New System.Drawing.Size(149, 23)
-        Me.FieldSupplierName.TabIndex = 16
-        '
-        'FieldTotal
-        '
-        Me.FieldTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.FieldTotal.Location = New System.Drawing.Point(375, 288)
-        Me.FieldTotal.Name = "FieldTotal"
-        Me.FieldTotal.ReadOnly = True
-        Me.FieldTotal.Size = New System.Drawing.Size(350, 23)
-        Me.FieldTotal.TabIndex = 15
-        '
-        'Label6
-        '
-        Me.Label6.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(375, 267)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(32, 15)
-        Me.Label6.TabIndex = 14
-        Me.Label6.Text = "Total"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(375, 43)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(29, 15)
-        Me.Label5.TabIndex = 13
-        Me.Label5.Text = "Cart"
-        '
-        'Label8
-        '
-        Me.Label8.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(468, 13)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(91, 15)
-        Me.Label8.TabIndex = 13
-        Me.Label8.Text = "Current Balance"
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(15, 13)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(75, 15)
-        Me.Label7.TabIndex = 13
-        Me.Label7.Text = "Supplier Unit"
+        Me.SplitContainer1.Panel2.Controls.Add(Me.Label5)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.dgvCartRestock)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.btnRemoveFromCart)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.FieldTotal)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.btnConfirm)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.Label6)
+        Me.SplitContainer1.Size = New System.Drawing.Size(764, 346)
+        Me.SplitContainer1.SplitterDistance = 382
+        Me.SplitContainer1.TabIndex = 2
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(15, 43)
+        Me.Label4.Location = New System.Drawing.Point(3, 10)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(36, 15)
         Me.Label4.TabIndex = 13
         Me.Label4.Text = "Fruits"
         '
-        'Label3
+        'dgvFruitsRestock
         '
-        Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(93, 338)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(26, 15)
-        Me.Label3.TabIndex = 12
-        Me.Label3.Text = "Qty"
+        Me.dgvFruitsRestock.AllowUserToAddRows = False
+        Me.dgvFruitsRestock.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgvFruitsRestock.BackgroundColor = System.Drawing.SystemColors.ControlLight
+        Me.dgvFruitsRestock.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.dgvFruitsRestock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvFruitsRestock.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.RestockFruitID, Me.RestockFruitName, Me.RestockFruitType, Me.RestockFruitStock, Me.RestockFruitPrice})
+        Me.dgvFruitsRestock.Location = New System.Drawing.Point(3, 32)
+        Me.dgvFruitsRestock.Name = "dgvFruitsRestock"
+        Me.dgvFruitsRestock.RowTemplate.Height = 25
+        Me.dgvFruitsRestock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvFruitsRestock.Size = New System.Drawing.Size(376, 256)
+        Me.dgvFruitsRestock.TabIndex = 7
         '
-        'btnConfirm
+        'RestockFruitID
         '
-        Me.btnConfirm.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnConfirm.BackColor = System.Drawing.Color.MidnightBlue
-        Me.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnConfirm.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.btnConfirm.Location = New System.Drawing.Point(620, 327)
-        Me.btnConfirm.Name = "btnConfirm"
-        Me.btnConfirm.Size = New System.Drawing.Size(105, 32)
-        Me.btnConfirm.TabIndex = 11
-        Me.btnConfirm.Text = "CONFIRM"
-        Me.btnConfirm.UseVisualStyleBackColor = False
+        Me.RestockFruitID.HeaderText = "ID"
+        Me.RestockFruitID.Name = "RestockFruitID"
         '
-        'btnRemoveFromCart
+        'RestockFruitName
         '
-        Me.btnRemoveFromCart.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnRemoveFromCart.BackColor = System.Drawing.Color.DarkRed
-        Me.btnRemoveFromCart.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnRemoveFromCart.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.btnRemoveFromCart.Location = New System.Drawing.Point(569, 234)
-        Me.btnRemoveFromCart.Name = "btnRemoveFromCart"
-        Me.btnRemoveFromCart.Size = New System.Drawing.Size(156, 32)
-        Me.btnRemoveFromCart.TabIndex = 11
-        Me.btnRemoveFromCart.Text = "REMOVE FROM CART"
-        Me.btnRemoveFromCart.UseVisualStyleBackColor = False
+        Me.RestockFruitName.HeaderText = "Fruit Name"
+        Me.RestockFruitName.Name = "RestockFruitName"
+        '
+        'RestockFruitType
+        '
+        Me.RestockFruitType.HeaderText = "Fruit Type"
+        Me.RestockFruitType.Name = "RestockFruitType"
+        '
+        'RestockFruitStock
+        '
+        Me.RestockFruitStock.HeaderText = "Stock"
+        Me.RestockFruitStock.Name = "RestockFruitStock"
+        '
+        'RestockFruitPrice
+        '
+        Me.RestockFruitPrice.HeaderText = "Price"
+        Me.RestockFruitPrice.Name = "RestockFruitPrice"
+        '
+        'numQty
+        '
+        Me.numQty.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.numQty.Location = New System.Drawing.Point(148, 301)
+        Me.numQty.Name = "numQty"
+        Me.numQty.Size = New System.Drawing.Size(120, 23)
+        Me.numQty.TabIndex = 10
         '
         'btnAddToCart
         '
-        Me.btnAddToCart.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnAddToCart.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnAddToCart.BackColor = System.Drawing.Color.MidnightBlue
         Me.btnAddToCart.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAddToCart.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.btnAddToCart.Location = New System.Drawing.Point(251, 327)
+        Me.btnAddToCart.Location = New System.Drawing.Point(274, 294)
         Me.btnAddToCart.Name = "btnAddToCart"
         Me.btnAddToCart.Size = New System.Drawing.Size(105, 32)
         Me.btnAddToCart.TabIndex = 11
         Me.btnAddToCart.Text = "ADD TO CART"
         Me.btnAddToCart.UseVisualStyleBackColor = False
         '
-        'numQty
+        'Label3
         '
-        Me.numQty.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.numQty.Location = New System.Drawing.Point(125, 334)
-        Me.numQty.Name = "numQty"
-        Me.numQty.Size = New System.Drawing.Size(120, 23)
-        Me.numQty.TabIndex = 10
+        Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(116, 305)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(26, 15)
+        Me.Label3.TabIndex = 12
+        Me.Label3.Text = "Qty"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(3, 10)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(29, 15)
+        Me.Label5.TabIndex = 13
+        Me.Label5.Text = "Cart"
         '
         'dgvCartRestock
         '
@@ -661,11 +637,11 @@ Partial Class FormAdmin
         Me.dgvCartRestock.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvCartRestock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvCartRestock.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.RestockCartFruitID, Me.RestockCartFruitName, Me.RestockCartFruitType, Me.RestockCartQty, Me.RestockCartPrice, Me.RestockCartSubtotal})
-        Me.dgvCartRestock.Location = New System.Drawing.Point(375, 65)
+        Me.dgvCartRestock.Location = New System.Drawing.Point(3, 32)
         Me.dgvCartRestock.Name = "dgvCartRestock"
         Me.dgvCartRestock.RowTemplate.Height = 25
         Me.dgvCartRestock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvCartRestock.Size = New System.Drawing.Size(350, 163)
+        Me.dgvCartRestock.Size = New System.Drawing.Size(371, 163)
         Me.dgvCartRestock.TabIndex = 8
         '
         'RestockCartFruitID
@@ -698,46 +674,94 @@ Partial Class FormAdmin
         Me.RestockCartSubtotal.HeaderText = "Subtotal"
         Me.RestockCartSubtotal.Name = "RestockCartSubtotal"
         '
-        'dgvFruitsRestock
+        'btnRemoveFromCart
         '
-        Me.dgvFruitsRestock.AllowUserToAddRows = False
-        Me.dgvFruitsRestock.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.dgvFruitsRestock.BackgroundColor = System.Drawing.SystemColors.ControlLight
-        Me.dgvFruitsRestock.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.dgvFruitsRestock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvFruitsRestock.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.RestockFruitID, Me.RestockFruitName, Me.RestockFruitType, Me.RestockFruitStock, Me.RestockFruitPrice})
-        Me.dgvFruitsRestock.Location = New System.Drawing.Point(15, 65)
-        Me.dgvFruitsRestock.Name = "dgvFruitsRestock"
-        Me.dgvFruitsRestock.RowTemplate.Height = 25
-        Me.dgvFruitsRestock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvFruitsRestock.Size = New System.Drawing.Size(341, 256)
-        Me.dgvFruitsRestock.TabIndex = 7
+        Me.btnRemoveFromCart.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnRemoveFromCart.BackColor = System.Drawing.Color.DarkRed
+        Me.btnRemoveFromCart.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnRemoveFromCart.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.btnRemoveFromCart.Location = New System.Drawing.Point(218, 201)
+        Me.btnRemoveFromCart.Name = "btnRemoveFromCart"
+        Me.btnRemoveFromCart.Size = New System.Drawing.Size(156, 32)
+        Me.btnRemoveFromCart.TabIndex = 11
+        Me.btnRemoveFromCart.Text = "REMOVE FROM CART"
+        Me.btnRemoveFromCart.UseVisualStyleBackColor = False
         '
-        'RestockFruitID
+        'FieldTotal
         '
-        Me.RestockFruitID.HeaderText = "ID"
-        Me.RestockFruitID.Name = "RestockFruitID"
+        Me.FieldTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.FieldTotal.Location = New System.Drawing.Point(3, 255)
+        Me.FieldTotal.Name = "FieldTotal"
+        Me.FieldTotal.ReadOnly = True
+        Me.FieldTotal.Size = New System.Drawing.Size(350, 23)
+        Me.FieldTotal.TabIndex = 15
         '
-        'RestockFruitName
+        'btnConfirm
         '
-        Me.RestockFruitName.HeaderText = "Fruit Name"
-        Me.RestockFruitName.Name = "RestockFruitName"
+        Me.btnConfirm.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnConfirm.BackColor = System.Drawing.Color.MidnightBlue
+        Me.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnConfirm.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.btnConfirm.Location = New System.Drawing.Point(269, 294)
+        Me.btnConfirm.Name = "btnConfirm"
+        Me.btnConfirm.Size = New System.Drawing.Size(105, 32)
+        Me.btnConfirm.TabIndex = 11
+        Me.btnConfirm.Text = "CONFIRM"
+        Me.btnConfirm.UseVisualStyleBackColor = False
         '
-        'RestockFruitType
+        'Label6
         '
-        Me.RestockFruitType.HeaderText = "Fruit Type"
-        Me.RestockFruitType.Name = "RestockFruitType"
+        Me.Label6.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(3, 234)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(32, 15)
+        Me.Label6.TabIndex = 14
+        Me.Label6.Text = "Total"
         '
-        'RestockFruitStock
+        'FieldCurrentBalance
         '
-        Me.RestockFruitStock.HeaderText = "Stock"
-        Me.RestockFruitStock.Name = "RestockFruitStock"
+        Me.FieldCurrentBalance.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.FieldCurrentBalance.Location = New System.Drawing.Point(604, 10)
+        Me.FieldCurrentBalance.Name = "FieldCurrentBalance"
+        Me.FieldCurrentBalance.ReadOnly = True
+        Me.FieldCurrentBalance.Size = New System.Drawing.Size(149, 23)
+        Me.FieldCurrentBalance.TabIndex = 16
         '
-        'RestockFruitPrice
+        'FieldSupplierEmail
         '
-        Me.RestockFruitPrice.HeaderText = "Price"
-        Me.RestockFruitPrice.Name = "RestockFruitPrice"
+        Me.FieldSupplierEmail.Location = New System.Drawing.Point(280, 10)
+        Me.FieldSupplierEmail.Name = "FieldSupplierEmail"
+        Me.FieldSupplierEmail.ReadOnly = True
+        Me.FieldSupplierEmail.Size = New System.Drawing.Size(149, 23)
+        Me.FieldSupplierEmail.TabIndex = 16
+        '
+        'FieldSupplierName
+        '
+        Me.FieldSupplierName.Location = New System.Drawing.Point(125, 10)
+        Me.FieldSupplierName.Name = "FieldSupplierName"
+        Me.FieldSupplierName.ReadOnly = True
+        Me.FieldSupplierName.Size = New System.Drawing.Size(149, 23)
+        Me.FieldSupplierName.TabIndex = 16
+        '
+        'Label8
+        '
+        Me.Label8.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(496, 13)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(91, 15)
+        Me.Label8.TabIndex = 13
+        Me.Label8.Text = "Current Balance"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(15, 13)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(75, 15)
+        Me.Label7.TabIndex = 13
+        Me.Label7.Text = "Supplier Unit"
         '
         'TabSupplier
         '
@@ -749,7 +773,7 @@ Partial Class FormAdmin
         Me.TabSupplier.Location = New System.Drawing.Point(4, 24)
         Me.TabSupplier.Name = "TabSupplier"
         Me.TabSupplier.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabSupplier.Size = New System.Drawing.Size(743, 349)
+        Me.TabSupplier.Size = New System.Drawing.Size(771, 385)
         Me.TabSupplier.TabIndex = 4
         Me.TabSupplier.Text = "Suppliers"
         Me.TabSupplier.UseVisualStyleBackColor = True
@@ -757,8 +781,9 @@ Partial Class FormAdmin
         'dgvSuppliers
         '
         Me.dgvSuppliers.AllowUserToAddRows = False
-        Me.dgvSuppliers.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.dgvSuppliers.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvSuppliers.BackgroundColor = System.Drawing.SystemColors.ControlLight
         Me.dgvSuppliers.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvSuppliers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -767,7 +792,7 @@ Partial Class FormAdmin
         Me.dgvSuppliers.Name = "dgvSuppliers"
         Me.dgvSuppliers.RowTemplate.Height = 25
         Me.dgvSuppliers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvSuppliers.Size = New System.Drawing.Size(543, 349)
+        Me.dgvSuppliers.Size = New System.Drawing.Size(543, 346)
         Me.dgvSuppliers.TabIndex = 0
         '
         'SupplierID
@@ -830,7 +855,7 @@ Partial Class FormAdmin
         Me.btnBringSupplierToRestock.FlatAppearance.BorderSize = 0
         Me.btnBringSupplierToRestock.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnBringSupplierToRestock.ForeColor = System.Drawing.Color.GhostWhite
-        Me.btnBringSupplierToRestock.Location = New System.Drawing.Point(568, 310)
+        Me.btnBringSupplierToRestock.Location = New System.Drawing.Point(568, 307)
         Me.btnBringSupplierToRestock.Name = "btnBringSupplierToRestock"
         Me.btnBringSupplierToRestock.Size = New System.Drawing.Size(150, 33)
         Me.btnBringSupplierToRestock.TabIndex = 1
@@ -855,7 +880,7 @@ Partial Class FormAdmin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(772, 474)
+        Me.ClientSize = New System.Drawing.Size(800, 491)
         Me.Controls.Add(Me.AdminTabs)
         Me.Controls.Add(Me.Panel1)
         Me.Name = "FormAdmin"
@@ -872,9 +897,15 @@ Partial Class FormAdmin
         CType(Me.dgvFruits, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabRestock.ResumeLayout(False)
         Me.TabRestock.PerformLayout()
+        Me.SplitContainer1.Panel1.ResumeLayout(False)
+        Me.SplitContainer1.Panel1.PerformLayout()
+        Me.SplitContainer1.Panel2.ResumeLayout(False)
+        Me.SplitContainer1.Panel2.PerformLayout()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.ResumeLayout(False)
+        CType(Me.dgvFruitsRestock, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.numQty, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvCartRestock, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.dgvFruitsRestock, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabSupplier.ResumeLayout(False)
         CType(Me.dgvSuppliers, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -957,4 +988,5 @@ Partial Class FormAdmin
     Friend WithEvents btnRestock As Button
     Friend WithEvents btnSuppliers As Button
     Friend WithEvents btnViewReport As Button
+    Friend WithEvents SplitContainer1 As SplitContainer
 End Class
