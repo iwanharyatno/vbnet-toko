@@ -11,27 +11,27 @@ Public Class FormChangePassword
 
     Private Function IsInputValid()
         If FieldOldPassword.Text.Equals("") Then
-            MsgBox("Please enter your old password")
+            MsgBox("Please enter your old password", vbOKOnly, "Error")
             Return False
         End If
 
         If Not IsMatchOldPassword() Then
-            MsgBox("The old password doesn't match")
+            MsgBox("The old password doesn't match", vbOKOnly, "Error")
             Return False
         End If
 
         If FieldNewPassword.Text.Equals("") Then
-            MsgBox("Please enter your new password")
+            MsgBox("Please enter your new password", vbOKOnly, "Error")
             Return False
         End If
 
         If FieldConfirmNewPassword.Text.Equals("") Then
-            MsgBox("Please re-type your new password")
+            MsgBox("Please re-type your new password", vbOKOnly, "Error")
             Return False
         End If
 
         If Not FieldNewPassword.Text.Equals(FieldConfirmNewPassword.Text) Then
-            MsgBox("The password and password confirmation doesn't match")
+            MsgBox("The password and password confirmation doesn't match", vbOKOnly, "Error")
             Return False
         End If
 
@@ -59,7 +59,7 @@ Public Class FormChangePassword
                 End If
             End If
         Catch ex As Exception
-            MsgBox("Failed to fetch employee information: " + ex.Message)
+            MsgBox("Failed to fetch employee information: " + ex.Message, vbOKOnly, "Error")
         Finally
             AppConnection.Close()
         End Try
@@ -83,10 +83,10 @@ Public Class FormChangePassword
 
                 Command.ExecuteNonQuery()
 
-                MsgBox("Password updated successfully!")
+                MsgBox("Password updated successfully!", vbOKOnly, "Error")
                 Hide()
             Catch ex As Exception
-                MsgBox("Couldn't execute UPDATE operation: " + ex.Message)
+                MsgBox("Couldn't execute UPDATE operation: " + ex.Message, vbOKOnly, "Error")
             Finally
                 AppConnection.Close()
             End Try

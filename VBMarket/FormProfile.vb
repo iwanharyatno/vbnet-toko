@@ -21,7 +21,7 @@ Public Class FormProfile
                 End If
             End If
         Catch ex As Exception
-            MsgBox("Couldn't get Employee detail" + ex.Message)
+            MsgBox("Couldn't get Employee detail" + ex.Message, vbOKOnly, "Error")
         Finally
             AppConnection.Close()
         End Try

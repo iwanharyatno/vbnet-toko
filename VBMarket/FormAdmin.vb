@@ -15,7 +15,7 @@ Public Class FormAdmin
 
             DataReader.Close()
         Catch ex As Exception
-            MsgBox("Failed to retrieve Employee information: " & ex.Message)
+            MsgBox("Failed to retrieve Employee information: " & ex.Message, vbOKOnly, "Error")
         Finally
             AppConnection.Close()
         End Try
@@ -44,7 +44,7 @@ Public Class FormAdmin
                 End While
             End If
         Catch ex As Exception
-            MsgBox("Couldn't load data into table: " & ex.Message)
+            MsgBox("Couldn't load data into table: " & ex.Message, vbOKOnly, "Error")
         Finally
             AppConnection.Close()
         End Try
@@ -71,7 +71,7 @@ Public Class FormAdmin
                 End While
             End If
         Catch ex As Exception
-            MsgBox("Couldn't load data into table: " & ex.Message)
+            MsgBox("Couldn't load data into table: " & ex.Message, vbOKOnly, "Error")
         Finally
             AppConnection.Close()
         End Try
@@ -102,7 +102,7 @@ Public Class FormAdmin
                 End While
             End If
         Catch ex As Exception
-            MsgBox("Couldn't load data into table: " & ex.Message)
+            MsgBox("Couldn't load data into table: " & ex.Message, vbOKOnly, "Error")
         Finally
             AppConnection.Close()
         End Try
@@ -137,7 +137,7 @@ Public Class FormAdmin
                     End If
                 End If
             Catch ex As Exception
-                MsgBox("Couldn't load data into table: " & ex.Message)
+                MsgBox("Couldn't load data into table: " & ex.Message, vbOKOnly, "Error")
             Finally
                 AppConnection.Close()
             End Try
@@ -158,7 +158,7 @@ Public Class FormAdmin
 
             RestockComboSupplier.DataSource = DataTable
         Catch ex As Exception
-            MsgBox("Couldn't load supplier list: " + ex.Message)
+            MsgBox("Couldn't load supplier list: " + ex.Message, vbOKOnly, "Error")
         Finally
             AppConnection.Close()
         End Try
@@ -182,7 +182,7 @@ Public Class FormAdmin
                 Command.ExecuteNonQuery()
             Next
         Catch ex As Exception
-            MsgBox("Failed to execute DELETE operation: " + ex.Message)
+            MsgBox("Failed to execute DELETE operation: " + ex.Message, vbOKOnly, "Error")
         Finally
             AppConnection.Close()
         End Try
@@ -199,7 +199,7 @@ Public Class FormAdmin
                 Command.ExecuteNonQuery()
             Next
         Catch ex As Exception
-            MsgBox("Failed to execute DELETE operation: " + ex.Message)
+            MsgBox("Failed to execute DELETE operation: " + ex.Message, vbOKOnly, "Error")
         Finally
             AppConnection.Close()
         End Try
@@ -216,7 +216,7 @@ Public Class FormAdmin
                 Command.ExecuteNonQuery()
             Next
         Catch ex As Exception
-            MsgBox("Failed to execute DELETE operations: " + ex.Message)
+            MsgBox("Failed to execute DELETE operations: " + ex.Message, vbOKOnly, "Error")
         Finally
             AppConnection.Close()
         End Try
@@ -296,21 +296,21 @@ Public Class FormAdmin
                     ReloadEmployeesTable("")
                 End If
             Else
-                MsgBox("You cannot delete the currently logged in user")
+                MsgBox("You cannot delete the currently logged in user", vbOKOnly, "Error")
             End If
         Else
-            MsgBox("Please select rows to be removed")
+            MsgBox("Please select rows to be removed", vbOKOnly, "Error")
         End If
     End Sub
 
     Private Sub btnEditEmployee_Click(sender As Object, e As EventArgs) Handles btnEditEmployee.Click
         If dgvEmployees.SelectedRows.Count > 1 Then
-            MsgBox("Please select only one data")
+            MsgBox("Please select only one data", vbOKOnly, "Error")
             Return
         End If
 
         If dgvEmployees.SelectedRows.Count < 0 Then
-            MsgBox("Please select a row")
+            MsgBox("Please select a row", vbOKOnly, "Error")
             Return
         End If
 
@@ -337,18 +337,18 @@ Public Class FormAdmin
                 ReloadFruitsTable("")
             End If
         Else
-            MsgBox("Please select rows to be removed")
+            MsgBox("Please select rows to be removed", vbOKOnly, "Error")
         End If
     End Sub
 
     Private Sub btnEditFruit_Click(sender As Object, e As EventArgs) Handles btnEditFruit.Click
         If dgvFruits.SelectedRows.Count > 1 Then
-            MsgBox("Please select only one data")
+            MsgBox("Please select only one data", vbOKOnly, "Error")
             Return
         End If
 
         If dgvFruits.SelectedRows.Count < 0 Then
-            MsgBox("Please select a row")
+            MsgBox("Please select a row", vbOKOnly, "Error")
             Return
         End If
 
@@ -373,7 +373,7 @@ Public Class FormAdmin
 
             CalculateTotal()
         Else
-            MsgBox("Please select at least one row")
+            MsgBox("Please select at least one row", vbOKOnly, "Error")
         End If
     End Sub
 
@@ -385,7 +385,7 @@ Public Class FormAdmin
             Next
             CalculateTotal()
         Else
-            MsgBox("Please select at least one row to remove")
+            MsgBox("Please select at least one row to remove", vbOKOnly, "Error")
         End If
     End Sub
 
@@ -415,7 +415,7 @@ Public Class FormAdmin
         If selectedRows.Count = 1 Then
             FormSupplier.Edit(selectedRows.Item(0).Cells.Item("SupplierID").Value)
         Else
-            MsgBox("Please select exactly one row")
+            MsgBox("Please select exactly one row", vbOKOnly, "Error")
         End If
     End Sub
 
@@ -441,12 +441,12 @@ Public Class FormAdmin
         Dim currentBalance As Integer = FieldCurrentBalance.Text
 
         If RestockComboSupplier.SelectedValue.ToString().Equals("") Then
-            MsgBox("You haven't select the supplier for restock")
+            MsgBox("You haven't select the supplier for restock", vbOKOnly, "Error")
             Return
         End If
 
         If total > currentBalance Then
-            MsgBox("Not enough balance for this payment")
+            MsgBox("Not enough balance for this payment", vbOKOnly, "Error")
             Return
         End If
 
@@ -516,7 +516,7 @@ Public Class FormAdmin
                 ComboFruitRestockFilterColumn.SelectedIndex = 0
                 ReloadFruitsTableForRestock("")
                 If RestockComboSupplier.SelectedValue.ToString().Equals("") Then
-                    MsgBox("You haven't selected a supplier yet, be sure to select it now or later")
+                    MsgBox("You haven't selected a supplier yet, be sure to select it now or later", vbOKOnly, "Error")
                 End If
                 Exit Select
         End Select

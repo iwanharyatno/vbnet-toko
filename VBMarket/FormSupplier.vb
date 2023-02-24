@@ -6,7 +6,7 @@ Public Class FormSupplier
 
     Private Function IsInputValid()
         If FieldName.Text.Equals("") Or FieldEmail.Text.Equals("") Or FieldPhone.Text.Equals("") Or FieldAddress.Text.Equals("") Then
-            MsgBox("Please fill all fields")
+            MsgBox("Please fill all fields", vbOKOnly, "Error")
             Return False
         End If
 
@@ -47,7 +47,7 @@ Public Class FormSupplier
                 End If
             End If
         Catch ex As Exception
-            MsgBox("Failed to get supplier's detail")
+            MsgBox("Failed to get supplier's detail", vbOKOnly, "Error")
         Finally
             AppConnection.Close()
         End Try
@@ -80,7 +80,7 @@ Public Class FormSupplier
                 Hide()
                 FormAdmin.ReloadSuppliersTable("")
             Catch ex As Exception
-                MsgBox("Couldn't perform INSERT operation: " + ex.Message)
+                MsgBox("Couldn't perform INSERT operation: " + ex.Message, vbOKOnly, "Error")
             Finally
                 AppConnection.Close()
             End Try

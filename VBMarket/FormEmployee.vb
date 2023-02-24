@@ -6,47 +6,47 @@ Public Class FormEmployee
 
     Private Function isInputValid()
         If FieldName.Text.Equals("") Then
-            MsgBox("The 'Name' Field is required")
+            MsgBox("The 'Name' Field is required", vbOKOnly, "Error")
             Return False
         End If
 
         If FieldEmail.Text.Equals("") Then
-            MsgBox("The 'Email' Field is required")
+            MsgBox("The 'Email' Field is required", vbOKOnly, "Error")
             Return False
         End If
 
         If FieldUsername.Text.Equals("") Then
-            MsgBox("The 'Username' Field is required")
+            MsgBox("The 'Username' Field is required", vbOKOnly, "Error")
             Return False
         End If
 
         If FieldPassword.Text.Equals("") And Not editMode Then
-            MsgBox("The 'Password' Field is required")
+            MsgBox("The 'Password' Field is required", vbOKOnly, "Error")
             Return False
         End If
 
         If FieldConfirmPassword.Text.Equals("") And Not editMode Then
-            MsgBox("The 'Confirm Password' Field is required")
+            MsgBox("The 'Confirm Password' Field is required", vbOKOnly, "Error")
             Return False
         End If
 
         If Not FieldPassword.Text.Equals(FieldConfirmPassword.Text) Then
-            MsgBox("The password confirmation password is not the same as the password")
+            MsgBox("The password confirmation password is not the same as the password", vbOKOnly, "Error")
             Return False
         End If
 
         If FieldAddress.Text.Equals("") Then
-            MsgBox("The 'Address' Field is required")
+            MsgBox("The 'Address' Field is required", vbOKOnly, "Error")
             Return False
         End If
 
         If FieldRole.Text.Equals("") Then
-            MsgBox("The 'Role' Field is required")
+            MsgBox("The 'Role' Field is required", vbOKOnly, "Error")
             Return False
         End If
 
         If dtpDOB.Value >= Date.Now Then
-            MsgBox("Please enter a valid date")
+            MsgBox("Please enter a valid date", vbOKOnly, "Error")
             Return False
         End If
 
@@ -101,7 +101,7 @@ Public Class FormEmployee
                 dtpDOB.Value = DataReader.Item("DOB")
             End If
         Catch ex As Exception
-            MsgBox("Failed to get employee data by ID: " + ex.Message)
+            MsgBox("Failed to get employee data by ID: " + ex.Message, vbOKOnly, "Error")
         Finally
             AppConnection.Close()
         End Try
@@ -151,7 +151,7 @@ Public Class FormEmployee
                 Hide()
                 FormAdmin.ReloadEmployeesTable("")
             Catch ex As Exception
-                MsgBox("Couldn't perform INSERT operation: " & ex.Message)
+                MsgBox("Couldn't perform INSERT operation: " & ex.Message, vbOKOnly, "Error")
             Finally
                 AppConnection.Close()
             End Try

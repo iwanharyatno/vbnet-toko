@@ -3,12 +3,12 @@
 Public Class FormLogin
     Private Function IsInputValid()
         If FieldUsername.Text.Equals("") Then
-            MsgBox("The field Username is required")
+            MsgBox("The field Username is required", vbObjectError, "Warning")
             Return False
         End If
 
         If FieldPassword.Text.Equals("") Then
-            MsgBox("The field Password is required")
+            MsgBox("The field Password is required", vbObjectError, "Warning")
             Return False
         End If
 
@@ -57,18 +57,18 @@ Public Class FormLogin
                         Dim salt As String = DataReader.Item("Salt")
                         Dim hashedPassword As String = SecurityHelper.HashPassword(password, salt, 10101, 70)
                         If hashedPassword = DataReader.Item("Password") Then
-                            MsgBox("Login success!")
+                            MsgBox("Login success!", vbInformation, "Info")
 
                             EmployeeID = DataReader.Item("ID").ToString()
                             userRole = DataReader.Item("Role").ToString()
 
                             Hide()
                         Else
-                            MsgBox("Password doesn't match")
+                            MsgBox("Password doesn't match", vbOKOnly, "Error")
                         End If
                     End While
                 Else
-                    MsgBox("The specified employee with username '" & username & "' not found")
+                    MsgBox("The specified employee with username '" & username & "' not found", vbOKOnly, "Error")
                 End If
             Catch ex As Exception
                 MsgBox("Failed to run login operations: " & ex.Message)

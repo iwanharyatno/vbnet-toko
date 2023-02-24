@@ -69,7 +69,7 @@ Public Class FormReport
             labelProfit.Text = profit.ToString("P")
             labelCurrentBalance.Text = currentBalance.ToString("C", CultureInfo.CreateSpecificCulture("id-ID"))
         Catch ex As Exception
-            MsgBox("Failed to get finance summary: " + ex.Message)
+            MsgBox("Failed to get finance summary: " + ex.Message, vbOKOnly, "Error")
         Finally
             AppConnection.Close()
         End Try
@@ -86,7 +86,7 @@ Public Class FormReport
         If Regex.IsMatch(FieldYear.Text, "^\d+$") Then
             GetReport(ComboMonth.SelectedIndex + 1, FieldYear.Text)
         Else
-            MsgBox("Please specify a valid year")
+            MsgBox("Please specify a valid year", vbOKOnly, "Error")
         End If
     End Sub
 End Class

@@ -40,7 +40,7 @@ Public Class FormCustomer
                 End If
             End If
         Catch ex As Exception
-            MsgBox("Couldn't get customer detail to edit: " + ex.Message)
+            MsgBox("Couldn't get customer detail to edit: " + ex.Message, vbOKOnly, "Error")
         Finally
             AppConnection.Close()
         End Try
@@ -50,17 +50,17 @@ Public Class FormCustomer
 
     Private Function IsInputValid()
         If FieldName.Text.Equals("") Then
-            MsgBox("The 'name' field is required")
+            MsgBox("The 'name' field is required", vbOKOnly, "Error")
             Return False
         End If
 
         If FieldPhone.Text.Equals("") Then
-            MsgBox("The 'phone' field is required")
+            MsgBox("The 'phone' field is required", vbOKOnly, "Error")
             Return False
         End If
 
         If Not Regex.IsMatch(FieldPhone.Text, "^\d+$") Then
-            MsgBox("The 'phone' must be a number in format of 08xx")
+            MsgBox("The 'phone' must be a number in format of 08xx", vbOKOnly, "Error")
             Return False
         End If
 
@@ -88,7 +88,7 @@ Public Class FormCustomer
                 Hide()
                 FormCashier.ReloadCustomerTable("")
             Catch ex As Exception
-                MsgBox("Couldn't perform the INSERT statement: " + ex.Message)
+                MsgBox("Couldn't perform the INSERT statement: " + ex.Message, vbOKOnly, "Error")
             Finally
                 AppConnection.Close()
             End Try

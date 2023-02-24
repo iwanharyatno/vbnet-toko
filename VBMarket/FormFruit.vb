@@ -20,7 +20,7 @@ Public Class FormFruit
             ComboSupplier.DisplayMember = "Name"
             ComboSupplier.ValueMember = "ID"
         Catch ex As Exception
-            MsgBox("Failed to get suppliers: " + ex.Message)
+            MsgBox("Failed to get suppliers: " + ex.Message, vbOKOnly, "Error")
         Finally
             AppConnection.Close()
         End Try
@@ -48,32 +48,32 @@ Public Class FormFruit
 
     Private Function IsInputValid()
         If FieldName.Text.Equals("") Then
-            MsgBox("The 'name' field is required")
+            MsgBox("The 'name' field is required", vbOKOnly, "Error")
             Return False
         End If
 
         If ComboType.SelectedItem.Equals("") Then
-            MsgBox("The 'type' field is required")
+            MsgBox("The 'type' field is required", vbOKOnly, "Error")
             Return False
         End If
 
         If FieldStock.Text.Equals("") Then
-            MsgBox("The 'stock' field is required")
+            MsgBox("The 'stock' field is required", vbOKOnly, "Error")
             Return False
         End If
 
         If Not Regex.IsMatch(FieldStock.Text, "\d+") Then
-            MsgBox("The 'stock' must be a number")
+            MsgBox("The 'stock' must be a number", vbOKOnly, "Error")
             Return False
         End If
 
         If Not Regex.IsMatch(FieldPurchasePrice.Text, "\d+") Then
-            MsgBox("The 'purchase price' must be a number")
+            MsgBox("The 'purchase price' must be a number", vbOKOnly, "Error")
             Return False
         End If
 
         If Not Regex.IsMatch(FieldSellPrice.Text, "\d+") Then
-            MsgBox("The 'sale price' must be a number")
+            MsgBox("The 'sale price' must be a number", vbOKOnly, "Error")
             Return False
         End If
 
@@ -106,7 +106,7 @@ Public Class FormFruit
                 ComboType.SelectedIndex = ComboType.Items.IndexOf(DataReader.Item("FruitType"))
             End If
         Catch ex As Exception
-            MsgBox("Failed to get fruit data by ID: " + ex.Message)
+            MsgBox("Failed to get fruit data by ID: " + ex.Message, vbOKOnly, "Error")
         Finally
             AppConnection.Close()
         End Try
@@ -141,7 +141,7 @@ Public Class FormFruit
                 FormAdmin.ReloadFruitsTable("")
                 Hide()
             Catch ex As Exception
-                MsgBox("Failed to execute INSERT operation: " + ex.Message)
+                MsgBox("Failed to execute INSERT operation: " + ex.Message, vbOKOnly, "Error")
             Finally
                 AppConnection.Close()
             End Try

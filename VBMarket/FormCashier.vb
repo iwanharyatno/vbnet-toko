@@ -17,7 +17,7 @@ Public Class FormCashier
                 End If
             End If
         Catch ex As Exception
-            MsgBox("Couldn't get current employee information: " + ex.Message)
+            MsgBox("Couldn't get current employee information: " + ex.Message, vbOKOnly, "Error")
         Finally
             AppConnection.Close()
         End Try
@@ -55,7 +55,7 @@ Public Class FormCashier
                 End While
             End If
         Catch ex As Exception
-            MsgBox("Couldn't load customer data into table: " + ex.Message)
+            MsgBox("Couldn't load customer data into table: " + ex.Message, vbOKOnly, "Error")
         Finally
             AppConnection.Close()
         End Try
@@ -82,7 +82,7 @@ Public Class FormCashier
                 End While
             End If
         Catch ex As Exception
-            MsgBox("Couldn't load fruit data into table: " + ex.Message)
+            MsgBox("Couldn't load fruit data into table: " + ex.Message, vbOKOnly, "Error")
         Finally
             AppConnection.Close()
         End Try
@@ -90,12 +90,12 @@ Public Class FormCashier
 
     Private Function IsInputValid()
         If FieldPayment.Text.Equals("") Then
-            MsgBox("Please enter payment value")
+            MsgBox("Please enter payment value", vbOKOnly, "Error")
             Return False
         End If
 
         If shoppingCustomerID.Equals("") Then
-            MsgBox("Please select customer first")
+            MsgBox("Please select customer first", vbOKOnly, "Error")
         End If
 
         Return True
@@ -111,7 +111,7 @@ Public Class FormCashier
                 Command.ExecuteNonQuery()
             Next
         Catch ex As Exception
-            MsgBox("Couldn't execute DELETE operation: " + ex.Message)
+            MsgBox("Couldn't execute DELETE operation: " + ex.Message, vbOKOnly, "Error")
         Finally
             AppConnection.Close()
         End Try
@@ -133,7 +133,7 @@ Public Class FormCashier
                 End If
             End If
         Catch ex As Exception
-            MsgBox("Couldn't get customer information: " + ex.Message)
+            MsgBox("Couldn't get customer information: " + ex.Message, vbOKOnly, "Error")
         Finally
             AppConnection.Close()
         End Try
@@ -157,7 +157,7 @@ Public Class FormCashier
         Dim subtotal As Integer = qty * price
 
         If stock < qty Then
-            MsgBox("There's not enough " + name + " to sell. Defaulting to " + stock)
+            MsgBox("There's not enough " + name + " to sell. Defaulting to " + stock, vbOKOnly, "Error")
         End If
 
         dgvCart.Rows.Add(New String() {
@@ -214,7 +214,7 @@ Public Class FormCashier
         If selectedRows.Count = 1 Then
             FormCustomer.Edit(selectedRows.Item(0).Cells.Item("CustomerID").Value)
         Else
-            MsgBox("Please select exactly one record to edit")
+            MsgBox("Please select exactly one record to edit", vbOKOnly, "Error")
         End If
     End Sub
 
@@ -233,7 +233,7 @@ Public Class FormCashier
                 ReloadCustomerTable("")
             End If
         Else
-            MsgBox("Please select at least one row to remove")
+            MsgBox("Please select at least one row to remove", vbOKOnly, "Error")
         End If
     End Sub
 
@@ -247,7 +247,7 @@ Public Class FormCashier
                 End If
             Next
         Else
-            MsgBox("Please select at least one row")
+            MsgBox("Please select at least one row", vbOKOnly, "Error")
         End If
     End Sub
 
@@ -259,7 +259,7 @@ Public Class FormCashier
             Next
             CalculateTotal()
         Else
-            MsgBox("Please select at least one item to be removed")
+            MsgBox("Please select at least one item to be removed", vbOKOnly, "Error")
         End If
     End Sub
 
@@ -269,7 +269,7 @@ Public Class FormCashier
             shoppingCustomerID = selectedRow.Cells.Item("CustomerID").Value
             CashierTabs.SelectedTab = TabSales
         Else
-            MsgBox("Please select exactly one customer")
+            MsgBox("Please select exactly one customer", vbOKOnly, "Error")
         End If
     End Sub
 
@@ -322,7 +322,7 @@ Public Class FormCashier
                 ResetSalesInputs()
                 ReloadFruitTable("")
             Catch ex As Exception
-                MsgBox("Couldn't perform the INSERT operation: " + ex.Message)
+                MsgBox("Couldn't perform the INSERT operation: " + ex.Message, vbOKOnly, "Error")
             Finally
                 AppConnection.Close()
             End Try
@@ -342,7 +342,7 @@ Public Class FormCashier
                 If Not shoppingCustomerID.Equals("") Then
                     FillShoppingCustomerInformation()
                 Else
-                    MsgBox("No selected customer yet, be sure to select it now or later", vbApplicationModal, "Warning")
+                    MsgBox("No selected customer yet, be sure to select it now or later", vbOKOnly, "Error")
                 End If
                 Exit Select
         End Select
@@ -357,14 +357,14 @@ Public Class FormCashier
                 Command = New SqlCommand(SqlQuery, AppConnection.Connection)
 
                 Command.ExecuteNonQuery()
-                MsgBox("Changes evaluated to customer's debt")
+                MsgBox("Changes evaluated to customer's debt", vbOKOnly, "Error")
             Catch ex As Exception
-                MsgBox("Couldn't execute UPDATE operation: " + ex.Message)
+                MsgBox("Couldn't execute UPDATE operation: " + ex.Message, vbOKOnly, "Error")
             Finally
                 AppConnection.Close()
             End Try
         Else
-            MsgBox("Please select a customer first")
+            MsgBox("Please select a customer first", vbOKOnly, "Error")
         End If
     End Sub
 
