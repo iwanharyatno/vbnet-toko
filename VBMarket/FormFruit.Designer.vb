@@ -28,7 +28,6 @@ Partial Class FormFruit
         Me.Label3 = New System.Windows.Forms.Label()
         Me.FieldStock = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.FieldUnit = New System.Windows.Forms.TextBox()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnCreate = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -36,6 +35,7 @@ Partial Class FormFruit
         Me.Label6 = New System.Windows.Forms.Label()
         Me.FieldSellPrice = New System.Windows.Forms.TextBox()
         Me.ComboType = New System.Windows.Forms.ComboBox()
+        Me.ComboSupplier = New System.Windows.Forms.ComboBox()
         Me.SuspendLayout()
         '
         'FieldName
@@ -93,14 +93,6 @@ Partial Class FormFruit
         Me.Label4.Size = New System.Drawing.Size(36, 20)
         Me.Label4.TabIndex = 2
         Me.Label4.Text = "Unit"
-        '
-        'FieldUnit
-        '
-        Me.FieldUnit.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.FieldUnit.Location = New System.Drawing.Point(16, 255)
-        Me.FieldUnit.Name = "FieldUnit"
-        Me.FieldUnit.Size = New System.Drawing.Size(452, 27)
-        Me.FieldUnit.TabIndex = 3
         '
         'btnCancel
         '
@@ -174,17 +166,26 @@ Partial Class FormFruit
         Me.ComboType.Size = New System.Drawing.Size(452, 28)
         Me.ComboType.TabIndex = 1
         '
+        'ComboSupplier
+        '
+        Me.ComboSupplier.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.ComboSupplier.FormattingEnabled = True
+        Me.ComboSupplier.Location = New System.Drawing.Point(16, 260)
+        Me.ComboSupplier.Name = "ComboSupplier"
+        Me.ComboSupplier.Size = New System.Drawing.Size(452, 28)
+        Me.ComboSupplier.TabIndex = 8
+        '
         'FormFruit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(480, 522)
+        Me.Controls.Add(Me.ComboSupplier)
         Me.Controls.Add(Me.ComboType)
         Me.Controls.Add(Me.btnCreate)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.FieldSellPrice)
         Me.Controls.Add(Me.FieldPurchasePrice)
-        Me.Controls.Add(Me.FieldUnit)
         Me.Controls.Add(Me.FieldStock)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label5)
@@ -208,7 +209,6 @@ Partial Class FormFruit
     Friend WithEvents Label3 As Label
     Friend WithEvents FieldStock As TextBox
     Friend WithEvents Label4 As Label
-    Friend WithEvents FieldUnit As TextBox
     Friend WithEvents btnCancel As Button
     Friend WithEvents btnCreate As Button
     Friend WithEvents Label5 As Label
@@ -216,4 +216,5 @@ Partial Class FormFruit
     Friend WithEvents Label6 As Label
     Friend WithEvents FieldSellPrice As TextBox
     Friend WithEvents ComboType As ComboBox
+    Friend WithEvents ComboSupplier As ComboBox
 End Class

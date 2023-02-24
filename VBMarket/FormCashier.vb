@@ -33,12 +33,12 @@ Public Class FormCashier
         CalculateTotal()
     End Sub
 
-    Friend Sub ReloadCustomerTable()
+    Friend Sub ReloadCustomerTable(additionalClause As String)
         dgvCustomers.Rows.Clear()
         Try
             AppConnection.Open()
 
-            SqlQuery = "SELECT * FROM Customer ORDER BY CreatedAt"
+            SqlQuery = "SELECT * FROM Customer " + additionalClause + " ORDER BY CreatedAt"
             Command = New SqlCommand(SqlQuery, AppConnection.Connection)
 
             DataReader = Command.ExecuteReader()
@@ -61,12 +61,12 @@ Public Class FormCashier
         End Try
     End Sub
 
-    Friend Sub ReloadFruitTable()
+    Friend Sub ReloadFruitTable(additionalWhere As String)
         dgvFruits.Rows.Clear()
         Try
             AppConnection.Open()
 
-            SqlQuery = "SELECT ID, FruitName, FruitType, Stock, SellPrice FROM Fruit WHERE Stock > 0 ORDER BY CreatedAt"
+            SqlQuery = "SELECT ID, FruitName, FruitType, Stock, SellPrice FROM Fruit WHERE Stock > 0 " + additionalWhere + " ORDER BY CreatedAt"
             Command = New SqlCommand(SqlQuery, AppConnection.Connection)
 
             DataReader = Command.ExecuteReader()
@@ -230,7 +230,7 @@ Public Class FormCashier
             Dim answer As Integer = MsgBox("Are you sure to delete these customers?", vbQuestion + vbYesNoCancel)
             If answer = vbYes Then
                 DeleteCustomers(deleteIds)
-                ReloadCustomerTable()
+                ReloadCustomerTable("")
             End If
         Else
             MsgBox("Please select at least one row to remove")
@@ -320,7 +320,7 @@ Public Class FormCashier
 
                 MsgBox("Sale recorded successfully")
                 ResetSalesInputs()
-                ReloadFruitTable()
+                ReloadFruitTable("")
             Catch ex As Exception
                 MsgBox("Couldn't perform the INSERT operation: " + ex.Message)
             Finally
@@ -332,10 +332,12 @@ Public Class FormCashier
     Private Sub CashierTabs_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CashierTabs.SelectedIndexChanged
         Select Case CashierTabs.SelectedIndex
             Case CashierTabs.TabPages.IndexOf(TabCustomers)
-                ReloadCustomerTable()
+                ReloadCustomerTable("")
+                ComboCustomerFilterColumns.SelectedIndex = 0
                 Exit Select
             Case CashierTabs.TabPages.IndexOf(TabSales)
-                ReloadFruitTable()
+                ReloadFruitTable("")
+                ComboFruitFilterColumn.SelectedIndex = 0
 
                 If Not shoppingCustomerID.Equals("") Then
                     FillShoppingCustomerInformation()
@@ -364,5 +366,19 @@ Public Class FormCashier
         Else
             MsgBox("Please select a customer first")
         End If
+    End Sub
+
+    Private Sub FieldCustomerFilterQuery_TextChanged(sender As Object, e As EventArgs) Handles FieldCustomerFilterQuery.TextChanged, ComboCustomerFilterColumns.SelectedIndexChanged
+        Dim filterQuery As String = FieldCustomerFilterQuery.Text
+        Dim filterColumn As String = ComboCustomerFilterColumns.SelectedItem.ToString()
+
+        ReloadCustomerTable("WHERE " + filterColumn + " LIKE '%" + filterQuery + "%'")
+    End Sub
+
+    Private Sub FieldFruitFilterQuery_TextChanged(sender As Object, e As EventArgs) Handles FieldFruitFilterQuery.TextChanged, ComboFruitFilterColumn.SelectedIndexChanged
+        Dim filterQuery As String = FieldFruitFilterQuery.Text
+        Dim filterColumn As String = ComboFruitFilterColumn.SelectedItem.ToString()
+
+        ReloadFruitTable("AND " + filterColumn + " LIKE '%" + filterQuery + "%'")
     End Sub
 End Class

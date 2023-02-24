@@ -149,7 +149,7 @@ Public Class FormEmployee
                 Command.ExecuteNonQuery()
 
                 Hide()
-                FormAdmin.ReloadEmployeesTable()
+                FormAdmin.ReloadEmployeesTable("")
             Catch ex As Exception
                 MsgBox("Couldn't perform INSERT operation: " & ex.Message)
             Finally

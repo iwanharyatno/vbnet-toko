@@ -5,18 +5,41 @@ Public Class FormFruit
     Private editMode As Boolean = False
     Private fruitId As String
 
+    Private Sub LoadSupplierCombo()
+        Try
+            AppConnection.Open()
+
+            SqlQuery = "SELECT ID, Name FROM Supplier"
+            Command = New SqlCommand(SqlQuery, AppConnection.Connection)
+            DataReader = Command.ExecuteReader()
+
+            DataTable = New DataTable()
+            DataTable.Load(DataReader)
+
+            ComboSupplier.DataSource = DataTable
+            ComboSupplier.DisplayMember = "Name"
+            ComboSupplier.ValueMember = "ID"
+        Catch ex As Exception
+            MsgBox("Failed to get suppliers: " + ex.Message)
+        Finally
+            AppConnection.Close()
+        End Try
+    End Sub
+
     Private Sub Clear()
         FieldName.Clear()
         FieldPurchasePrice.Clear()
         FieldSellPrice.Clear()
         FieldStock.Clear()
-        FieldUnit.Clear()
+        ComboSupplier.SelectedIndex = 0
         ComboType.SelectedIndex = 0
     End Sub
 
     Friend Sub Add()
         editMode = False
         fruitId = ""
+
+        LoadSupplierCombo()
         Clear()
         Show()
 
@@ -36,11 +59,6 @@ Public Class FormFruit
 
         If FieldStock.Text.Equals("") Then
             MsgBox("The 'stock' field is required")
-            Return False
-        End If
-
-        If FieldUnit.Text.Equals("") Then
-            MsgBox("The 'unit' field is required")
             Return False
         End If
 
@@ -65,6 +83,8 @@ Public Class FormFruit
     Friend Sub Edit(id As String)
         editMode = True
         fruitId = id
+
+        LoadSupplierCombo()
         Clear()
         Show()
 
@@ -80,7 +100,7 @@ Public Class FormFruit
             If DataReader.Read() Then
                 FieldName.Text = DataReader.Item("FruitName")
                 FieldStock.Text = DataReader.Item("Stock")
-                FieldUnit.Text = DataReader.Item("Unit")
+                ComboSupplier.SelectedValue = DataReader.Item("Unit")
                 FieldPurchasePrice.Text = CDbl(DataReader.Item("PurchasePrice"))
                 FieldSellPrice.Text = CDbl(DataReader.Item("SellPrice"))
                 ComboType.SelectedIndex = ComboType.Items.IndexOf(DataReader.Item("FruitType"))
@@ -101,7 +121,7 @@ Public Class FormFruit
             Dim fruitName As String = FieldName.Text
             Dim fruitType As String = ComboType.SelectedItem.ToString()
             Dim stock As String = FieldStock.Text
-            Dim unit As String = FieldUnit.Text
+            Dim unit As String = ComboSupplier.SelectedValue.ToString()
             Dim purchasePrice As String = FieldPurchasePrice.Text
             Dim sellPrice As String = FieldSellPrice.Text
 
@@ -118,7 +138,7 @@ Public Class FormFruit
 
                 Command.ExecuteNonQuery()
 
-                FormAdmin.ReloadFruitsTable()
+                FormAdmin.ReloadFruitsTable("")
                 Hide()
             Catch ex As Exception
                 MsgBox("Failed to execute INSERT operation: " + ex.Message)

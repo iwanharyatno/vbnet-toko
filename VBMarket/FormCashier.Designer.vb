@@ -33,6 +33,9 @@ Partial Class FormCashier
         Me.Label2 = New System.Windows.Forms.Label()
         Me.labelGreetings = New System.Windows.Forms.Label()
         Me.TabCustomers = New System.Windows.Forms.TabPage()
+        Me.FieldCustomerFilterQuery = New System.Windows.Forms.TextBox()
+        Me.ComboCustomerFilterColumns = New System.Windows.Forms.ComboBox()
+        Me.Label13 = New System.Windows.Forms.Label()
         Me.btnRemoveCustomer = New System.Windows.Forms.Button()
         Me.btnEditCustomer = New System.Windows.Forms.Button()
         Me.btnToSales = New System.Windows.Forms.Button()
@@ -46,7 +49,10 @@ Partial Class FormCashier
         Me.CustomerDebt = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabSales = New System.Windows.Forms.TabPage()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.ComboFruitFilterColumn = New System.Windows.Forms.ComboBox()
+        Me.FieldFruitFilterQuery = New System.Windows.Forms.TextBox()
         Me.dtpSaleDate = New System.Windows.Forms.DateTimePicker()
+        Me.Label14 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.numQty = New System.Windows.Forms.NumericUpDown()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -105,7 +111,7 @@ Partial Class FormCashier
         Me.Panel1.Controls.Add(Me.btnLogout)
         Me.Panel1.Location = New System.Drawing.Point(12, 12)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(672, 37)
+        Me.Panel1.Size = New System.Drawing.Size(755, 37)
         Me.Panel1.TabIndex = 1
         '
         'Label1
@@ -126,7 +132,7 @@ Partial Class FormCashier
         Me.btnProfile.FlatAppearance.BorderSize = 0
         Me.btnProfile.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnProfile.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.btnProfile.Location = New System.Drawing.Point(480, 0)
+        Me.btnProfile.Location = New System.Drawing.Point(563, 0)
         Me.btnProfile.Name = "btnProfile"
         Me.btnProfile.Size = New System.Drawing.Size(93, 37)
         Me.btnProfile.TabIndex = 1
@@ -140,7 +146,7 @@ Partial Class FormCashier
         Me.btnLogout.FlatAppearance.BorderSize = 0
         Me.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnLogout.ForeColor = System.Drawing.Color.GhostWhite
-        Me.btnLogout.Location = New System.Drawing.Point(579, 0)
+        Me.btnLogout.Location = New System.Drawing.Point(662, 0)
         Me.btnLogout.Name = "btnLogout"
         Me.btnLogout.Size = New System.Drawing.Size(93, 37)
         Me.btnLogout.TabIndex = 1
@@ -158,7 +164,7 @@ Partial Class FormCashier
         Me.CashierTabs.Location = New System.Drawing.Point(12, 75)
         Me.CashierTabs.Name = "CashierTabs"
         Me.CashierTabs.SelectedIndex = 0
-        Me.CashierTabs.Size = New System.Drawing.Size(673, 532)
+        Me.CashierTabs.Size = New System.Drawing.Size(756, 532)
         Me.CashierTabs.TabIndex = 2
         '
         'TabHome
@@ -170,7 +176,7 @@ Partial Class FormCashier
         Me.TabHome.Location = New System.Drawing.Point(4, 24)
         Me.TabHome.Name = "TabHome"
         Me.TabHome.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabHome.Size = New System.Drawing.Size(665, 504)
+        Me.TabHome.Size = New System.Drawing.Size(748, 504)
         Me.TabHome.TabIndex = 0
         Me.TabHome.Text = "Home"
         Me.TabHome.UseVisualStyleBackColor = True
@@ -221,6 +227,9 @@ Partial Class FormCashier
         '
         'TabCustomers
         '
+        Me.TabCustomers.Controls.Add(Me.FieldCustomerFilterQuery)
+        Me.TabCustomers.Controls.Add(Me.ComboCustomerFilterColumns)
+        Me.TabCustomers.Controls.Add(Me.Label13)
         Me.TabCustomers.Controls.Add(Me.btnRemoveCustomer)
         Me.TabCustomers.Controls.Add(Me.btnEditCustomer)
         Me.TabCustomers.Controls.Add(Me.btnToSales)
@@ -229,10 +238,35 @@ Partial Class FormCashier
         Me.TabCustomers.Location = New System.Drawing.Point(4, 24)
         Me.TabCustomers.Name = "TabCustomers"
         Me.TabCustomers.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabCustomers.Size = New System.Drawing.Size(665, 504)
+        Me.TabCustomers.Size = New System.Drawing.Size(748, 504)
         Me.TabCustomers.TabIndex = 1
         Me.TabCustomers.Text = "Customers"
         Me.TabCustomers.UseVisualStyleBackColor = True
+        '
+        'FieldCustomerFilterQuery
+        '
+        Me.FieldCustomerFilterQuery.Location = New System.Drawing.Point(212, 6)
+        Me.FieldCustomerFilterQuery.Name = "FieldCustomerFilterQuery"
+        Me.FieldCustomerFilterQuery.Size = New System.Drawing.Size(206, 23)
+        Me.FieldCustomerFilterQuery.TabIndex = 8
+        '
+        'ComboCustomerFilterColumns
+        '
+        Me.ComboCustomerFilterColumns.FormattingEnabled = True
+        Me.ComboCustomerFilterColumns.Items.AddRange(New Object() {"Name", "Email", "Phone", "Address"})
+        Me.ComboCustomerFilterColumns.Location = New System.Drawing.Point(81, 6)
+        Me.ComboCustomerFilterColumns.Name = "ComboCustomerFilterColumns"
+        Me.ComboCustomerFilterColumns.Size = New System.Drawing.Size(125, 23)
+        Me.ComboCustomerFilterColumns.TabIndex = 7
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(6, 10)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(49, 15)
+        Me.Label13.TabIndex = 6
+        Me.Label13.Text = "Filter By"
         '
         'btnRemoveCustomer
         '
@@ -266,7 +300,7 @@ Partial Class FormCashier
         Me.btnToSales.BackColor = System.Drawing.Color.MidnightBlue
         Me.btnToSales.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnToSales.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.btnToSales.Location = New System.Drawing.Point(555, 459)
+        Me.btnToSales.Location = New System.Drawing.Point(638, 459)
         Me.btnToSales.Name = "btnToSales"
         Me.btnToSales.Size = New System.Drawing.Size(104, 32)
         Me.btnToSales.TabIndex = 5
@@ -296,12 +330,12 @@ Partial Class FormCashier
         Me.dgvCustomers.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvCustomers.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CustomerID, Me.CustomerName, Me.CustomerEmail, Me.CustomerPhone, Me.CustomerAddress, Me.CustomerDebt})
-        Me.dgvCustomers.Location = New System.Drawing.Point(0, 0)
+        Me.dgvCustomers.Location = New System.Drawing.Point(0, 32)
         Me.dgvCustomers.Name = "dgvCustomers"
         Me.dgvCustomers.ReadOnly = True
         Me.dgvCustomers.RowTemplate.Height = 25
         Me.dgvCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvCustomers.Size = New System.Drawing.Size(666, 453)
+        Me.dgvCustomers.Size = New System.Drawing.Size(749, 421)
         Me.dgvCustomers.TabIndex = 0
         '
         'CustomerID
@@ -309,33 +343,39 @@ Partial Class FormCashier
         Me.CustomerID.HeaderText = "ID"
         Me.CustomerID.Name = "CustomerID"
         Me.CustomerID.ReadOnly = True
+        Me.CustomerID.Visible = False
         '
         'CustomerName
         '
+        Me.CustomerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.CustomerName.HeaderText = "Name"
         Me.CustomerName.Name = "CustomerName"
         Me.CustomerName.ReadOnly = True
         '
         'CustomerEmail
         '
+        Me.CustomerEmail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.CustomerEmail.HeaderText = "Email"
         Me.CustomerEmail.Name = "CustomerEmail"
         Me.CustomerEmail.ReadOnly = True
         '
         'CustomerPhone
         '
+        Me.CustomerPhone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.CustomerPhone.HeaderText = "Phone"
         Me.CustomerPhone.Name = "CustomerPhone"
         Me.CustomerPhone.ReadOnly = True
         '
         'CustomerAddress
         '
+        Me.CustomerAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.CustomerAddress.HeaderText = "Address"
         Me.CustomerAddress.Name = "CustomerAddress"
         Me.CustomerAddress.ReadOnly = True
         '
         'CustomerDebt
         '
+        Me.CustomerDebt.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.CustomerDebt.HeaderText = "Debt"
         Me.CustomerDebt.Name = "CustomerDebt"
         Me.CustomerDebt.ReadOnly = True
@@ -346,7 +386,7 @@ Partial Class FormCashier
         Me.TabSales.Location = New System.Drawing.Point(4, 24)
         Me.TabSales.Name = "TabSales"
         Me.TabSales.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabSales.Size = New System.Drawing.Size(665, 504)
+        Me.TabSales.Size = New System.Drawing.Size(748, 504)
         Me.TabSales.TabIndex = 2
         Me.TabSales.Text = "Sales"
         Me.TabSales.UseVisualStyleBackColor = True
@@ -361,7 +401,10 @@ Partial Class FormCashier
         '
         'SplitContainer1.Panel1
         '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.ComboFruitFilterColumn)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.FieldFruitFilterQuery)
         Me.SplitContainer1.Panel1.Controls.Add(Me.dtpSaleDate)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.Label14)
         Me.SplitContainer1.Panel1.Controls.Add(Me.Label7)
         Me.SplitContainer1.Panel1.Controls.Add(Me.numQty)
         Me.SplitContainer1.Panel1.Controls.Add(Me.Label3)
@@ -389,9 +432,27 @@ Partial Class FormCashier
         Me.SplitContainer1.Panel2.Controls.Add(Me.FieldTotal)
         Me.SplitContainer1.Panel2.Controls.Add(Me.FieldChanges)
         Me.SplitContainer1.Panel2.Controls.Add(Me.FieldPayment)
-        Me.SplitContainer1.Size = New System.Drawing.Size(665, 497)
-        Me.SplitContainer1.SplitterDistance = 322
+        Me.SplitContainer1.Size = New System.Drawing.Size(748, 497)
+        Me.SplitContainer1.SplitterDistance = 362
         Me.SplitContainer1.TabIndex = 3
+        '
+        'ComboFruitFilterColumn
+        '
+        Me.ComboFruitFilterColumn.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ComboFruitFilterColumn.FormattingEnabled = True
+        Me.ComboFruitFilterColumn.Items.AddRange(New Object() {"FruitName", "FruitType"})
+        Me.ComboFruitFilterColumn.Location = New System.Drawing.Point(143, 7)
+        Me.ComboFruitFilterColumn.Name = "ComboFruitFilterColumn"
+        Me.ComboFruitFilterColumn.Size = New System.Drawing.Size(95, 23)
+        Me.ComboFruitFilterColumn.TabIndex = 11
+        '
+        'FieldFruitFilterQuery
+        '
+        Me.FieldFruitFilterQuery.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.FieldFruitFilterQuery.Location = New System.Drawing.Point(244, 6)
+        Me.FieldFruitFilterQuery.Name = "FieldFruitFilterQuery"
+        Me.FieldFruitFilterQuery.Size = New System.Drawing.Size(110, 23)
+        Me.FieldFruitFilterQuery.TabIndex = 10
         '
         'dtpSaleDate
         '
@@ -402,6 +463,16 @@ Partial Class FormCashier
         Me.dtpSaleDate.Name = "dtpSaleDate"
         Me.dtpSaleDate.Size = New System.Drawing.Size(141, 23)
         Me.dtpSaleDate.TabIndex = 9
+        '
+        'Label14
+        '
+        Me.Label14.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(85, 10)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(49, 15)
+        Me.Label14.TabIndex = 0
+        Me.Label14.Text = "Filter By"
         '
         'Label7
         '
@@ -415,7 +486,7 @@ Partial Class FormCashier
         'numQty
         '
         Me.numQty.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.numQty.Location = New System.Drawing.Point(45, 229)
+        Me.numQty.Location = New System.Drawing.Point(85, 229)
         Me.numQty.Name = "numQty"
         Me.numQty.Size = New System.Drawing.Size(153, 23)
         Me.numQty.TabIndex = 1
@@ -434,7 +505,7 @@ Partial Class FormCashier
         '
         Me.Label8.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(3, 233)
+        Me.Label8.Location = New System.Drawing.Point(43, 233)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(26, 15)
         Me.Label8.TabIndex = 7
@@ -477,7 +548,7 @@ Partial Class FormCashier
         Me.FieldCustomerID.Location = New System.Drawing.Point(9, 291)
         Me.FieldCustomerID.Name = "FieldCustomerID"
         Me.FieldCustomerID.ReadOnly = True
-        Me.FieldCustomerID.Size = New System.Drawing.Size(305, 23)
+        Me.FieldCustomerID.Size = New System.Drawing.Size(345, 23)
         Me.FieldCustomerID.TabIndex = 1
         '
         'FieldCustomerName
@@ -487,7 +558,7 @@ Partial Class FormCashier
         Me.FieldCustomerName.Location = New System.Drawing.Point(9, 349)
         Me.FieldCustomerName.Name = "FieldCustomerName"
         Me.FieldCustomerName.ReadOnly = True
-        Me.FieldCustomerName.Size = New System.Drawing.Size(305, 23)
+        Me.FieldCustomerName.Size = New System.Drawing.Size(345, 23)
         Me.FieldCustomerName.TabIndex = 1
         '
         'btnAddToCart
@@ -496,7 +567,7 @@ Partial Class FormCashier
         Me.btnAddToCart.BackColor = System.Drawing.Color.MidnightBlue
         Me.btnAddToCart.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAddToCart.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.btnAddToCart.Location = New System.Drawing.Point(204, 222)
+        Me.btnAddToCart.Location = New System.Drawing.Point(244, 222)
         Me.btnAddToCart.Name = "btnAddToCart"
         Me.btnAddToCart.Size = New System.Drawing.Size(110, 32)
         Me.btnAddToCart.TabIndex = 2
@@ -510,7 +581,7 @@ Partial Class FormCashier
         Me.FieldCustomerPhone.Location = New System.Drawing.Point(9, 407)
         Me.FieldCustomerPhone.Name = "FieldCustomerPhone"
         Me.FieldCustomerPhone.ReadOnly = True
-        Me.FieldCustomerPhone.Size = New System.Drawing.Size(305, 23)
+        Me.FieldCustomerPhone.Size = New System.Drawing.Size(345, 23)
         Me.FieldCustomerPhone.TabIndex = 1
         '
         'dgvFruits
@@ -527,13 +598,15 @@ Partial Class FormCashier
         Me.dgvFruits.Name = "dgvFruits"
         Me.dgvFruits.RowTemplate.Height = 25
         Me.dgvFruits.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvFruits.Size = New System.Drawing.Size(308, 181)
+        Me.dgvFruits.Size = New System.Drawing.Size(348, 181)
         Me.dgvFruits.TabIndex = 0
         '
         'FruitID
         '
         Me.FruitID.HeaderText = "ID"
         Me.FruitID.Name = "FruitID"
+        Me.FruitID.ReadOnly = True
+        Me.FruitID.Visible = False
         '
         'FruitName
         '
@@ -562,7 +635,7 @@ Partial Class FormCashier
         Me.btnCancel.FlatAppearance.BorderSize = 0
         Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCancel.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.btnCancel.Location = New System.Drawing.Point(93, 459)
+        Me.btnCancel.Location = New System.Drawing.Point(136, 459)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(110, 32)
         Me.btnCancel.TabIndex = 6
@@ -584,7 +657,7 @@ Partial Class FormCashier
         Me.btnConfirm.BackColor = System.Drawing.Color.MidnightBlue
         Me.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnConfirm.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.btnConfirm.Location = New System.Drawing.Point(223, 459)
+        Me.btnConfirm.Location = New System.Drawing.Point(266, 459)
         Me.btnConfirm.Name = "btnConfirm"
         Me.btnConfirm.Size = New System.Drawing.Size(110, 32)
         Me.btnConfirm.TabIndex = 6
@@ -607,7 +680,7 @@ Partial Class FormCashier
         Me.btnToDebt.BackColor = System.Drawing.Color.MidnightBlue
         Me.btnToDebt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnToDebt.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.btnToDebt.Location = New System.Drawing.Point(226, 401)
+        Me.btnToDebt.Location = New System.Drawing.Point(269, 401)
         Me.btnToDebt.Name = "btnToDebt"
         Me.btnToDebt.Size = New System.Drawing.Size(107, 32)
         Me.btnToDebt.TabIndex = 6
@@ -630,7 +703,7 @@ Partial Class FormCashier
         Me.btnRemoveFromCart.BackColor = System.Drawing.Color.DarkRed
         Me.btnRemoveFromCart.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRemoveFromCart.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.btnRemoveFromCart.Location = New System.Drawing.Point(190, 222)
+        Me.btnRemoveFromCart.Location = New System.Drawing.Point(233, 222)
         Me.btnRemoveFromCart.Name = "btnRemoveFromCart"
         Me.btnRemoveFromCart.Size = New System.Drawing.Size(143, 32)
         Me.btnRemoveFromCart.TabIndex = 4
@@ -661,13 +734,15 @@ Partial Class FormCashier
         Me.dgvCart.Name = "dgvCart"
         Me.dgvCart.RowTemplate.Height = 25
         Me.dgvCart.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvCart.Size = New System.Drawing.Size(327, 181)
+        Me.dgvCart.Size = New System.Drawing.Size(370, 181)
         Me.dgvCart.TabIndex = 3
         '
         'CartFruitID
         '
         Me.CartFruitID.HeaderText = "Fruit ID"
         Me.CartFruitID.Name = "CartFruitID"
+        Me.CartFruitID.ReadOnly = True
+        Me.CartFruitID.Visible = False
         '
         'CartFruitName
         '
@@ -696,7 +771,7 @@ Partial Class FormCashier
         Me.FieldTotal.Location = New System.Drawing.Point(6, 291)
         Me.FieldTotal.Name = "FieldTotal"
         Me.FieldTotal.ReadOnly = True
-        Me.FieldTotal.Size = New System.Drawing.Size(327, 23)
+        Me.FieldTotal.Size = New System.Drawing.Size(370, 23)
         Me.FieldTotal.TabIndex = 1
         Me.FieldTotal.Text = "0"
         '
@@ -707,7 +782,7 @@ Partial Class FormCashier
         Me.FieldChanges.Location = New System.Drawing.Point(6, 407)
         Me.FieldChanges.Name = "FieldChanges"
         Me.FieldChanges.ReadOnly = True
-        Me.FieldChanges.Size = New System.Drawing.Size(214, 23)
+        Me.FieldChanges.Size = New System.Drawing.Size(257, 23)
         Me.FieldChanges.TabIndex = 1
         '
         'FieldPayment
@@ -716,14 +791,14 @@ Partial Class FormCashier
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.FieldPayment.Location = New System.Drawing.Point(6, 349)
         Me.FieldPayment.Name = "FieldPayment"
-        Me.FieldPayment.Size = New System.Drawing.Size(327, 23)
+        Me.FieldPayment.Size = New System.Drawing.Size(370, 23)
         Me.FieldPayment.TabIndex = 5
         '
         'FormCashier
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(697, 619)
+        Me.ClientSize = New System.Drawing.Size(780, 619)
         Me.Controls.Add(Me.CashierTabs)
         Me.Controls.Add(Me.Panel1)
         Me.Name = "FormCashier"
@@ -735,6 +810,7 @@ Partial Class FormCashier
         Me.TabHome.ResumeLayout(False)
         Me.TabHome.PerformLayout()
         Me.TabCustomers.ResumeLayout(False)
+        Me.TabCustomers.PerformLayout()
         CType(Me.dgvCustomers, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabSales.ResumeLayout(False)
         Me.SplitContainer1.Panel1.ResumeLayout(False)
@@ -766,12 +842,6 @@ Partial Class FormCashier
     Friend WithEvents btnRemoveCustomer As Button
     Friend WithEvents btnEditCustomer As Button
     Friend WithEvents btnNewCustomer As Button
-    Friend WithEvents CustomerID As DataGridViewTextBoxColumn
-    Friend WithEvents CustomerName As DataGridViewTextBoxColumn
-    Friend WithEvents CustomerEmail As DataGridViewTextBoxColumn
-    Friend WithEvents CustomerPhone As DataGridViewTextBoxColumn
-    Friend WithEvents CustomerAddress As DataGridViewTextBoxColumn
-    Friend WithEvents CustomerDebt As DataGridViewTextBoxColumn
     Friend WithEvents btnToSales As Button
     Friend WithEvents dgvCart As DataGridView
     Friend WithEvents FieldCustomerPhone As TextBox
@@ -795,18 +865,30 @@ Partial Class FormCashier
     Friend WithEvents Label11 As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents Label9 As Label
-    Friend WithEvents CartFruitID As DataGridViewTextBoxColumn
-    Friend WithEvents CartFruitName As DataGridViewTextBoxColumn
-    Friend WithEvents CartQty As DataGridViewTextBoxColumn
-    Friend WithEvents CartPrice As DataGridViewTextBoxColumn
-    Friend WithEvents CartSubtotal As DataGridViewTextBoxColumn
     Friend WithEvents btnRemoveFromCart As Button
     Friend WithEvents dtpSaleDate As DateTimePicker
     Friend WithEvents Label12 As Label
+    Friend WithEvents SplitContainer1 As SplitContainer
+    Friend WithEvents CustomerID As DataGridViewTextBoxColumn
+    Friend WithEvents CustomerName As DataGridViewTextBoxColumn
+    Friend WithEvents CustomerEmail As DataGridViewTextBoxColumn
+    Friend WithEvents CustomerPhone As DataGridViewTextBoxColumn
+    Friend WithEvents CustomerAddress As DataGridViewTextBoxColumn
+    Friend WithEvents CustomerDebt As DataGridViewTextBoxColumn
     Friend WithEvents FruitID As DataGridViewTextBoxColumn
     Friend WithEvents FruitName As DataGridViewTextBoxColumn
     Friend WithEvents FruitType As DataGridViewTextBoxColumn
     Friend WithEvents FruitStock As DataGridViewTextBoxColumn
     Friend WithEvents SellPrice As DataGridViewTextBoxColumn
-    Friend WithEvents SplitContainer1 As SplitContainer
+    Friend WithEvents CartFruitID As DataGridViewTextBoxColumn
+    Friend WithEvents CartFruitName As DataGridViewTextBoxColumn
+    Friend WithEvents CartQty As DataGridViewTextBoxColumn
+    Friend WithEvents CartPrice As DataGridViewTextBoxColumn
+    Friend WithEvents CartSubtotal As DataGridViewTextBoxColumn
+    Friend WithEvents ComboCustomerFilterColumns As ComboBox
+    Friend WithEvents Label13 As Label
+    Friend WithEvents FieldCustomerFilterQuery As TextBox
+    Friend WithEvents ComboFruitFilterColumn As ComboBox
+    Friend WithEvents FieldFruitFilterQuery As TextBox
+    Friend WithEvents Label14 As Label
 End Class

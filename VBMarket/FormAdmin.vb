@@ -1,8 +1,6 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class FormAdmin
-    Private activeSupplierID As String = ""
-
     Friend Sub GetAdminInfo()
         Try
             AppConnection.Open()
@@ -23,11 +21,11 @@ Public Class FormAdmin
         End Try
     End Sub
 
-    Friend Sub ReloadEmployeesTable()
+    Friend Sub ReloadEmployeesTable(additionalClause As String)
         Try
             AppConnection.Open()
 
-            SqlQuery = "SELECT ID, Name, Username, Email, Address, DOB, Role FROM Employee ORDER BY CreatedAt DESC"
+            SqlQuery = "SELECT ID, Name, Username, Email, Address, DOB, Role FROM Employee " + additionalClause + " ORDER BY CreatedAt DESC"
             Command = New SqlCommand(SqlQuery, AppConnection.Connection)
 
             DataReader = Command.ExecuteReader()
@@ -52,11 +50,11 @@ Public Class FormAdmin
         End Try
     End Sub
 
-    Friend Sub ReloadSuppliersTable()
+    Friend Sub ReloadSuppliersTable(additionalClause As String)
         Try
             AppConnection.Open()
 
-            SqlQuery = "SELECT ID, Name, Phone, Email, Address FROM Supplier ORDER BY CreatedAt DESC"
+            SqlQuery = "SELECT ID, Name, Phone, Email, Address FROM Supplier " + additionalClause + " ORDER BY CreatedAt DESC"
             Command = New SqlCommand(SqlQuery, AppConnection.Connection)
 
             DataReader = Command.ExecuteReader()
@@ -66,8 +64,8 @@ Public Class FormAdmin
                     dgvSuppliers.Rows.Add(New String() {
                         DataReader.Item("ID").ToString(),
                         DataReader.Item("Name").ToString(),
-                        DataReader.Item("Phone").ToString(),
                         DataReader.Item("Email").ToString(),
+                        DataReader.Item("Phone").ToString(),
                         DataReader.Item("Address").ToString()
                     })
                 End While
@@ -79,11 +77,12 @@ Public Class FormAdmin
         End Try
     End Sub
 
-    Friend Sub ReloadFruitsTable()
+    Friend Sub ReloadFruitsTable(additionalClause As String)
         Try
             AppConnection.Open()
 
-            SqlQuery = "SELECT ID, FruitName, FruitType, Stock, Unit, PurchasePrice, SellPrice FROM Fruit ORDER BY CreatedAt DESC"
+            SqlQuery = "SELECT Fruit.ID, FruitName, FruitType, Stock, Supplier.Name as SupplierName, Unit, PurchasePrice, SellPrice FROM Fruit
+            INNER JOIN Supplier ON Supplier.ID = Fruit.Unit " + additionalClause + " ORDER BY Fruit.CreatedAt DESC"
             Command = New SqlCommand(SqlQuery, AppConnection.Connection)
 
             DataReader = Command.ExecuteReader()
@@ -96,6 +95,7 @@ Public Class FormAdmin
                         DataReader.Item("FruitType").ToString(),
                         DataReader.Item("Stock").ToString(),
                         DataReader.Item("Unit").ToString(),
+                        DataReader.Item("SupplierName").ToString(),
                         DataReader.Item("PurchasePrice").ToString(),
                         DataReader.Item("SellPrice").ToString()
                     })
@@ -108,56 +108,57 @@ Public Class FormAdmin
         End Try
     End Sub
 
-    Friend Sub ReloadFruitsTableForRestock()
-        Try
-            AppConnection.Open()
+    Friend Sub ReloadFruitsTableForRestock(additionalWhere As String)
+        If Not RestockComboSupplier.SelectedValue.ToString().Equals("") Then
+            Try
+                AppConnection.Open()
 
-            SqlQuery = "SELECT ID, FruitName, FruitType, Stock, PurchasePrice FROM Fruit ORDER BY CreatedAt DESC;
+                SqlQuery = "SELECT ID, FruitName, FruitType, Stock, PurchasePrice FROM Fruit WHERE Unit='" + RestockComboSupplier.SelectedValue.ToString() + "' " + additionalWhere + " ORDER BY CreatedAt DESC;
                         SELECT CurrentBalance FROM Finance"
-            Command = New SqlCommand(SqlQuery, AppConnection.Connection)
+                Command = New SqlCommand(SqlQuery, AppConnection.Connection)
 
-            DataReader = Command.ExecuteReader()
-            dgvFruitsRestock.Rows.Clear()
-            If DataReader.HasRows Then
-                While DataReader.Read()
-                    dgvFruitsRestock.Rows.Add(New String() {
-                        DataReader.Item("ID").ToString(),
-                        DataReader.Item("FruitName").ToString(),
-                        DataReader.Item("FruitType").ToString(),
-                        DataReader.Item("Stock").ToString(),
-                        DataReader.Item("PurchasePrice").ToString()
-                    })
-                End While
-            End If
-
-            If DataReader.NextResult() Then
-                If DataReader.Read Then
-                    FieldCurrentBalance.Text = DataReader.Item("CurrentBalance")
+                DataReader = Command.ExecuteReader()
+                dgvFruitsRestock.Rows.Clear()
+                If DataReader.HasRows Then
+                    While DataReader.Read()
+                        dgvFruitsRestock.Rows.Add(New String() {
+                            DataReader.Item("ID").ToString(),
+                            DataReader.Item("FruitName").ToString(),
+                            DataReader.Item("FruitType").ToString(),
+                            DataReader.Item("Stock").ToString(),
+                            DataReader.Item("PurchasePrice").ToString()
+                        })
+                    End While
                 End If
-            End If
-        Catch ex As Exception
-            MsgBox("Couldn't load data into table: " & ex.Message)
-        Finally
-            AppConnection.Close()
-        End Try
+
+                If DataReader.NextResult() Then
+                    If DataReader.Read Then
+                        FieldCurrentBalance.Text = DataReader.Item("CurrentBalance")
+                    End If
+                End If
+            Catch ex As Exception
+                MsgBox("Couldn't load data into table: " & ex.Message)
+            Finally
+                AppConnection.Close()
+            End Try
+        End If
     End Sub
 
-    Private Sub FillSupplierDetailForRestock()
+    Private Sub LoadSuppliersCombo()
         Try
             AppConnection.Open()
 
-            SqlQuery = "SELECT Name, Email FROM Supplier WHERE ID='" + activeSupplierID + "'"
+            SqlQuery = "SELECT ID, Name FROM Supplier"
             Command = New SqlCommand(SqlQuery, AppConnection.Connection)
 
             DataReader = Command.ExecuteReader()
-            If DataReader.HasRows Then
-                If DataReader.Read() Then
-                    FieldSupplierName.Text = DataReader.Item("Name")
-                    FieldSupplierEmail.Text = DataReader.Item("Email")
-                End If
-            End If
+            DataTable = New DataTable()
+
+            DataTable.Load(DataReader)
+
+            RestockComboSupplier.DataSource = DataTable
         Catch ex As Exception
-            MsgBox("Failed to fetch supplier detail: " + ex.Message)
+            MsgBox("Couldn't load supplier list: " + ex.Message)
         Finally
             AppConnection.Close()
         End Try
@@ -292,7 +293,7 @@ Public Class FormAdmin
                 Dim answer As Integer = MsgBox("Are you sure to delete these employees?", vbQuestion & vbYesNoCancel, "Alert")
                 If answer = vbYes Then
                     DeleteEmployees(ids)
-                    ReloadEmployeesTable()
+                    ReloadEmployeesTable("")
                 End If
             Else
                 MsgBox("You cannot delete the currently logged in user")
@@ -333,7 +334,7 @@ Public Class FormAdmin
             Dim answer As Integer = MsgBox("Are you sure to delete these fruits?", vbQuestion & vbYesNoCancel, "Alert")
             If answer = vbYes Then
                 DeleteFruits(ids)
-                ReloadFruitsTable()
+                ReloadFruitsTable("")
             End If
         Else
             MsgBox("Please select rows to be removed")
@@ -430,21 +431,8 @@ Public Class FormAdmin
             Dim answer As Integer = MsgBox("Are you sure to remove these suppliers?", vbQuestion + vbYesNo)
             If answer = vbYes Then
                 DeleteSuppliers(ids)
-                ReloadSuppliersTable()
+                ReloadSuppliersTable("")
             End If
-        End If
-    End Sub
-
-    Private Sub btnBringSupplierToRestock_Click(sender As Object, e As EventArgs) Handles btnBringSupplierToRestock.Click
-        Dim selectedRows As DataGridViewSelectedRowCollection = dgvSuppliers.SelectedRows
-
-        If selectedRows.Count = 1 Then
-            activeSupplierID = selectedRows.Item(0).Cells.Item("SupplierID").Value
-            FillSupplierDetailForRestock()
-
-            AdminTabs.SelectedTab = TabRestock
-        Else
-            MsgBox("Please select exactly one row")
         End If
     End Sub
 
@@ -452,7 +440,7 @@ Public Class FormAdmin
         Dim total As Integer = FieldTotal.Text
         Dim currentBalance As Integer = FieldCurrentBalance.Text
 
-        If activeSupplierID.Equals("") Then
+        If RestockComboSupplier.SelectedValue.ToString().Equals("") Then
             MsgBox("You haven't select the supplier for restock")
             Return
         End If
@@ -468,12 +456,13 @@ Public Class FormAdmin
             Dim selectedRows As DataGridViewRowCollection = dgvCartRestock.Rows
 
             For Each selectedRow As DataGridViewRow In selectedRows
+                Dim supplierId As String = RestockComboSupplier.SelectedValue.ToString()
                 Dim fruitId As String = selectedRow.Cells.Item("RestockCartFruitID").Value
                 Dim qty As String = selectedRow.Cells.Item("RestockCartQty").Value
                 Dim subtotal As String = selectedRow.Cells.Item("RestockCartSubtotal").Value
                 Dim purchaseDate As String = dtpPurchaseDate.Value.ToString("yyyy-MM-dd")
 
-                SqlQuery = "INSERT INTO Purchase (ID, EmployeeID, SupplierID, FruitID, Qty, Subtotal, CreatedAt, UpdatedAt) VALUES (NEWID(), '" + EmployeeID + "', '" + activeSupplierID + "', '" + fruitId + "', '" + qty + "', '" + subtotal + "', '" + purchaseDate + "', GETDATE());
+                SqlQuery = "INSERT INTO Purchase (ID, EmployeeID, SupplierID, FruitID, Qty, Subtotal, CreatedAt, UpdatedAt) VALUES (NEWID(), '" + EmployeeID + "', '" + supplierId + "', '" + fruitId + "', '" + qty + "', '" + subtotal + "', '" + purchaseDate + "', GETDATE());
                                 UPDATE Fruit SET Stock += '" + qty + "' WHERE ID='" + fruitId + ";'
                                 UPDATE Finance SET CurrentBalance -= '" + subtotal + "'"
                 Command = New SqlCommand(SqlQuery, AppConnection.Connection)
@@ -482,7 +471,7 @@ Public Class FormAdmin
             Next
 
             MsgBox("Purchase Recorded!")
-            ReloadFruitsTableForRestock()
+            ReloadFruitsTableForRestock("")
             ClearRestockFields()
         Catch ex As Exception
             MsgBox("Couldn't perform INSERT-UPDATE operations: " + ex.Message)
@@ -510,17 +499,23 @@ Public Class FormAdmin
     Private Sub AdminTabs_SelectedIndexChanged(sender As Object, e As EventArgs) Handles AdminTabs.SelectedIndexChanged
         Select Case AdminTabs.SelectedIndex
             Case AdminTabs.TabPages.IndexOf(TabEmployees)
-                ReloadEmployeesTable()
+                ComboEmployeeFilterColumn.SelectedIndex = 0
+                ReloadEmployeesTable("")
                 Exit Select
             Case AdminTabs.TabPages.IndexOf(TabFruit)
-                ReloadFruitsTable()
+                ComboFruitFilterColumn.SelectedIndex = 0
+                ReloadFruitsTable("")
                 Exit Select
             Case AdminTabs.TabPages.IndexOf(TabSupplier)
-                ReloadSuppliersTable()
+                ComboSupplierFilterColumn.SelectedIndex = 0
+                ReloadSuppliersTable("")
                 Exit Select
             Case AdminTabs.TabPages.IndexOf(TabRestock)
-                ReloadFruitsTableForRestock()
-                If activeSupplierID.Equals("") Then
+                LoadSuppliersCombo()
+                RestockComboSupplier.SelectedIndex = 0
+                ComboFruitRestockFilterColumn.SelectedIndex = 0
+                ReloadFruitsTableForRestock("")
+                If RestockComboSupplier.SelectedValue.ToString().Equals("") Then
                     MsgBox("You haven't selected a supplier yet, be sure to select it now or later")
                 End If
                 Exit Select
@@ -529,5 +524,37 @@ Public Class FormAdmin
 
     Private Sub btnViewReport_Click(sender As Object, e As EventArgs) Handles btnViewReport.Click
         FormReport.Show()
+    End Sub
+
+    Private Sub RestockComboSupplier_SelectedIndexChanged(sender As Object, e As EventArgs) Handles RestockComboSupplier.SelectedIndexChanged
+        ReloadFruitsTableForRestock("")
+    End Sub
+
+    Private Sub ComboEmployeeFilterColumn_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboEmployeeFilterColumn.SelectedIndexChanged, FieldEmployeeFilterQuery.TextChanged
+        Dim filterColumn As String = ComboEmployeeFilterColumn.SelectedItem.ToString()
+        Dim filterQuery As String = FieldEmployeeFilterQuery.Text
+
+        ReloadEmployeesTable("WHERE " + filterColumn + " LIKE '%" + filterQuery + "%'")
+    End Sub
+
+    Private Sub FieldFruitFilterQuery_TextChanged(sender As Object, e As EventArgs) Handles FieldFruitFilterQuery.TextChanged, ComboFruitFilterColumn.SelectedIndexChanged
+        Dim filterColumn As String = ComboFruitFilterColumn.SelectedItem.ToString()
+        Dim filterQuery As String = FieldFruitFilterQuery.Text
+
+        ReloadFruitsTable("WHERE " + filterColumn + " LIKE '%" + filterQuery + "%'")
+    End Sub
+
+    Private Sub FieldSupplierFilterQuery_TextChanged(sender As Object, e As EventArgs) Handles FieldSupplierFilterQuery.TextChanged, ComboSupplierFilterColumn.SelectedIndexChanged
+        Dim filterColumn As String = ComboSupplierFilterColumn.SelectedItem.ToString()
+        Dim filterQuery As String = FieldSupplierFilterQuery.Text
+
+        ReloadSuppliersTable("WHERE " + filterColumn + " LIKE '%" + filterQuery + "%'")
+    End Sub
+
+    Private Sub FieldFruitRestockFilterQuery_TextChanged(sender As Object, e As EventArgs) Handles FieldFruitRestockFilterQuery.TextChanged, ComboFruitRestockFilterColumn.SelectedIndexChanged
+        Dim filterColumn As String = ComboFruitRestockFilterColumn.SelectedItem.ToString()
+        Dim filterQuery As String = FieldFruitRestockFilterQuery.Text
+
+        ReloadFruitsTableForRestock("AND " + filterColumn + " LIKE '%" + filterQuery + "%'")
     End Sub
 End Class

@@ -86,7 +86,7 @@ Public Class FormCustomer
                 Command.ExecuteNonQuery()
 
                 Hide()
-                FormCashier.ReloadCustomerTable()
+                FormCashier.ReloadCustomerTable("")
             Catch ex As Exception
                 MsgBox("Couldn't perform the INSERT statement: " + ex.Message)
             Finally

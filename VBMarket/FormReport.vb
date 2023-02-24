@@ -64,6 +64,7 @@ Public Class FormReport
             End If
 
             labelIncome.Text = income.ToString("C", CultureInfo.CreateSpecificCulture("id-ID"))
+            labelOutcome.Text = outcome.ToString("C", CultureInfo.CreateSpecificCulture("id-ID"))
             labelItemsSold.Text = totalSold
             labelProfit.Text = profit.ToString("P")
             labelCurrentBalance.Text = currentBalance.ToString("C", CultureInfo.CreateSpecificCulture("id-ID"))

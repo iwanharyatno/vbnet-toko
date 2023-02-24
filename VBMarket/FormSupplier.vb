@@ -78,7 +78,7 @@ Public Class FormSupplier
 
                 Command.ExecuteNonQuery()
                 Hide()
-                FormAdmin.ReloadSuppliersTable()
+                FormAdmin.ReloadSuppliersTable("")
             Catch ex As Exception
                 MsgBox("Couldn't perform INSERT operation: " + ex.Message)
             Finally

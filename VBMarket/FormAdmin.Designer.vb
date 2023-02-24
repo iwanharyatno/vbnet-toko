@@ -36,6 +36,9 @@ Partial Class FormAdmin
         Me.btnEmployees = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TabEmployees = New System.Windows.Forms.TabPage()
+        Me.FieldEmployeeFilterQuery = New System.Windows.Forms.TextBox()
+        Me.ComboEmployeeFilterColumn = New System.Windows.Forms.ComboBox()
+        Me.Label10 = New System.Windows.Forms.Label()
         Me.dgvEmployees = New System.Windows.Forms.DataGridView()
         Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EmployeeName = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -48,19 +51,27 @@ Partial Class FormAdmin
         Me.btnEditEmployee = New System.Windows.Forms.Button()
         Me.btnNewEmployee = New System.Windows.Forms.Button()
         Me.TabFruit = New System.Windows.Forms.TabPage()
+        Me.FieldFruitFilterQuery = New System.Windows.Forms.TextBox()
+        Me.ComboFruitFilterColumn = New System.Windows.Forms.ComboBox()
+        Me.Label11 = New System.Windows.Forms.Label()
         Me.dgvFruits = New System.Windows.Forms.DataGridView()
         Me.FruitID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FruitName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FruitType = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FruitStock = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FruitUnit = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FruitSupplier = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FruitPurchasePrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FruitSellPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btnRemoveFruit = New System.Windows.Forms.Button()
         Me.btnEditFruit = New System.Windows.Forms.Button()
         Me.btnNewFruit = New System.Windows.Forms.Button()
         Me.TabRestock = New System.Windows.Forms.TabPage()
+        Me.RestockComboSupplier = New System.Windows.Forms.ComboBox()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.FieldFruitRestockFilterQuery = New System.Windows.Forms.TextBox()
+        Me.ComboFruitRestockFilterColumn = New System.Windows.Forms.ComboBox()
+        Me.Label13 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.dgvFruitsRestock = New System.Windows.Forms.DataGridView()
         Me.RestockFruitID = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -86,11 +97,12 @@ Partial Class FormAdmin
         Me.btnConfirm = New System.Windows.Forms.Button()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.FieldCurrentBalance = New System.Windows.Forms.TextBox()
-        Me.FieldSupplierEmail = New System.Windows.Forms.TextBox()
-        Me.FieldSupplierName = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TabSupplier = New System.Windows.Forms.TabPage()
+        Me.FieldSupplierFilterQuery = New System.Windows.Forms.TextBox()
+        Me.ComboSupplierFilterColumn = New System.Windows.Forms.ComboBox()
+        Me.Label12 = New System.Windows.Forms.Label()
         Me.dgvSuppliers = New System.Windows.Forms.DataGridView()
         Me.SupplierID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SupplierName = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -99,7 +111,6 @@ Partial Class FormAdmin
         Me.SupplierAddress = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btnDeleteSupplier = New System.Windows.Forms.Button()
         Me.btnEditSupplier = New System.Windows.Forms.Button()
-        Me.btnBringSupplierToRestock = New System.Windows.Forms.Button()
         Me.btnNewSupplier = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.AdminTabs.SuspendLayout()
@@ -286,6 +297,9 @@ Partial Class FormAdmin
         '
         'TabEmployees
         '
+        Me.TabEmployees.Controls.Add(Me.FieldEmployeeFilterQuery)
+        Me.TabEmployees.Controls.Add(Me.ComboEmployeeFilterColumn)
+        Me.TabEmployees.Controls.Add(Me.Label10)
         Me.TabEmployees.Controls.Add(Me.dgvEmployees)
         Me.TabEmployees.Controls.Add(Me.btnRemoveEmployee)
         Me.TabEmployees.Controls.Add(Me.btnEditEmployee)
@@ -298,6 +312,31 @@ Partial Class FormAdmin
         Me.TabEmployees.Text = "Employees"
         Me.TabEmployees.UseVisualStyleBackColor = True
         '
+        'FieldEmployeeFilterQuery
+        '
+        Me.FieldEmployeeFilterQuery.Location = New System.Drawing.Point(175, 9)
+        Me.FieldEmployeeFilterQuery.Name = "FieldEmployeeFilterQuery"
+        Me.FieldEmployeeFilterQuery.Size = New System.Drawing.Size(219, 23)
+        Me.FieldEmployeeFilterQuery.TabIndex = 6
+        '
+        'ComboEmployeeFilterColumn
+        '
+        Me.ComboEmployeeFilterColumn.FormattingEnabled = True
+        Me.ComboEmployeeFilterColumn.Items.AddRange(New Object() {"Name", "Username", "Email", "Address"})
+        Me.ComboEmployeeFilterColumn.Location = New System.Drawing.Point(61, 9)
+        Me.ComboEmployeeFilterColumn.Name = "ComboEmployeeFilterColumn"
+        Me.ComboEmployeeFilterColumn.Size = New System.Drawing.Size(108, 23)
+        Me.ComboEmployeeFilterColumn.TabIndex = 5
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(6, 12)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(49, 15)
+        Me.Label10.TabIndex = 4
+        Me.Label10.Text = "Filter By"
+        '
         'dgvEmployees
         '
         Me.dgvEmployees.AllowUserToAddRows = False
@@ -308,47 +347,62 @@ Partial Class FormAdmin
         Me.dgvEmployees.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvEmployees.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ID, Me.EmployeeName, Me.EmployeeUsername, Me.EmployeeEmail, Me.EmployeeAddress, Me.EmployeeDateOfBirth, Me.EmployeeRole})
-        Me.dgvEmployees.Location = New System.Drawing.Point(0, 0)
+        Me.dgvEmployees.Location = New System.Drawing.Point(0, 39)
         Me.dgvEmployees.Name = "dgvEmployees"
+        Me.dgvEmployees.ReadOnly = True
         Me.dgvEmployees.RowTemplate.Height = 25
         Me.dgvEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvEmployees.Size = New System.Drawing.Size(743, 302)
+        Me.dgvEmployees.Size = New System.Drawing.Size(743, 263)
         Me.dgvEmployees.TabIndex = 3
         '
         'ID
         '
         Me.ID.HeaderText = "ID"
         Me.ID.Name = "ID"
+        Me.ID.ReadOnly = True
+        Me.ID.Visible = False
         '
         'EmployeeName
         '
+        Me.EmployeeName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.EmployeeName.HeaderText = "Name"
         Me.EmployeeName.Name = "EmployeeName"
+        Me.EmployeeName.ReadOnly = True
         '
         'EmployeeUsername
         '
+        Me.EmployeeUsername.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.EmployeeUsername.HeaderText = "Username"
         Me.EmployeeUsername.Name = "EmployeeUsername"
+        Me.EmployeeUsername.ReadOnly = True
         '
         'EmployeeEmail
         '
+        Me.EmployeeEmail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.EmployeeEmail.HeaderText = "Email"
         Me.EmployeeEmail.Name = "EmployeeEmail"
+        Me.EmployeeEmail.ReadOnly = True
         '
         'EmployeeAddress
         '
+        Me.EmployeeAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.EmployeeAddress.HeaderText = "Address"
         Me.EmployeeAddress.Name = "EmployeeAddress"
+        Me.EmployeeAddress.ReadOnly = True
         '
         'EmployeeDateOfBirth
         '
+        Me.EmployeeDateOfBirth.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.EmployeeDateOfBirth.HeaderText = "Date of Birth"
         Me.EmployeeDateOfBirth.Name = "EmployeeDateOfBirth"
+        Me.EmployeeDateOfBirth.ReadOnly = True
         '
         'EmployeeRole
         '
+        Me.EmployeeRole.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.EmployeeRole.HeaderText = "Role"
         Me.EmployeeRole.Name = "EmployeeRole"
+        Me.EmployeeRole.ReadOnly = True
         '
         'btnRemoveEmployee
         '
@@ -391,6 +445,9 @@ Partial Class FormAdmin
         '
         'TabFruit
         '
+        Me.TabFruit.Controls.Add(Me.FieldFruitFilterQuery)
+        Me.TabFruit.Controls.Add(Me.ComboFruitFilterColumn)
+        Me.TabFruit.Controls.Add(Me.Label11)
         Me.TabFruit.Controls.Add(Me.dgvFruits)
         Me.TabFruit.Controls.Add(Me.btnRemoveFruit)
         Me.TabFruit.Controls.Add(Me.btnEditFruit)
@@ -403,6 +460,31 @@ Partial Class FormAdmin
         Me.TabFruit.Text = "Fruits"
         Me.TabFruit.UseVisualStyleBackColor = True
         '
+        'FieldFruitFilterQuery
+        '
+        Me.FieldFruitFilterQuery.Location = New System.Drawing.Point(175, 9)
+        Me.FieldFruitFilterQuery.Name = "FieldFruitFilterQuery"
+        Me.FieldFruitFilterQuery.Size = New System.Drawing.Size(219, 23)
+        Me.FieldFruitFilterQuery.TabIndex = 9
+        '
+        'ComboFruitFilterColumn
+        '
+        Me.ComboFruitFilterColumn.FormattingEnabled = True
+        Me.ComboFruitFilterColumn.Items.AddRange(New Object() {"FruitName", "FruitType", "FruitStock", "Supplier.Name", "PurchasePrice", "SellPrice"})
+        Me.ComboFruitFilterColumn.Location = New System.Drawing.Point(61, 9)
+        Me.ComboFruitFilterColumn.Name = "ComboFruitFilterColumn"
+        Me.ComboFruitFilterColumn.Size = New System.Drawing.Size(108, 23)
+        Me.ComboFruitFilterColumn.TabIndex = 8
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(6, 12)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(49, 15)
+        Me.Label11.TabIndex = 7
+        Me.Label11.Text = "Filter By"
+        '
         'dgvFruits
         '
         Me.dgvFruits.AllowUserToAddRows = False
@@ -412,48 +494,71 @@ Partial Class FormAdmin
         Me.dgvFruits.BackgroundColor = System.Drawing.SystemColors.ControlLight
         Me.dgvFruits.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvFruits.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvFruits.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.FruitID, Me.FruitName, Me.FruitType, Me.FruitStock, Me.FruitUnit, Me.FruitPurchasePrice, Me.FruitSellPrice})
-        Me.dgvFruits.Location = New System.Drawing.Point(0, 0)
+        Me.dgvFruits.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.FruitID, Me.FruitName, Me.FruitType, Me.FruitStock, Me.FruitUnit, Me.FruitSupplier, Me.FruitPurchasePrice, Me.FruitSellPrice})
+        Me.dgvFruits.Location = New System.Drawing.Point(0, 39)
         Me.dgvFruits.Name = "dgvFruits"
+        Me.dgvFruits.ReadOnly = True
         Me.dgvFruits.RowTemplate.Height = 25
         Me.dgvFruits.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvFruits.Size = New System.Drawing.Size(744, 302)
+        Me.dgvFruits.Size = New System.Drawing.Size(744, 263)
         Me.dgvFruits.TabIndex = 6
         '
         'FruitID
         '
         Me.FruitID.HeaderText = "ID"
         Me.FruitID.Name = "FruitID"
+        Me.FruitID.ReadOnly = True
+        Me.FruitID.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.FruitID.Visible = False
         '
         'FruitName
         '
+        Me.FruitName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.FruitName.HeaderText = "Fruit Name"
         Me.FruitName.Name = "FruitName"
+        Me.FruitName.ReadOnly = True
         '
         'FruitType
         '
+        Me.FruitType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.FruitType.HeaderText = "Fruit Type"
         Me.FruitType.Name = "FruitType"
+        Me.FruitType.ReadOnly = True
         '
         'FruitStock
         '
+        Me.FruitStock.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.FruitStock.HeaderText = "Stock"
         Me.FruitStock.Name = "FruitStock"
+        Me.FruitStock.ReadOnly = True
         '
         'FruitUnit
         '
-        Me.FruitUnit.HeaderText = "Unit"
+        Me.FruitUnit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.FruitUnit.HeaderText = "Unit (hidden)"
         Me.FruitUnit.Name = "FruitUnit"
+        Me.FruitUnit.ReadOnly = True
+        Me.FruitUnit.Visible = False
+        '
+        'FruitSupplier
+        '
+        Me.FruitSupplier.HeaderText = "Unit"
+        Me.FruitSupplier.Name = "FruitSupplier"
+        Me.FruitSupplier.ReadOnly = True
         '
         'FruitPurchasePrice
         '
+        Me.FruitPurchasePrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.FruitPurchasePrice.HeaderText = "Purchase"
         Me.FruitPurchasePrice.Name = "FruitPurchasePrice"
+        Me.FruitPurchasePrice.ReadOnly = True
         '
         'FruitSellPrice
         '
+        Me.FruitSellPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.FruitSellPrice.HeaderText = "Sell"
         Me.FruitSellPrice.Name = "FruitSellPrice"
+        Me.FruitSellPrice.ReadOnly = True
         '
         'btnRemoveFruit
         '
@@ -496,10 +601,9 @@ Partial Class FormAdmin
         '
         'TabRestock
         '
+        Me.TabRestock.Controls.Add(Me.RestockComboSupplier)
         Me.TabRestock.Controls.Add(Me.SplitContainer1)
         Me.TabRestock.Controls.Add(Me.FieldCurrentBalance)
-        Me.TabRestock.Controls.Add(Me.FieldSupplierEmail)
-        Me.TabRestock.Controls.Add(Me.FieldSupplierName)
         Me.TabRestock.Controls.Add(Me.Label8)
         Me.TabRestock.Controls.Add(Me.Label7)
         Me.TabRestock.Location = New System.Drawing.Point(4, 24)
@@ -509,6 +613,16 @@ Partial Class FormAdmin
         Me.TabRestock.TabIndex = 3
         Me.TabRestock.Text = "Restock"
         Me.TabRestock.UseVisualStyleBackColor = True
+        '
+        'RestockComboSupplier
+        '
+        Me.RestockComboSupplier.DisplayMember = "Name"
+        Me.RestockComboSupplier.FormattingEnabled = True
+        Me.RestockComboSupplier.Location = New System.Drawing.Point(119, 10)
+        Me.RestockComboSupplier.Name = "RestockComboSupplier"
+        Me.RestockComboSupplier.Size = New System.Drawing.Size(164, 23)
+        Me.RestockComboSupplier.TabIndex = 17
+        Me.RestockComboSupplier.ValueMember = "ID"
         '
         'SplitContainer1
         '
@@ -520,6 +634,9 @@ Partial Class FormAdmin
         '
         'SplitContainer1.Panel1
         '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.FieldFruitRestockFilterQuery)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.ComboFruitRestockFilterColumn)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.Label13)
         Me.SplitContainer1.Panel1.Controls.Add(Me.Label4)
         Me.SplitContainer1.Panel1.Controls.Add(Me.dgvFruitsRestock)
         Me.SplitContainer1.Panel1.Controls.Add(Me.numQty)
@@ -539,6 +656,34 @@ Partial Class FormAdmin
         Me.SplitContainer1.Size = New System.Drawing.Size(764, 346)
         Me.SplitContainer1.SplitterDistance = 382
         Me.SplitContainer1.TabIndex = 2
+        '
+        'FieldFruitRestockFilterQuery
+        '
+        Me.FieldFruitRestockFilterQuery.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.FieldFruitRestockFilterQuery.Location = New System.Drawing.Point(230, 5)
+        Me.FieldFruitRestockFilterQuery.Name = "FieldFruitRestockFilterQuery"
+        Me.FieldFruitRestockFilterQuery.Size = New System.Drawing.Size(149, 23)
+        Me.FieldFruitRestockFilterQuery.TabIndex = 16
+        '
+        'ComboFruitRestockFilterColumn
+        '
+        Me.ComboFruitRestockFilterColumn.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ComboFruitRestockFilterColumn.FormattingEnabled = True
+        Me.ComboFruitRestockFilterColumn.Items.AddRange(New Object() {"FruitName", "FruitType", "Stock", "PurchasePrice"})
+        Me.ComboFruitRestockFilterColumn.Location = New System.Drawing.Point(134, 5)
+        Me.ComboFruitRestockFilterColumn.Name = "ComboFruitRestockFilterColumn"
+        Me.ComboFruitRestockFilterColumn.Size = New System.Drawing.Size(90, 23)
+        Me.ComboFruitRestockFilterColumn.TabIndex = 15
+        '
+        'Label13
+        '
+        Me.Label13.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(79, 8)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(49, 15)
+        Me.Label13.TabIndex = 14
+        Me.Label13.Text = "Filter By"
         '
         'Label4
         '
@@ -561,6 +706,7 @@ Partial Class FormAdmin
         Me.dgvFruitsRestock.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.RestockFruitID, Me.RestockFruitName, Me.RestockFruitType, Me.RestockFruitStock, Me.RestockFruitPrice})
         Me.dgvFruitsRestock.Location = New System.Drawing.Point(3, 32)
         Me.dgvFruitsRestock.Name = "dgvFruitsRestock"
+        Me.dgvFruitsRestock.ReadOnly = True
         Me.dgvFruitsRestock.RowTemplate.Height = 25
         Me.dgvFruitsRestock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvFruitsRestock.Size = New System.Drawing.Size(376, 256)
@@ -570,26 +716,38 @@ Partial Class FormAdmin
         '
         Me.RestockFruitID.HeaderText = "ID"
         Me.RestockFruitID.Name = "RestockFruitID"
+        Me.RestockFruitID.ReadOnly = True
+        Me.RestockFruitID.Visible = False
         '
         'RestockFruitName
         '
+        Me.RestockFruitName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.RestockFruitName.FillWeight = 200.0!
         Me.RestockFruitName.HeaderText = "Fruit Name"
         Me.RestockFruitName.Name = "RestockFruitName"
+        Me.RestockFruitName.ReadOnly = True
         '
         'RestockFruitType
         '
+        Me.RestockFruitType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.RestockFruitType.FillWeight = 200.0!
         Me.RestockFruitType.HeaderText = "Fruit Type"
         Me.RestockFruitType.Name = "RestockFruitType"
+        Me.RestockFruitType.ReadOnly = True
         '
         'RestockFruitStock
         '
+        Me.RestockFruitStock.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.RestockFruitStock.HeaderText = "Stock"
         Me.RestockFruitStock.Name = "RestockFruitStock"
+        Me.RestockFruitStock.ReadOnly = True
         '
         'RestockFruitPrice
         '
+        Me.RestockFruitPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.RestockFruitPrice.HeaderText = "Price"
         Me.RestockFruitPrice.Name = "RestockFruitPrice"
+        Me.RestockFruitPrice.ReadOnly = True
         '
         'numQty
         '
@@ -651,6 +809,7 @@ Partial Class FormAdmin
         Me.dgvCartRestock.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.RestockCartFruitID, Me.RestockCartFruitName, Me.RestockCartFruitType, Me.RestockCartQty, Me.RestockCartPrice, Me.RestockCartSubtotal})
         Me.dgvCartRestock.Location = New System.Drawing.Point(3, 32)
         Me.dgvCartRestock.Name = "dgvCartRestock"
+        Me.dgvCartRestock.ReadOnly = True
         Me.dgvCartRestock.RowTemplate.Height = 25
         Me.dgvCartRestock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvCartRestock.Size = New System.Drawing.Size(371, 163)
@@ -658,33 +817,51 @@ Partial Class FormAdmin
         '
         'RestockCartFruitID
         '
+        Me.RestockCartFruitID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.RestockCartFruitID.HeaderText = "Fruit ID"
         Me.RestockCartFruitID.Name = "RestockCartFruitID"
+        Me.RestockCartFruitID.ReadOnly = True
+        Me.RestockCartFruitID.Visible = False
         '
         'RestockCartFruitName
         '
+        Me.RestockCartFruitName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.RestockCartFruitName.HeaderText = "Fruit Name"
         Me.RestockCartFruitName.Name = "RestockCartFruitName"
+        Me.RestockCartFruitName.ReadOnly = True
+        Me.RestockCartFruitName.Width = 91
         '
         'RestockCartFruitType
         '
+        Me.RestockCartFruitType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.RestockCartFruitType.HeaderText = "Fruit Type"
         Me.RestockCartFruitType.Name = "RestockCartFruitType"
+        Me.RestockCartFruitType.ReadOnly = True
+        Me.RestockCartFruitType.Width = 83
         '
         'RestockCartQty
         '
+        Me.RestockCartQty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.RestockCartQty.HeaderText = "Qty"
         Me.RestockCartQty.Name = "RestockCartQty"
+        Me.RestockCartQty.ReadOnly = True
+        Me.RestockCartQty.Width = 51
         '
         'RestockCartPrice
         '
+        Me.RestockCartPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.RestockCartPrice.HeaderText = "Price"
         Me.RestockCartPrice.Name = "RestockCartPrice"
+        Me.RestockCartPrice.ReadOnly = True
+        Me.RestockCartPrice.Width = 58
         '
         'RestockCartSubtotal
         '
+        Me.RestockCartSubtotal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.RestockCartSubtotal.HeaderText = "Subtotal"
         Me.RestockCartSubtotal.Name = "RestockCartSubtotal"
+        Me.RestockCartSubtotal.ReadOnly = True
+        Me.RestockCartSubtotal.Width = 76
         '
         'btnRemoveFromCart
         '
@@ -750,22 +927,6 @@ Partial Class FormAdmin
         Me.FieldCurrentBalance.Size = New System.Drawing.Size(149, 23)
         Me.FieldCurrentBalance.TabIndex = 16
         '
-        'FieldSupplierEmail
-        '
-        Me.FieldSupplierEmail.Location = New System.Drawing.Point(280, 10)
-        Me.FieldSupplierEmail.Name = "FieldSupplierEmail"
-        Me.FieldSupplierEmail.ReadOnly = True
-        Me.FieldSupplierEmail.Size = New System.Drawing.Size(149, 23)
-        Me.FieldSupplierEmail.TabIndex = 16
-        '
-        'FieldSupplierName
-        '
-        Me.FieldSupplierName.Location = New System.Drawing.Point(125, 10)
-        Me.FieldSupplierName.Name = "FieldSupplierName"
-        Me.FieldSupplierName.ReadOnly = True
-        Me.FieldSupplierName.Size = New System.Drawing.Size(149, 23)
-        Me.FieldSupplierName.TabIndex = 16
-        '
         'Label8
         '
         Me.Label8.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -787,10 +948,12 @@ Partial Class FormAdmin
         '
         'TabSupplier
         '
+        Me.TabSupplier.Controls.Add(Me.FieldSupplierFilterQuery)
+        Me.TabSupplier.Controls.Add(Me.ComboSupplierFilterColumn)
+        Me.TabSupplier.Controls.Add(Me.Label12)
         Me.TabSupplier.Controls.Add(Me.dgvSuppliers)
         Me.TabSupplier.Controls.Add(Me.btnDeleteSupplier)
         Me.TabSupplier.Controls.Add(Me.btnEditSupplier)
-        Me.TabSupplier.Controls.Add(Me.btnBringSupplierToRestock)
         Me.TabSupplier.Controls.Add(Me.btnNewSupplier)
         Me.TabSupplier.Location = New System.Drawing.Point(4, 24)
         Me.TabSupplier.Name = "TabSupplier"
@@ -799,6 +962,31 @@ Partial Class FormAdmin
         Me.TabSupplier.TabIndex = 4
         Me.TabSupplier.Text = "Suppliers"
         Me.TabSupplier.UseVisualStyleBackColor = True
+        '
+        'FieldSupplierFilterQuery
+        '
+        Me.FieldSupplierFilterQuery.Location = New System.Drawing.Point(172, 8)
+        Me.FieldSupplierFilterQuery.Name = "FieldSupplierFilterQuery"
+        Me.FieldSupplierFilterQuery.Size = New System.Drawing.Size(219, 23)
+        Me.FieldSupplierFilterQuery.TabIndex = 9
+        '
+        'ComboSupplierFilterColumn
+        '
+        Me.ComboSupplierFilterColumn.FormattingEnabled = True
+        Me.ComboSupplierFilterColumn.Items.AddRange(New Object() {"Name", "Email", "Phone", "Address"})
+        Me.ComboSupplierFilterColumn.Location = New System.Drawing.Point(58, 8)
+        Me.ComboSupplierFilterColumn.Name = "ComboSupplierFilterColumn"
+        Me.ComboSupplierFilterColumn.Size = New System.Drawing.Size(108, 23)
+        Me.ComboSupplierFilterColumn.TabIndex = 8
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(3, 11)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(49, 15)
+        Me.Label12.TabIndex = 7
+        Me.Label12.Text = "Filter By"
         '
         'dgvSuppliers
         '
@@ -810,37 +998,48 @@ Partial Class FormAdmin
         Me.dgvSuppliers.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvSuppliers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvSuppliers.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SupplierID, Me.SupplierName, Me.SupplierEmail, Me.SupplierPhone, Me.SupplierAddress})
-        Me.dgvSuppliers.Location = New System.Drawing.Point(0, 0)
+        Me.dgvSuppliers.Location = New System.Drawing.Point(0, 38)
         Me.dgvSuppliers.Name = "dgvSuppliers"
+        Me.dgvSuppliers.ReadOnly = True
         Me.dgvSuppliers.RowTemplate.Height = 25
         Me.dgvSuppliers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvSuppliers.Size = New System.Drawing.Size(543, 346)
+        Me.dgvSuppliers.Size = New System.Drawing.Size(580, 308)
         Me.dgvSuppliers.TabIndex = 0
         '
         'SupplierID
         '
         Me.SupplierID.HeaderText = "ID"
         Me.SupplierID.Name = "SupplierID"
+        Me.SupplierID.ReadOnly = True
+        Me.SupplierID.Visible = False
         '
         'SupplierName
         '
+        Me.SupplierName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.SupplierName.HeaderText = "Name"
         Me.SupplierName.Name = "SupplierName"
+        Me.SupplierName.ReadOnly = True
         '
         'SupplierEmail
         '
+        Me.SupplierEmail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.SupplierEmail.HeaderText = "Email"
         Me.SupplierEmail.Name = "SupplierEmail"
+        Me.SupplierEmail.ReadOnly = True
         '
         'SupplierPhone
         '
+        Me.SupplierPhone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.SupplierPhone.HeaderText = "Phone"
         Me.SupplierPhone.Name = "SupplierPhone"
+        Me.SupplierPhone.ReadOnly = True
         '
         'SupplierAddress
         '
+        Me.SupplierAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.SupplierAddress.HeaderText = "Address"
         Me.SupplierAddress.Name = "SupplierAddress"
+        Me.SupplierAddress.ReadOnly = True
         '
         'btnDeleteSupplier
         '
@@ -849,7 +1048,7 @@ Partial Class FormAdmin
         Me.btnDeleteSupplier.FlatAppearance.BorderSize = 0
         Me.btnDeleteSupplier.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnDeleteSupplier.ForeColor = System.Drawing.Color.GhostWhite
-        Me.btnDeleteSupplier.Location = New System.Drawing.Point(578, 84)
+        Me.btnDeleteSupplier.Location = New System.Drawing.Point(608, 84)
         Me.btnDeleteSupplier.Name = "btnDeleteSupplier"
         Me.btnDeleteSupplier.Size = New System.Drawing.Size(128, 33)
         Me.btnDeleteSupplier.TabIndex = 1
@@ -863,26 +1062,12 @@ Partial Class FormAdmin
         Me.btnEditSupplier.FlatAppearance.BorderSize = 0
         Me.btnEditSupplier.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnEditSupplier.ForeColor = System.Drawing.Color.GhostWhite
-        Me.btnEditSupplier.Location = New System.Drawing.Point(578, 45)
+        Me.btnEditSupplier.Location = New System.Drawing.Point(608, 45)
         Me.btnEditSupplier.Name = "btnEditSupplier"
         Me.btnEditSupplier.Size = New System.Drawing.Size(128, 33)
         Me.btnEditSupplier.TabIndex = 1
         Me.btnEditSupplier.Text = "EDIT SUPPLIER"
         Me.btnEditSupplier.UseVisualStyleBackColor = False
-        '
-        'btnBringSupplierToRestock
-        '
-        Me.btnBringSupplierToRestock.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnBringSupplierToRestock.BackColor = System.Drawing.Color.MidnightBlue
-        Me.btnBringSupplierToRestock.FlatAppearance.BorderSize = 0
-        Me.btnBringSupplierToRestock.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnBringSupplierToRestock.ForeColor = System.Drawing.Color.GhostWhite
-        Me.btnBringSupplierToRestock.Location = New System.Drawing.Point(568, 307)
-        Me.btnBringSupplierToRestock.Name = "btnBringSupplierToRestock"
-        Me.btnBringSupplierToRestock.Size = New System.Drawing.Size(150, 33)
-        Me.btnBringSupplierToRestock.TabIndex = 1
-        Me.btnBringSupplierToRestock.Text = "BRING TO RESTOCK"
-        Me.btnBringSupplierToRestock.UseVisualStyleBackColor = False
         '
         'btnNewSupplier
         '
@@ -891,7 +1076,7 @@ Partial Class FormAdmin
         Me.btnNewSupplier.FlatAppearance.BorderSize = 0
         Me.btnNewSupplier.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnNewSupplier.ForeColor = System.Drawing.Color.GhostWhite
-        Me.btnNewSupplier.Location = New System.Drawing.Point(578, 6)
+        Me.btnNewSupplier.Location = New System.Drawing.Point(608, 6)
         Me.btnNewSupplier.Name = "btnNewSupplier"
         Me.btnNewSupplier.Size = New System.Drawing.Size(128, 33)
         Me.btnNewSupplier.TabIndex = 1
@@ -914,8 +1099,10 @@ Partial Class FormAdmin
         Me.TabHome.ResumeLayout(False)
         Me.TabHome.PerformLayout()
         Me.TabEmployees.ResumeLayout(False)
+        Me.TabEmployees.PerformLayout()
         CType(Me.dgvEmployees, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabFruit.ResumeLayout(False)
+        Me.TabFruit.PerformLayout()
         CType(Me.dgvFruits, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabRestock.ResumeLayout(False)
         Me.TabRestock.PerformLayout()
@@ -929,13 +1116,13 @@ Partial Class FormAdmin
         CType(Me.numQty, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvCartRestock, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabSupplier.ResumeLayout(False)
+        Me.TabSupplier.PerformLayout()
         CType(Me.dgvSuppliers, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents labelGreetings As Label
-    Friend WithEvents Panel1 As Panel
     Friend WithEvents btnLogout As Button
     Friend WithEvents AdminTabs As TabControl
     Friend WithEvents TabHome As TabPage
@@ -953,6 +1140,40 @@ Partial Class FormAdmin
     Friend WithEvents btnNewFruit As Button
     Friend WithEvents dgvEmployees As DataGridView
     Friend WithEvents dgvFruits As DataGridView
+    Friend WithEvents btnProfile As Button
+    Friend WithEvents TabSupplier As TabPage
+    Friend WithEvents dgvSuppliers As DataGridView
+    Friend WithEvents btnDeleteSupplier As Button
+    Friend WithEvents btnEditSupplier As Button
+    Friend WithEvents btnNewSupplier As Button
+    Friend WithEvents btnRestock As Button
+    Friend WithEvents btnSuppliers As Button
+    Friend WithEvents btnViewReport As Button
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents TabRestock As TabPage
+    Friend WithEvents RestockComboSupplier As ComboBox
+    Friend WithEvents SplitContainer1 As SplitContainer
+    Friend WithEvents Label4 As Label
+    Friend WithEvents dgvFruitsRestock As DataGridView
+    Friend WithEvents numQty As NumericUpDown
+    Friend WithEvents btnAddToCart As Button
+    Friend WithEvents Label3 As Label
+    Friend WithEvents dtpPurchaseDate As DateTimePicker
+    Friend WithEvents Label5 As Label
+    Friend WithEvents dgvCartRestock As DataGridView
+    Friend WithEvents btnRemoveFromCart As Button
+    Friend WithEvents FieldTotal As TextBox
+    Friend WithEvents Label9 As Label
+    Friend WithEvents btnConfirm As Button
+    Friend WithEvents Label6 As Label
+    Friend WithEvents FieldCurrentBalance As TextBox
+    Friend WithEvents Label8 As Label
+    Friend WithEvents Label7 As Label
+    Friend WithEvents SupplierID As DataGridViewTextBoxColumn
+    Friend WithEvents SupplierName As DataGridViewTextBoxColumn
+    Friend WithEvents SupplierEmail As DataGridViewTextBoxColumn
+    Friend WithEvents SupplierPhone As DataGridViewTextBoxColumn
+    Friend WithEvents SupplierAddress As DataGridViewTextBoxColumn
     Friend WithEvents ID As DataGridViewTextBoxColumn
     Friend WithEvents EmployeeName As DataGridViewTextBoxColumn
     Friend WithEvents EmployeeUsername As DataGridViewTextBoxColumn
@@ -960,26 +1181,6 @@ Partial Class FormAdmin
     Friend WithEvents EmployeeAddress As DataGridViewTextBoxColumn
     Friend WithEvents EmployeeDateOfBirth As DataGridViewTextBoxColumn
     Friend WithEvents EmployeeRole As DataGridViewTextBoxColumn
-    Friend WithEvents FruitID As DataGridViewTextBoxColumn
-    Friend WithEvents FruitName As DataGridViewTextBoxColumn
-    Friend WithEvents FruitType As DataGridViewTextBoxColumn
-    Friend WithEvents FruitStock As DataGridViewTextBoxColumn
-    Friend WithEvents FruitUnit As DataGridViewTextBoxColumn
-    Friend WithEvents FruitPurchasePrice As DataGridViewTextBoxColumn
-    Friend WithEvents FruitSellPrice As DataGridViewTextBoxColumn
-    Friend WithEvents btnProfile As Button
-    Friend WithEvents TabRestock As TabPage
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents btnAddToCart As Button
-    Friend WithEvents numQty As NumericUpDown
-    Friend WithEvents dgvCartRestock As DataGridView
-    Friend WithEvents dgvFruitsRestock As DataGridView
-    Friend WithEvents FieldTotal As TextBox
-    Friend WithEvents Label6 As Label
-    Friend WithEvents btnConfirm As Button
-    Friend WithEvents btnRemoveFromCart As Button
     Friend WithEvents RestockFruitID As DataGridViewTextBoxColumn
     Friend WithEvents RestockFruitName As DataGridViewTextBoxColumn
     Friend WithEvents RestockFruitType As DataGridViewTextBoxColumn
@@ -991,26 +1192,24 @@ Partial Class FormAdmin
     Friend WithEvents RestockCartQty As DataGridViewTextBoxColumn
     Friend WithEvents RestockCartPrice As DataGridViewTextBoxColumn
     Friend WithEvents RestockCartSubtotal As DataGridViewTextBoxColumn
-    Friend WithEvents TabSupplier As TabPage
-    Friend WithEvents dgvSuppliers As DataGridView
-    Friend WithEvents btnDeleteSupplier As Button
-    Friend WithEvents btnEditSupplier As Button
-    Friend WithEvents btnBringSupplierToRestock As Button
-    Friend WithEvents btnNewSupplier As Button
-    Friend WithEvents SupplierID As DataGridViewTextBoxColumn
-    Friend WithEvents SupplierName As DataGridViewTextBoxColumn
-    Friend WithEvents SupplierEmail As DataGridViewTextBoxColumn
-    Friend WithEvents SupplierPhone As DataGridViewTextBoxColumn
-    Friend WithEvents SupplierAddress As DataGridViewTextBoxColumn
-    Friend WithEvents FieldSupplierEmail As TextBox
-    Friend WithEvents FieldSupplierName As TextBox
-    Friend WithEvents Label7 As Label
-    Friend WithEvents FieldCurrentBalance As TextBox
-    Friend WithEvents Label8 As Label
-    Friend WithEvents btnRestock As Button
-    Friend WithEvents btnSuppliers As Button
-    Friend WithEvents btnViewReport As Button
-    Friend WithEvents SplitContainer1 As SplitContainer
-    Friend WithEvents dtpPurchaseDate As DateTimePicker
-    Friend WithEvents Label9 As Label
+    Friend WithEvents FieldEmployeeFilterQuery As TextBox
+    Friend WithEvents ComboEmployeeFilterColumn As ComboBox
+    Friend WithEvents Label10 As Label
+    Friend WithEvents FieldFruitFilterQuery As TextBox
+    Friend WithEvents ComboFruitFilterColumn As ComboBox
+    Friend WithEvents Label11 As Label
+    Friend WithEvents FieldSupplierFilterQuery As TextBox
+    Friend WithEvents ComboSupplierFilterColumn As ComboBox
+    Friend WithEvents Label12 As Label
+    Friend WithEvents FieldFruitRestockFilterQuery As TextBox
+    Friend WithEvents ComboFruitRestockFilterColumn As ComboBox
+    Friend WithEvents Label13 As Label
+    Friend WithEvents FruitID As DataGridViewTextBoxColumn
+    Friend WithEvents FruitName As DataGridViewTextBoxColumn
+    Friend WithEvents FruitType As DataGridViewTextBoxColumn
+    Friend WithEvents FruitStock As DataGridViewTextBoxColumn
+    Friend WithEvents FruitUnit As DataGridViewTextBoxColumn
+    Friend WithEvents FruitSupplier As DataGridViewTextBoxColumn
+    Friend WithEvents FruitPurchasePrice As DataGridViewTextBoxColumn
+    Friend WithEvents FruitSellPrice As DataGridViewTextBoxColumn
 End Class

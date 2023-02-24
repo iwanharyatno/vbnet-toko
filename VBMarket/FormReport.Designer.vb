@@ -37,6 +37,9 @@ Partial Class FormReport
         Me.btnViewReport = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.labelCurrentBalance = New System.Windows.Forms.Label()
+        Me.labelOutcome = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Label1
@@ -44,7 +47,7 @@ Partial Class FormReport
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(22, 166)
+        Me.Label1.Location = New System.Drawing.Point(22, 164)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(259, 45)
         Me.Label1.TabIndex = 0
@@ -87,7 +90,7 @@ Partial Class FormReport
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(99, 352)
+        Me.Label5.Location = New System.Drawing.Point(89, 571)
         Me.Label5.Name = "Label5"
         Me.Label5.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.Label5.Size = New System.Drawing.Size(62, 15)
@@ -100,7 +103,7 @@ Partial Class FormReport
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.labelIncome.Font = New System.Drawing.Font("Segoe UI", 36.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.labelIncome.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.labelIncome.Location = New System.Drawing.Point(246, 270)
+        Me.labelIncome.Location = New System.Drawing.Point(236, 424)
         Me.labelIncome.Name = "labelIncome"
         Me.labelIncome.Size = New System.Drawing.Size(361, 65)
         Me.labelIncome.TabIndex = 4
@@ -111,7 +114,7 @@ Partial Class FormReport
         '
         Me.Label7.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label7.Location = New System.Drawing.Point(421, 352)
+        Me.Label7.Location = New System.Drawing.Point(395, 506)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(47, 15)
         Me.Label7.TabIndex = 5
@@ -123,7 +126,7 @@ Partial Class FormReport
         Me.labelProfit.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.labelProfit.Font = New System.Drawing.Font("Segoe UI", 36.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.labelProfit.ForeColor = System.Drawing.Color.DarkGreen
-        Me.labelProfit.Location = New System.Drawing.Point(613, 270)
+        Me.labelProfit.Location = New System.Drawing.Point(603, 489)
         Me.labelProfit.Name = "labelProfit"
         Me.labelProfit.Size = New System.Drawing.Size(224, 65)
         Me.labelProfit.TabIndex = 4
@@ -133,7 +136,7 @@ Partial Class FormReport
         'labelProfitInfo
         '
         Me.labelProfitInfo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.labelProfitInfo.Location = New System.Drawing.Point(613, 352)
+        Me.labelProfitInfo.Location = New System.Drawing.Point(603, 571)
         Me.labelProfitInfo.Name = "labelProfitInfo"
         Me.labelProfitInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.labelProfitInfo.Size = New System.Drawing.Size(224, 15)
@@ -145,7 +148,7 @@ Partial Class FormReport
         '
         Me.labelItemsSold.Font = New System.Drawing.Font("Segoe UI", 36.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.labelItemsSold.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.labelItemsSold.Location = New System.Drawing.Point(22, 270)
+        Me.labelItemsSold.Location = New System.Drawing.Point(12, 489)
         Me.labelItemsSold.Name = "labelItemsSold"
         Me.labelItemsSold.Size = New System.Drawing.Size(224, 65)
         Me.labelItemsSold.TabIndex = 4
@@ -157,7 +160,7 @@ Partial Class FormReport
         Me.labelReportDate.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.labelReportDate.Font = New System.Drawing.Font("Segoe UI", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.labelReportDate.ForeColor = System.Drawing.Color.Black
-        Me.labelReportDate.Location = New System.Drawing.Point(552, 172)
+        Me.labelReportDate.Location = New System.Drawing.Point(552, 170)
         Me.labelReportDate.Name = "labelReportDate"
         Me.labelReportDate.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.labelReportDate.Size = New System.Drawing.Size(285, 37)
@@ -180,45 +183,88 @@ Partial Class FormReport
         '
         'Label4
         '
-        Me.Label4.AutoSize = True
+        Me.Label4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label4.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.Label4.ForeColor = System.Drawing.Color.Black
-        Me.Label4.Location = New System.Drawing.Point(29, 445)
+        Me.Label4.Location = New System.Drawing.Point(326, 230)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(183, 32)
         Me.Label4.TabIndex = 0
         Me.Label4.Text = "Current Balance"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'labelCurrentBalance
         '
-        Me.labelCurrentBalance.AutoSize = True
+        Me.labelCurrentBalance.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.labelCurrentBalance.Font = New System.Drawing.Font("Segoe UI", 36.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.labelCurrentBalance.ForeColor = System.Drawing.Color.DarkGreen
-        Me.labelCurrentBalance.Location = New System.Drawing.Point(29, 498)
+        Me.labelCurrentBalance.Location = New System.Drawing.Point(12, 273)
         Me.labelCurrentBalance.Name = "labelCurrentBalance"
-        Me.labelCurrentBalance.Size = New System.Drawing.Size(117, 65)
+        Me.labelCurrentBalance.Size = New System.Drawing.Size(815, 65)
         Me.labelCurrentBalance.TabIndex = 4
         Me.labelCurrentBalance.Text = "Rp0"
         Me.labelCurrentBalance.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'labelOutcome
+        '
+        Me.labelOutcome.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.labelOutcome.Font = New System.Drawing.Font("Segoe UI", 36.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.labelOutcome.ForeColor = System.Drawing.Color.MidnightBlue
+        Me.labelOutcome.Location = New System.Drawing.Point(236, 545)
+        Me.labelOutcome.Name = "labelOutcome"
+        Me.labelOutcome.Size = New System.Drawing.Size(361, 65)
+        Me.labelOutcome.TabIndex = 4
+        Me.labelOutcome.Text = "Rp0"
+        Me.labelOutcome.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label8
+        '
+        Me.Label8.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label8.Location = New System.Drawing.Point(388, 626)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(62, 15)
+        Me.Label8.TabIndex = 5
+        Me.Label8.Text = "Outcome"
+        Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label6
+        '
+        Me.Label6.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label6.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label6.ForeColor = System.Drawing.Color.Black
+        Me.Label6.Location = New System.Drawing.Point(359, 377)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(115, 32)
+        Me.Label6.TabIndex = 0
+        Me.Label6.Text = "Summary"
+        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'FormReport
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(849, 616)
+        Me.ClientSize = New System.Drawing.Size(849, 694)
         Me.Controls.Add(Me.btnViewReport)
         Me.Controls.Add(Me.labelProfitInfo)
+        Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.labelProfit)
         Me.Controls.Add(Me.labelCurrentBalance)
         Me.Controls.Add(Me.labelItemsSold)
+        Me.Controls.Add(Me.labelOutcome)
         Me.Controls.Add(Me.labelIncome)
         Me.Controls.Add(Me.ComboMonth)
         Me.Controls.Add(Me.FieldYear)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.labelReportDate)
+        Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label1)
         Me.Name = "FormReport"
@@ -245,4 +291,7 @@ Partial Class FormReport
     Friend WithEvents btnViewReport As Button
     Friend WithEvents Label4 As Label
     Friend WithEvents labelCurrentBalance As Label
+    Friend WithEvents labelOutcome As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents Label6 As Label
 End Class
