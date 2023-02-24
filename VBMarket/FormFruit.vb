@@ -39,6 +39,8 @@ Public Class FormFruit
         editMode = False
         fruitId = ""
 
+        FieldStock.ReadOnly = False
+
         LoadSupplierCombo()
         Clear()
         Show()
@@ -83,6 +85,8 @@ Public Class FormFruit
     Friend Sub Edit(id As String)
         editMode = True
         fruitId = id
+
+        FieldStock.ReadOnly = True
 
         LoadSupplierCombo()
         Clear()
